@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 14:19:32 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/07 11:30:30 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:51:38 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		return (0);
 	pd = (unsigned char *)dest;
 	ps = (unsigned char *)src;
-	while (n-- > 0)
+	while (n--)
 		*pd++ = *ps++;
 	return (dest);
 }
