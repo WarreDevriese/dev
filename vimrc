@@ -54,6 +54,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
+" Issue the following commands on a new pc:
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" vim +PluginInstall +qall
 Plugin 'VundleVim/Vundle.vim'
 
 " Add your plugins here
