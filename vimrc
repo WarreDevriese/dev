@@ -7,7 +7,7 @@ set undofile					" Remember undo history
 set undodir=~/.vim/undodir
 set foldmethod=syntax			" Enable folding based on syntax
 set foldlevelstart=10
-    	" Save file with F2 in insert mode
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif		" Enable persistent cursor postition
 
 " UI settings
 set number                    " Show line numbers
