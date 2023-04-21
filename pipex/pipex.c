@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 21:09:15 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/04/21 21:10:12 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	pid1 = fork();
-	fork1(pipefd, pid1);	
+	fork1(pipefd, pid1);
 	pid2 = fork();
 	fork2(pipefd, pid2);
 	ft_close(pipefd[0]);
