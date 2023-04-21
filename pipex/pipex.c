@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 15:28:57 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:35:06 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ void	execute_cmd2()
 
 }
 
+void	ft_close(int fd)
+{
+	if (close(fd) == -1)
+		perror("Close failed");
+	exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	int		pipefd[2];
@@ -42,16 +49,16 @@ int	main(int argc, char **argv)
 	pid1 = fork();
 	if (pid1 < 0)
 	{
-		perror("Fork 1 failed")
-		close(pipefd[0]);
-		close(pipefd[1]);
+		perror("Fork 1 failed");
+		ft_close(pipefd[0]);
+		ft_close(pipefd[1]);
 		exit(1);
 	}
 	if (pid1 == 0)
 	{
-		close(pipefd[0]);
+		ft_close(pipefd[0]);
 		execute_cmd1();
-		close(pipefd[1]);
+		ft_close(pipefd[1]);
 		exit(0);
 	}
 	
@@ -59,20 +66,20 @@ int	main(int argc, char **argv)
 	if (pid2 < 0)
 	{
 		perror("Fork 2 failed");
-		close(pipefd[0]);
-		close(pipefd[1]);
+		ft_close(pipefd[0]);
+		ft_close(pipefd[1]);
 		exit(1);
 	}
 	if (pid2 == 0)
 	{
-		close(pipefd[1]);
+		ft_close(pipefd[1]);
 		execute_cmd2();
-		close(pipefd[0]);
+		ft_close(pipefd[0]);
 		exit(0);
 	}
 
-	close(pipefd[0]);
-	close(pipefd[1]);
+	ft_close(pipefd[0]);
+	ft_close(pipefd[1]);
 	waitpid(pid1, &status1, 0);
 	waitpid(pid2, &status2, 0);
 	return (0);
