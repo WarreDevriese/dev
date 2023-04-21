@@ -34,9 +34,6 @@ vnoremap ,, <Esc>1
 nnoremap zm zM
 nnoremap <leader><leader> :x<CR>
 
-" Key mappings (autopairs)
-inoremap <C-l> <Esc>)a
-
 " Key mappings (NERDTree) 
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-h> <C-w>h
