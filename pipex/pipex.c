@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 15:55:23 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:17:57 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	ft_close(int fd)
 
 void	ft_validate_arguments(int argc, char **argv)
 {
-
+	if (argc != 5)
+	{
+		ft_printf()
+	}
 }
 
 int	main(int argc, char **argv)
