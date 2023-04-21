@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 20:48:37 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/04/21 21:07:35 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,26 @@ void	ft_close(int fd)
 	}
 }
 
-void	ft_validate_arguments(int argc, char **argv)
+void	validate_arguments(int argc, char **argv)
 {
 	if (argc != 5)
 	{
-		ft_printf_error("Usage: %s file1 cmd1 cmd2 file2\n", argv[0]);
+		perror("Usage: ./<program name> file1 cmd1 cmd2 file2");
 		exit(1);
 	}
-	if (access(argv[1], F_OK | R_OK) == -1)
+	if (access(argv[1], F_OK) == -1)
 	{
-		perror("Error file1: does not exist or is not readable");
+		perror("Error: file1 does not exist");
+		exit(1);
+	}
+	if (access(argv[1], R_OK) == -1)
+	{
+		perror("Error: file1 not readable");
 		exit(1);
 	}
 	if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) == -1)
 	{
-		perror("Error file2: not writable");
+		perror("Error: file2 not writable");
 		exit(1);
 	}
 }
@@ -88,7 +93,6 @@ void	fork2(int pipefd[], pid_t pid2)
 		ft_close(pipefd[0]);
 		exit(0);
 	}
-
 }
 
 void	check_child_status(int status, const char *error_message)
@@ -114,8 +118,7 @@ int	main(int argc, char **argv)
 	int		status1;
 	int		status2;
 	
-	ft_validate_arguments(argc, argv);
-
+	validate_arguments(argc, argv);
 	if (pipe(pipefd) == -1)
 	{
 		perror("Pipe failed");
@@ -123,7 +126,7 @@ int	main(int argc, char **argv)
 	}
 	pid1 = fork();
 	fork1(pipefd, pid1);	
-	pid2= fork();
+	pid2 = fork();
 	fork2(pipefd, pid2);
 	ft_close(pipefd[0]);
 	ft_close(pipefd[1]);
