@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 21:07:35 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/04/21 21:09:15 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	main(int argc, char **argv)
 	pid_t	pid2;
 	int		status1;
 	int		status2;
-	
+
 	validate_arguments(argc, argv);
 	if (pipe(pipefd) == -1)
 	{
