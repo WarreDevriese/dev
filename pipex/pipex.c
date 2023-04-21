@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 17:34:16 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:48:37 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,43 @@ void	ft_validate_arguments(int argc, char **argv)
 	}
 }
 
+void	fork1(int pipefd[], pid_t pid1)
+{
+	if (pid1 < 0)
+	{
+		perror("Fork 1 failed");
+		ft_close(pipefd[0]);
+		ft_close(pipefd[1]);
+		exit(1);
+	}
+	if (pid1 == 0)
+	{
+		ft_close(pipefd[0]);
+		execute_cmd1();
+		ft_close(pipefd[1]);
+		exit(0);
+	}
+}
+
+void	fork2(int pipefd[], pid_t pid2)
+{
+	if (pid2 < 0)
+	{
+		perror("Fork 2 failed");
+		ft_close(pipefd[0]);
+		ft_close(pipefd[1]);
+		exit(1);
+	}
+	if (pid2 == 0)
+	{
+		ft_close(pipefd[1]);
+		execute_cmd2();
+		ft_close(pipefd[0]);
+		exit(0);
+	}
+
+}
+
 void	check_child_status(int status, const char *error_message)
 {
 	int	exit_status;
@@ -85,37 +122,9 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	pid1 = fork();
-	if (pid1 < 0)
-	{
-		perror("Fork 1 failed");
-		ft_close(pipefd[0]);
-		ft_close(pipefd[1]);
-		exit(1);
-	}
-	if (pid1 == 0)
-	{
-		ft_close(pipefd[0]);
-		execute_cmd1();
-		ft_close(pipefd[1]);
-		exit(0);
-	}
-	
+	fork1(pipefd, pid1);	
 	pid2= fork();
-	if (pid2 < 0)
-	{
-		perror("Fork 2 failed");
-		ft_close(pipefd[0]);
-		ft_close(pipefd[1]);
-		exit(1);
-	}
-	if (pid2 == 0)
-	{
-		ft_close(pipefd[1]);
-		execute_cmd2();
-		ft_close(pipefd[0]);
-		exit(0);
-	}
-
+	fork2(pipefd, pid2);
 	ft_close(pipefd[0]);
 	ft_close(pipefd[1]);
 	waitpid(pid1, &status1, 0);
