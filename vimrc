@@ -31,6 +31,9 @@ nnoremap <C-x> :w<CR>
 inoremap <C-x> <Esc>:w<CR>a
 inoremap ,, <Esc>1
 vnoremap ,, <Esc>1
+nnoremap zm zM
+nnoremap <leader><leader> :x<CR>
+
 " Key mappigs (NERDTree) 
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-h> <C-w>h
