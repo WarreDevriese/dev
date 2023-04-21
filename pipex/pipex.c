@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 15:35:06 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:55:23 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	ft_close(int fd)
 	exit(1);
 }
 
+void	ft_validate_arguments(int argc, char **argv)
+{
+
+}
+
 int	main(int argc, char **argv)
 {
 	int		pipefd[2];
@@ -41,6 +46,7 @@ int	main(int argc, char **argv)
 	int		status1;
 	int		status2;
 	
+	ft_validate_arguments(argc, argv);
 	if (pipe(pipefd) == -1)
 	{
 		perror("Pipe failed");
