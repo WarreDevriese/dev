@@ -10,7 +10,7 @@ set foldlevelstart=10
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif		" Enable persistent cursor postition
 
 " UI settings
-set number                    " Show line numbers
+set relativenumber            " Show line numbers
 set showcmd                   " Show (partial) command in the status line
 set cursorline                " Highlight the current line
 set wildmenu                  " Show a command-line completion menu
