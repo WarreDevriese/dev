@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 16:17:57 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:34:16 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,43 @@ void	execute_cmd2()
 void	ft_close(int fd)
 {
 	if (close(fd) == -1)
+	{
 		perror("Close failed");
-	exit(1);
+		exit(1);
+	}
 }
 
 void	ft_validate_arguments(int argc, char **argv)
 {
 	if (argc != 5)
 	{
-		ft_printf()
+		ft_printf_error("Usage: %s file1 cmd1 cmd2 file2\n", argv[0]);
+		exit(1);
+	}
+	if (access(argv[1], F_OK | R_OK) == -1)
+	{
+		perror("Error file1: does not exist or is not readable");
+		exit(1);
+	}
+	if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) == -1)
+	{
+		perror("Error file2: not writable");
+		exit(1);
+	}
+}
+
+void	check_child_status(int status, const char *error_message)
+{
+	int	exit_status;
+
+	if (WIFEXITED(status))
+	{
+		exit_status = WEXITSTATUS(status);
+		if (exit_status != 0)
+		{
+			perror(error_message);
+			exit(1);
+		}
 	}
 }
 
@@ -50,6 +78,7 @@ int	main(int argc, char **argv)
 	int		status2;
 	
 	ft_validate_arguments(argc, argv);
+
 	if (pipe(pipefd) == -1)
 	{
 		perror("Pipe failed");
@@ -91,5 +120,7 @@ int	main(int argc, char **argv)
 	ft_close(pipefd[1]);
 	waitpid(pid1, &status1, 0);
 	waitpid(pid2, &status2, 0);
+	check_child_status(status1, "Error executing cmd1");
+	check_child_status(status2, "Error executing cmd2");
 	return (0);
 }
