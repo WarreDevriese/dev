@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 16:21:20 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 16:52:02 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ static void	ft_free_arr(char **dirs)
 	free(dirs);
 }
 
-static char    *ft_strjoin_path(const char *dirs, const char *cmd)
+static char	*ft_strjoin_path(const char *dirs, const char *cmd)
 {
-    char    *full_path;
-    size_t  dirs_len;
-    size_t  cmd_len;
+	char	*full_path;
+	size_t	dirs_len;
+	size_t	cmd_len;
 
-    dirs_len = ft_strlen(dirs);
-    cmd_len = ft_strlen(cmd);
-    full_path = malloc(dirs_len + cmd_len + 2);
-    if (!full_path)
+	dirs_len = ft_strlen(dirs);
+	cmd_len = ft_strlen(cmd);
+	full_path = malloc(dirs_len + cmd_len + 2);
+	if (!full_path)
 		return (NULL);
-    ft_memcpy(full_path, dirs, dirs_len);
-    full_path[dirs_len] = '/';
-    ft_memcpy(full_path + dirs_len + 1, cmd, cmd_len);
-    full_path[dirs_len + cmd_len + 1] = '\0';
-    return (full_path);
+	ft_memcpy(full_path, dirs, dirs_len);
+	full_path[dirs_len] = '/';
+	ft_memcpy(full_path + dirs_len + 1, cmd, cmd_len);
+	full_path[dirs_len + cmd_len + 1] = '\0';
+	return (full_path);
 }
 
 static char	*find_path_env(char **envp)
@@ -86,7 +86,7 @@ static char	*search_cmd_in_dirs(char *path_env, char *cmd)
 		perror("Executable not found in PATH");
 		exit(1);
 	}
-	return (full_path);	
+	return (full_path);
 }
 
 char	*find_cmd_path(char **argv, char **envp)
@@ -98,5 +98,5 @@ char	*find_cmd_path(char **argv, char **envp)
 	path_env = find_path_env(envp);
 	cmd = argv[1];
 	full_path = search_cmd_in_dirs(path_env, cmd);
-	return (full_path);	
+	return (full_path);
 }

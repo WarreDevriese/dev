@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:42:10 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 16:21:20 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 16:53:12 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	execute_cmd2(int *pipefd, char **argv, char **envp)
 
 void	child2(int pipefd[], pid_t pid2, char **argv, char **envp)
 {
-	if (pid2< 0)
+	if (pid2 < 0)
 	{
 		perror("Fork 2 failed");
 		ft_close(pipefd[0]);
