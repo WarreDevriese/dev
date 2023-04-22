@@ -8,7 +8,7 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 LIBFT_INC = -I $(LIBFT_DIR)
 
 SRC = pipex.c child1.c child2.c find_cmd_path.c
-OBS = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
