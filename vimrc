@@ -68,6 +68,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'dense-analysis/ale'
+Plugin 'adoy/vim-cursorline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -76,3 +77,7 @@ filetype plugin indent on    " required
 " Customize the appearance of your installed plugins
 " For example, to customize lightline.vim:
 " let g:lightline = { 'colorscheme': 'wombat' }
+let g:cursorline_hl_group = 'CursorLine'
+let g:cursorline_v_enable = 1
+let g:cursorline_v_hl_group = 'CursorLine'
+
