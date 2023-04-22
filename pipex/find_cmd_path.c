@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 13:58:27 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:08:35 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ void	ft_free_arr(char **dirs)
 	free(dirs);
 }
 
-char    *ft_strjoin_path(const char *s1, const char *s2)
+char    *ft_strjoin_path(const char *dirs, const char *cmd)
 {
-    char    *result;
-    size_t  s1_len;
-    size_t  s2_len;
+    char    *full_path;
+    size_t  dirs_len;
+    size_t  cmd_len;
 
-    s1_len = ft_strlen(s1);
-    s2_len = ft_strlen(s2);
-    result = malloc(s1_len + s2_len + 2);
-    if (!result)
+    dirs_len = ft_strlen(dirs);
+    cmd_len = ft_strlen(cmd);
+    full_path = malloc(dirs_len + cmd_len + 2);
+    if (!full_path)
 		return (NULL);
-    ft_memcpy(result, s1, s1_len);
-    result[s1_len] = '/';
-    ft_memcpy(result + s1_len + 1, s2, s2_len);
-    result[s1_len + s2_len + 1] = '\0';
-    return (result);
+    ft_memcpy(full_path, dirs, dirs_len);
+    full_path[dirs_len] = '/';
+    ft_memcpy(full_path + dirs_len + 1, cmd, cmd_len);
+    result[dirs_len + cmd_len + 1] = '\0';
+    return (full_path);
 }
 
 char	*find_cmd_path(char **argv, char **envp)
