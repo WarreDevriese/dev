@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 13:49:21 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 13:50:33 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 16:21:20 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,10 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+void	ft_close(int fd);
+char	*find_cmd_path(char **argv, char **envp);
+void	child2(int pipefd[], pid_t pid2, char **argv, char **envp);
+void	child1(int pipefd[], pid_t pid1, char **argv, char **envp);
 
 #endif

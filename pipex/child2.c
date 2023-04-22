@@ -6,13 +6,13 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:42:10 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 15:42:01 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 16:21:20 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_execve(char **argv, char **envp)
+static void	ft_execve(char **argv, char **envp)
 {
 	char	*cmd2;
 	char	*cmd2_path;
@@ -28,7 +28,7 @@ void	ft_execve(char **argv, char **envp)
 	}
 }
 
-void	execute_cmd2(int *pipefd, char **argv, char **envp)
+static void	execute_cmd2(int *pipefd, char **argv, char **envp)
 {
 	int		fd2;
 
@@ -51,7 +51,6 @@ void	execute_cmd2(int *pipefd, char **argv, char **envp)
 	ft_close(fd2);
 	ft_execve(argv, envp);
 }
-
 
 void	child2(int pipefd[], pid_t pid2, char **argv, char **envp)
 {

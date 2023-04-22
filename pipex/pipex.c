@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 15:00:15 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 16:21:21 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_close(int fd)
 	}
 }
 
-void	validate_arguments(int argc, char **argv)
+static void	validate_arguments(int argc, char **argv)
 {
 	if (argc != 5)
 	{
@@ -45,7 +45,7 @@ void	validate_arguments(int argc, char **argv)
 	}
 }
 
-void	check_child_status(int status, const char *error_message)
+ static void	check_child_status(int status, const char *error_message)
 {
 	int	exit_status;
 
