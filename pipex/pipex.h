@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 13:49:21 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 16:57:46 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 17:03:08 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "libft.h"
 
 void	ft_close(int fd);
 char	*find_cmd_path(char **argv, char **envp);
