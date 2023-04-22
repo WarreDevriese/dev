@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:42:06 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 12:44:40 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 15:00:15 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ void	execute_cmd2()
 
 }
 
-void	fork2(int pipefd[], pid_t pid2)
+void	child2(int pipefd[], pid_t pid2)
 {
 	if (pid2 < 0)
 	{

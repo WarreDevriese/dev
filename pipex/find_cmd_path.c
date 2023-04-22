@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   find_cmd_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 14:08:35 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:43:07 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char    *ft_strjoin_path(const char *dirs, const char *cmd)
     ft_memcpy(full_path, dirs, dirs_len);
     full_path[dirs_len] = '/';
     ft_memcpy(full_path + dirs_len + 1, cmd, cmd_len);
-    result[dirs_len + cmd_len + 1] = '\0';
+    full_path[dirs_len + cmd_len + 1] = '\0';
     return (full_path);
 }
 
