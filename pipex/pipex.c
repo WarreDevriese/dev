@@ -6,25 +6,16 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/21 21:10:12 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/04/22 12:34:07 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-void	execute_cmd1()
-{
-	
-}
-
-void	execute_cmd2()
-{
-
-}
 
 void	ft_close(int fd)
 {
@@ -33,6 +24,35 @@ void	ft_close(int fd)
 		perror("Close failed");
 		exit(1);
 	}
+}
+
+void	execute_cmd1(int *pipefd, char **argv)
+{
+	int		fd1;
+
+	fd1 = open(file1, O_RDONLY);
+	if (fd1 == -1)
+	{
+		perror("Error opening file1");
+		exit(1);
+	}
+	if (dup2(fd1, STDIN_FILENO) == -1)
+	{
+		perror("Error redirecting file1 to stdin");
+		exit(1);
+	}
+	ft_close(fd1);
+	if (dup2(pipefd[1], STDOUT_FILENO) == -1)
+	{
+		perror("Error redirecting output cmd1 to pipe");
+		exit(1);
+	}
+
+}
+
+void	execute_cmd2()
+{
+
 }
 
 void	validate_arguments(int argc, char **argv)
