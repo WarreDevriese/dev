@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_left.c                                        :+:      :+:    :+:   */
+/*   child1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:42:10 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 15:00:15 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 15:37:12 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_execve(char **argv, char **envp)
 	char	*cmd1_path;
 	char	**cmd1_argv;
 
-	cmd1 = argv[1];
+	cmd1 = argv[2];
 	cmd1_path = find_cmd_path(argv, envp);
 	cmd1_argv = ft_split(cmd1, ' ');
 	if (execve(cmd1_path, cmd1_argv, envp) == -1)
