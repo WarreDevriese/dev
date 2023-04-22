@@ -6,9 +6,12 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 13:49:00 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:54:28 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "pipex.h"
+
 void	ft_free_arr(char **dirs)
 {
 	while (*dirs--)
