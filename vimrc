@@ -8,6 +8,7 @@ set undodir=~/.vim/undodir
 set foldmethod=syntax			" Enable folding based on syntax
 set foldlevelstart=10
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif		" Enable persistent cursor postition
+set wildmenu					" Display command line's tab complete options as a menu
 
 " UI settings
 set relativenumber            " Show line numbers
@@ -29,8 +30,8 @@ set smarttab                  " Use shiftwidth for tab commands
 " Key mappings (general)
 nnoremap <C-x> :w<CR>
 inoremap <C-x> <Esc>:w<CR>a
-inoremap ,, <Esc>1
-vnoremap ,, <Esc>1
+inoremap ij <Esc>1
+vnoremap ij <Esc>1
 nnoremap zm zM
 nnoremap <leader><leader> :x<CR>
 
