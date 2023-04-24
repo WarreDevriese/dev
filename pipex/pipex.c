@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/24 13:59:23 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:45:13 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,14 @@ static void	validate_arguments(int argc, char **argv)
 		perror("Usage: ./<program name> file1 cmd1 cmd2 file2");
 		exit(1);
 	}
-	if (access(argv[1], F_OK) == -1)
+	if (access(argv[1], F_OK | R_OK) == -1)
 	{
-		perror("Error: file1 does not exist");
-		exit(1);
-	}
-	if (access(argv[1], R_OK) == -1)
-	{
-		perror("Error: file1 not readable");
+		perror("Error file1:");
 		exit(1);
 	}
 	if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) == -1)
 	{
-		perror("Error: file2 not writable");
+		perror("Error file2:");
 		exit(1);
 	}
 }
@@ -71,7 +66,7 @@ int	main(int argc, char **argv, char **envp)
 	validate_arguments(argc, argv);
 	if (pipe(pipefd) == -1)
 	{
-		perror("Pipe failed");
+		perror("Error pipe:");
 		exit(1);
 	}
 	pid1 = fork();
