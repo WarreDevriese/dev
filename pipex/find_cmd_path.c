@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/24 11:18:09 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/24 12:56:47 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,12 @@ static char	*find_path_env(char **envp)
 	return (path_env);
 }
 
-char	*find_cmd_path(char **argv, char **envp)
+char	*find_cmd_path(char **envp, char *cmd)
 {
 	char	*path_env;
-	char	*cmd;
 	char	*full_path;
 
 	path_env = find_path_env(envp);
-	cmd = argv[1];
 	full_path = search_cmd_in_dirs(path_env, cmd);
 	return (full_path);
 }

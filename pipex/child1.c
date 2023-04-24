@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:42:10 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/22 16:21:21 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/24 12:52:46 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	ft_execve(char **argv, char **envp)
 	char	**cmd1_argv;
 
 	cmd1 = argv[2];
-	cmd1_path = find_cmd_path(argv, envp);
 	cmd1_argv = ft_split(cmd1, ' ');
+	cmd1_path = find_cmd_path(envp, cmd1_argv[0]);
 	if (execve(cmd1_path, cmd1_argv, envp) == -1)
 	{
 		perror("Error executing cmd1");
