@@ -1,5 +1,0 @@
-apple banana cherry
-orange banana apple
-banana cherry orange
-apple cherry orange
-
