@@ -5,15 +5,22 @@ syntax on                     " Enable syntax highlighting
 set hidden                    " Enable buffer hiding, allowing you to switch between unsaved files
 set undofile					" Remember undo history
 set undodir=~/.vim/undodir
-set foldmethod=syntax			" Enable folding based on syntax
+set foldmethod=indent			" Enable folding based on indent
 set foldlevelstart=10
+set foldnestmax=3
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif		" Enable persistent cursor postition
 set wildmenu					" Display command line's tab complete options as a menu
+set noswapfile					" Disable swap file
+set nobackup
+set nowritebackup
+set autowrite					" Automatically write files before opening another file
+set autoread					" Reload all files if changed externally
 
 " UI settings
 set relativenumber            " Show line numbers
 set showcmd                   " Show (partial) command in the status line
 set cursorline                " Highlight the current line
+set ruler						" Always show cursor position
 set wildmenu                  " Show a command-line completion menu
 set showmatch                 " Show matching brackets/parentheses
 set incsearch                 " Show search matches as you type
@@ -44,7 +51,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <silent> > :tabn<CR>
 nnoremap <silent> < :tabp<CR>
 
-
 " C-specific settings
 autocmd FileType c setlocal cindent " Enable C indentation
 
@@ -69,7 +75,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'dense-analysis/ale'
-Plugin 'adoy/vim-cursorline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -78,7 +83,3 @@ filetype plugin indent on    " required
 " Customize the appearance of your installed plugins
 " For example, to customize lightline.vim:
 " let g:lightline = { 'colorscheme': 'wombat' }
-let g:cursorline_hl_group = 'CursorLine'
-let g:cursorline_v_enable = 1
-let g:cursorline_v_hl_group = 'CursorLine'
-
