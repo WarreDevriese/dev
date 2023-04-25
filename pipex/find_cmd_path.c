@@ -6,13 +6,13 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/25 17:46:22 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:48:29 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	ft_free_arr(char **dirs)
+static void	ft_free_dirs(char **dirs)
 {
 	int		i;
 
@@ -32,7 +32,10 @@ static char	*ft_strjoin_path(const char *dirs, const char *cmd)
 	cmd_len = ft_strlen(cmd);
 	full_path = malloc(dirs_len + cmd_len + 2);
 	if (!full_path)
+	{
+		perror("Malloc failed");
 		return (NULL);
+	}
 	ft_memcpy(full_path, dirs, dirs_len);
 	full_path[dirs_len] = '/';
 	ft_memcpy(full_path + dirs_len + 1, cmd, cmd_len);
@@ -52,13 +55,12 @@ static char	*search_cmd_in_dirs(char *path_env, char *cmd)
 	while (dirs[i])
 	{
 		full_path = ft_strjoin_path(dirs[i++], cmd);
-		//add error handle for when malloc fails in ft_strjoin_path
 		if (access(full_path, F_OK) == 0)
 			break ;
 		free(full_path);
 		full_path = NULL;
 	}
-	ft_free_arr(dirs);
+	ft_free_dirs(dirs);
 	if (!full_path)
 	{
 		perror("Executable not found in PATH");
