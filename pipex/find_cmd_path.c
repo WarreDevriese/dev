@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/24 12:56:47 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:46:22 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static char	*search_cmd_in_dirs(char *path_env, char *cmd)
 	while (dirs[i])
 	{
 		full_path = ft_strjoin_path(dirs[i++], cmd);
+		//add error handle for when malloc fails in ft_strjoin_path
 		if (access(full_path, F_OK) == 0)
 			break ;
 		free(full_path);
