@@ -5,7 +5,7 @@ syntax on                     " Enable syntax highlighting
 set hidden                    " Enable buffer hiding, allowing you to switch between unsaved files
 set undofile					" Remember undo history
 set undodir=~/.vim/undodir
-set foldmethod=indent			" Enable folding based on indent
+set foldmethod=syntax			" Enable folding based on indent
 set foldlevelstart=10
 set foldnestmax=3
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif		" Enable persistent cursor postition
