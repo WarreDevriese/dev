@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:53:42 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/06 17:32:20 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:15:27 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	strlen = ft_strlen(s);
 	if (start > strlen)
-	{
-		substr = (char *)malloc(1 * sizeof(char));
-		if (!substr)
-			return (0);
-		*substr = '\0';
-		return (substr);
-	}
+		return (ft_strdup(""));
 	if (start + len > strlen)
 		sublen = strlen - start;
 	else
