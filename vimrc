@@ -20,6 +20,7 @@ set autoread					" Reload all files if changed externally
 set relativenumber            " Show line numbers
 set showcmd                   " Show (partial) command in the status line
 set cursorline                " Highlight the current line
+set cursorcolumn				" Highlight the current column
 set ruler						" Always show cursor position
 set wildmenu                  " Show a command-line completion menu
 set showmatch                 " Show matching brackets/parentheses
