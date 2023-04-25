@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/25 21:48:29 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/04/25 21:54:20 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*search_cmd_in_dirs(char *path_env, char *cmd)
 	while (dirs[i])
 	{
 		full_path = ft_strjoin_path(dirs[i++], cmd);
-		if (access(full_path, F_OK) == 0)
+		if (access(full_path, F_OK) == 0 || !full_path)
 			break ;
 		free(full_path);
 		full_path = NULL;
