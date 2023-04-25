@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/14 15:20:35 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:14:01 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-static int	ft_read_line(int fd, char **line_to_parse)
+static int	ft_read(int fd, char **line_parse)
 {
 	char	*buffer;
-	char	*buffer_strjoin;
+	char	*temp;
 	ssize_t	bytes_read;
 
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (-1);
 	bytes_read = 1;
-	while (!ft_strchr(*line_to_parse, '\n') && bytes_read)
+	while (!ft_strchr(*line_parse, '\n') && bytes_read)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
@@ -41,64 +41,64 @@ static int	ft_read_line(int fd, char **line_to_parse)
 			return (-1);
 		}
 		buffer[bytes_read] = '\0';
-		buffer_strjoin = ft_strjoin(*line_to_parse, buffer);
-		free(*line_to_parse);
-		*line_to_parse = buffer_strjoin;
+		temp = ft_strjoin(*line_parse, buffer);
+		free(*line_parse);
+		*line_parse = temp;
 	}
 	free(buffer);
 	return (0);
 }
 
-static char	*ft_extract_line(char **line_to_parse)
+static char	*ft_extract(char **line_parse)
 {
-	char	*new_line_to_parse;
-	char	*newline_position;
-	char	*line_to_return;
+	char	*new_line_parse;
+	char	*nl_position;
+	char	*line_return;
 
-	newline_position = ft_strchr(*line_to_parse, '\n');
-	if (newline_position)
+	nl_position = ft_strchr(*line_parse, '\n');
+	if (nl_position)
 	{
-		line_to_return = malloc(newline_position - *line_to_parse + 2);
-		if (!line_to_return)
+		line_return = malloc(nl_position - *line_parse + 2);
+		if (!line_return)
 			return (NULL);
-		ft_strlcpy(line_to_return, *line_to_parse, newline_position
-			- *line_to_parse + 2);
-		new_line_to_parse = ft_strdup(newline_position + 1);
-		free(*line_to_parse);
-		*line_to_parse = new_line_to_parse;
+		ft_strlcpy(line_return, *line_parse, nl_position
+			- *line_parse + 2);
+		new_line_parse = ft_strdup(nl_position + 1);
+		free(*line_parse);
+		*line_parse = new_line_parse;
 	}
 	else
 	{
-		line_to_return = malloc(ft_strlen(*line_to_parse) + 1);
-		ft_strlcpy(line_to_return, *line_to_parse, ft_strlen(*line_to_parse)
+		line_return = malloc(ft_strlen(*line_parse) + 1);
+		ft_strlcpy(line_return, *line_parse, ft_strlen(*line_parse)
 			+ 1);
-		free(*line_to_parse);
-		*line_to_parse = NULL;
+		free(*line_parse);
+		*line_parse = NULL;
 	}
-	return (line_to_return);
+	return (line_return);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*line_to_parse;
-	char		*line_to_return;
+	static char	*line_parse;
+	char		*line_return;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 	{
 		return (NULL);
 	}
-	if (ft_read_line(fd, &line_to_parse) == -1)
+	if (ft_read(fd, &line_parse) == -1)
 	{
-		free(line_to_parse);
-		line_to_parse = NULL;
+		free(line_parse);
+		line_parse = NULL;
 		return (NULL);
 	}
-	if (line_to_parse && *line_to_parse == 0)
+	if (line_parse && *line_parse == 0)
 	{
-		free(line_to_parse);
-		line_to_parse = NULL;
+		free(line_parse);
+		line_parse = NULL;
 		return (NULL);
 	}
-	line_to_return = ft_extract_line(&line_to_parse);
-	return (line_to_return);
+	line_return = ft_extract(&line_parse);
+	return (line_return);
 }
