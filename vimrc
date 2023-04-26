@@ -2,7 +2,6 @@
 set nocompatible              " Use Vim settings, rather than Vi settings
 filetype plugin indent on     " Enable filetype detection, plugins, and indentation
 syntax on                     " Enable syntax highlighting
-set hidden                    " Enable buffer hiding, allowing you to switch between unsaved files
 set undofile					" Remember undo history
 set undodir=~/.vim/undodir
 set foldmethod=syntax			" Enable folding based on indent
@@ -37,12 +36,13 @@ set autoindent                " Enable auto-indentation
 set smarttab                  " Use shiftwidth for tab commands
 
 " Key mappings (general)
-nnoremap <C-x> :w<CR>
-inoremap <C-x> <Esc>:w<CR>a
 inoremap ij <Esc>1
 vnoremap ij <Esc>1
+nnoremap ij <Esc>1
+nnoremap <leader><leader> :wq<CR>
+inoremap <leader><leader> <Esc>:wq<CR>
+vnoremap <leader><leader> <Esc>:wq<CR>
 nnoremap zm zM
-nnoremap <leader><leader> :x<CR>
 
 " Key mappings (NERDTree) 
 nnoremap <C-n> :NERDTreeToggle<CR>
