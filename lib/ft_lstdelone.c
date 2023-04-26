@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 12:05:23 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/08 14:48:13 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/26 12:13:07 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (!lst || !del)
-	{
 		return ;
-	}
 	del(lst->content);
 	free(lst);
 }
