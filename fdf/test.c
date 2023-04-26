@@ -1,6 +1,6 @@
 #include <mlx.h>
 
-int		main(void);
+int		main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
