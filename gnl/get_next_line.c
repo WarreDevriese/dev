@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/27 09:54:23 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/04/27 14:45:54 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_read(int fd, char **line_parse)
 	char	*temp;
 	ssize_t	bytes_read;
 
-	buffer = malloc(BUFFER_SIZE + 1);
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (-1);
 	bytes_read = 1;
@@ -58,7 +58,7 @@ static char	*ft_extract(char **line_parse)
 	nl_position = ft_strchr(*line_parse, '\n');
 	if (nl_position)
 	{
-		line_return = malloc(nl_position - *line_parse + 2);
+		line_return = (char *)malloc((nl_position - *line_parse + 2) * sizeof(char));
 		if (!line_return)
 			return (NULL);
 		ft_strlcpy(line_return, *line_parse, nl_position - *line_parse + 2);
@@ -68,7 +68,7 @@ static char	*ft_extract(char **line_parse)
 	}
 	else
 	{
-		line_return = malloc(ft_strlen(*line_parse) + 1);
+		line_return = (char *)malloc((ft_strlen(*line_parse) + 1) * sizeof(char));
 		ft_strlcpy(line_return, *line_parse, ft_strlen(*line_parse) + 1);
 		free(*line_parse);
 		*line_parse = NULL;

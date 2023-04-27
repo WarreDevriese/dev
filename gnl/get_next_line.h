@@ -6,17 +6,13 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:52 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/14 15:21:22 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:39:02 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <fcntl.h>
-# include <string.h>
-# include <stddef.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
