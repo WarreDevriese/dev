@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/25 22:14:01 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/04/27 09:54:23 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ static char	*ft_extract(char **line_parse)
 		line_return = malloc(nl_position - *line_parse + 2);
 		if (!line_return)
 			return (NULL);
-		ft_strlcpy(line_return, *line_parse, nl_position
-			- *line_parse + 2);
+		ft_strlcpy(line_return, *line_parse, nl_position - *line_parse + 2);
 		new_line_parse = ft_strdup(nl_position + 1);
 		free(*line_parse);
 		*line_parse = new_line_parse;
@@ -70,8 +69,7 @@ static char	*ft_extract(char **line_parse)
 	else
 	{
 		line_return = malloc(ft_strlen(*line_parse) + 1);
-		ft_strlcpy(line_return, *line_parse, ft_strlen(*line_parse)
-			+ 1);
+		ft_strlcpy(line_return, *line_parse, ft_strlen(*line_parse) + 1);
 		free(*line_parse);
 		*line_parse = NULL;
 	}
