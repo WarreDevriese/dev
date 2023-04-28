@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:27:05 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/08 14:43:33 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:44:32 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <string.h>
 
 typedef struct s_list
 {
@@ -66,6 +71,15 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
+char    			*get_next_line(int fd);
+size_t  			ft_strlen_gnl(const char *s);
+size_t  			ft_strlcpy_gnl(char *dst, const char *src, size_t size);
+char    			*ft_strchr_gnl(const char *s, int c);
+char    			*ft_strdup_gnl(const char *s);
+char    			*ft_strjoin_gnl(char const *s1, char const *s2);
+size_t  			ft_word_count(char const *s, char c);
+void    			ft_close(int fd);
+void    			ft_open_rdonly(char *filename, int *fd);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 

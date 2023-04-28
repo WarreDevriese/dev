@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_open_rdonly.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 16:56:34 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/03 17:17:16 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/28 18:41:16 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/28 18:44:00 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	sign;
-	int	result;
+#include "libft.h"
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+void	ft_open_rdonly(char *filename, int *fd)
+{
+	*fd = open(filename, O_RDONLY);
+	if (*fd == -1)
 	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
+		perror("Error opening file");
+		exit(1);
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = result * 10 + nptr[i] - '0';
-		i++;
-	}
-	return (sign * result);
 }

@@ -6,34 +6,11 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:36:02 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/26 10:25:30 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:42:07 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static size_t	ft_word_count(char const *s, char c)
-{
-	size_t	count;
-	int		in_word;
-
-	count = 0;
-	in_word = 0;
-	while (*s)
-	{
-		if (*s != c && !in_word)
-		{
-			count++;
-			in_word = 1;
-		}
-		else if (*s == c)
-		{
-			in_word = 0;
-		}
-		s++;
-	}
-	return (count);
-}
 
 static void	ft_free_split(char **split, size_t i)
 {

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:29:37 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/07 12:56:19 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:26:09 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static unsigned int	ft_module(int n)
 
 static void	fill_number_str(char *str, unsigned int num)
 {
-	if (num > 9)
+	if (num >= 10)
 		fill_number_str(str - 1, num / 10);
 	*str = (num % 10) + '0';
 }

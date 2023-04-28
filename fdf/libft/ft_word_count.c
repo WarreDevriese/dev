@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_word_count.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 11:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/08 12:06:02 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/28 17:17:04 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/28 17:41:14 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+size_t	ft_word_count(char const *s, char c)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
-	while (lst)
+	while (*s)
 	{
-		lst = lst->next;
-		count++;
+		if (*s != c && (s == 0 || *(s - 1) == c))
+			count++;
+		s++;
 	}
 	return (count);
 }

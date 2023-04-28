@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:53:42 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/06 17:32:20 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/27 12:57:35 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t			sublen;
 	unsigned int	strlen;
 
+	if (!s)
+		return (NULL);
 	strlen = ft_strlen(s);
 	if (start > strlen)
-	{
-		substr = (char *)malloc(1 * sizeof(char));
-		if (!substr)
-			return (0);
-		*substr = '\0';
-		return (substr);
-	}
+		return (ft_strdup(""));
 	if (start + len > strlen)
 		sublen = strlen - start;
 	else
 		sublen = len;
 	substr = (char *)malloc((sublen + 1) * sizeof(char));
 	if (!substr)
-		return (0);
+		return (NULL);
 	ft_strlcpy(substr, s + start, sublen + 1);
 	return (substr);
 }

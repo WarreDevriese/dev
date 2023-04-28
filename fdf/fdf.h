@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 12:08:30 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/08 12:58:50 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/28 18:10:34 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FDF_H
+# define FDF_H
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+# include <mlx.h>
+# include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include "libft/libft.h"
+
+typedef struct	s_dimensions
 {
-	t_list	*temp;
-	t_list	*next_node;
+	size_t	width;
+	size_t	height;
+}				t_dimensions;
 
-	if (!lst || !del)
-	{
-		return ;
-	}
-	temp = *lst;
-	while (temp)
-	{
-		next_node = temp->next;
-		ft_lstdelone(temp, del);
-		temp = next_node;
-	}
-	*lst = NULL;
-}
+#endif
