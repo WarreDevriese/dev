@@ -13,7 +13,7 @@ MLX_INC = -I $(MLX_DIR)
 
 MATH_LIB = -lm
 
-SRC = fdf.c
+SRC = fdf.c parse_map.c display.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
