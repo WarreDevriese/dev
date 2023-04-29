@@ -6,13 +6,34 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/28 19:47:22 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:42:35 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	get_dimensions(char	*file, t_dimensions *dimensions)
+//test function 2d array
+void print_2d_array(t_map dimensions, int **data)
+{
+    size_t row;
+    size_t column;
+
+    row = 0;
+    while (row < dimensions.height)
+    {
+        column = 0;
+        while (column < dimensions.width)
+        {
+            printf("%d ", data[row][column]);
+            column++;
+        }
+        printf("\n");
+        row++;
+    }
+}
+
+
+static void	get_dimensions(char	*file, t_map *dimensions)
 {
 	int		fd;
 	char	*line;
@@ -24,7 +45,6 @@ void	get_dimensions(char	*file, t_dimensions *dimensions)
 	while (1)
 	{
 		line = get_next_line(fd);
-		//add error handle. errno?
 		if (!line)
 			break ;
 		temp_width = ft_word_count(line, ' ');
@@ -36,13 +56,12 @@ void	get_dimensions(char	*file, t_dimensions *dimensions)
 	ft_close(fd);
 }
 
-int		**allocate_2d_array(size_t width, size_t height)
+static void		allocate_data_array(size_t width, size_t height, int ***data)
 {
-	int		**data;
 	size_t	i;
 
-	data = (int **)malloc(height * sizeof(int *));
-	if (!data)
+	*data = (int **)malloc((height) * sizeof(int *));
+	if (!*data)
 	{
 		perror("Error malloc 2D array");
 		exit(1);
@@ -50,42 +69,63 @@ int		**allocate_2d_array(size_t width, size_t height)
 	i = 0;
 	while (i < height)
 	{
-		data[i] = (int *)malloc(width * sizeof(int));
-		if (!data[i])
+		(*data)[i] = (int *)malloc(width * sizeof(int));
+		if (!(*data)[i])
 		{
 			while (i)
-				free(data[i--]);
-			free(data);
+				free((*data)[--i]);
+			free(*data);
 			perror("Error malloc 2D array");
 			exit(1);
 		}
+		i++;
 	}
-	return (data);
 }
 
-int		**parse_map(file, dimensions)
+static void		populate_data_array(int fd, size_t width, size_t height, int ***data)
 {
-	int		**data;
-	int		fd;
-	size_t	i;
+	size_t		row;
+	size_t		column;
+	char	*line;
+	char	**words;
 
-	data = allocate_2d_array(dimensions.widthm dimensions.height);
-	ft_open_rdonly(file, &fd);
-	i = 0;
-	while (i < dimensions.height)
+	row = 0;
+	while (row < height)
 	{
-
+		line = get_next_line(fd);
+		words = ft_split(line, ' ');
+		column = 0;
+		while (column < width)
+		{
+			(*data)[row][column] = ft_atoi(words[column]);
+			free(words[column]);
+			column++;
+		}
+		free(line);
+		free(words);
+		row++;
 	}
+}
+
+static void		parse_map(char *file, t_map dimensions, int ***data)
+{
+	int		fd;
+
+	allocate_data_array(dimensions.width, dimensions.height, data);
+	ft_open_rdonly(file, &fd);
+	populate_data_array(fd, dimensions.width, dimensions.height, data);
 	ft_close(fd);
-	return (data);
 }
 
 int		main(int argc, char **argv)
 {
-	t_dimensions	dimensions;
+	t_map	dimensions;
+	int		**data;
 
 	//add error handling for input
 	(void)argc;
 	get_dimensions(argv[1], &dimensions);
+	parse_map(argv[1], dimensions, &data);
+	print_2d_array(dimensions, data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/28 18:10:34 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/29 11:07:26 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # include <stdio.h>
 # include "libft/libft.h"
 
-typedef struct	s_dimensions
+typedef struct	s_map
 {
 	size_t	width;
 	size_t	height;
-}				t_dimensions;
+}				t_map;
 
 #endif
