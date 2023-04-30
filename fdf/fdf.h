@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/29 15:48:46 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:15:13 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # include <stdio.h>
 # include "libft/libft.h"
 
-typedef struct	s_map
+typedef struct	s_dimensions
 {
 	size_t	width;
 	size_t	height;
-}				t_map;
+}				t_dimensions;
 
 typedef struct s_mlx_params
 {
@@ -42,13 +42,29 @@ typedef struct s_mlx_params
 
 typedef struct	s_iso
 {
-	size_t		width;
-	size_t		height;
-	size_t		ratio;
+	double	x;
+	double	y;
+	double	z;
 }				t_iso;
 
-void		parse_map(char *file, int ***data);
+typedef struct	s_math
+{
+	double	sin30;
+	double	cos30;
+}				t_math;
+
+typedef struct	s_frame_info
+{
+	double	min_x;
+	double	max_x;
+	double	min_y;
+	double	max_y;
+	double	x_range;
+	double	y_range;
+}				t_frame_info;
+
+t_iso		**get_data(char *file, t_dimensions *map);
 int			main(int argc, char **argv);
-void		initialize_window(void);
+void		display_data(t_iso **data_array, t_dimensions mnap);
 
 #endif

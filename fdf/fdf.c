@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/29 14:04:09 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:11:04 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int		main(int argc, char **argv)
 {
-	int		**data;
+	t_iso		**data_array;
+	t_dimensions	map;
 
 	//add error handling for input
 	(void)argc;
-	get_data(argv[1], &data);
-	initialize_window(data);
+	data_array = get_data(argv[1], &map);
+	display_data(data_array, map);
 	return (0);
 }

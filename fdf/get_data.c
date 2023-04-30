@@ -6,20 +6,20 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/29 14:04:08 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:50:08 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	get_dimensions(char	*file, t_map *dimensions)
+static void	get_dimensions(char	*file, t_dimensions *map)
 {
 	int		fd;
 	char	*line;
 	size_t	temp_width;
 
-	dimensions->width = 0;
-	dimensions->height = 0;
+	map->width = 0;
+	map->height = 0;
 	ft_open_rdonly(file, &fd);
 	while (1)
 	{
@@ -27,41 +27,41 @@ static void	get_dimensions(char	*file, t_map *dimensions)
 		if (!line)
 			break ;
 		temp_width = ft_word_count(line, ' ');
-		if (temp_width > dimensions->width)
-			dimensions->width = temp_width;
-		dimensions->height++;
+		if (temp_width > map->width)
+			map->width = temp_width;
+		map->height++;
 		free(line);
 	}
 	ft_close(fd);
 }
 
-static void		allocate_data_array(size_t width, size_t height, int ***data)
+static void		allocate_data_array(size_t width, size_t height, t_iso ***data_array)
 {
 	size_t	i;
 
-	*data = (int **)malloc((height) * sizeof(int *));
-	if (!*data)
+	*data_array = (t_iso **)malloc((height) * sizeof(t_iso *));
+	if (!*data_array)
 	{
-		perror("Error malloc 2D array");
+		perror("Error malloc data_array");
 		exit(1);
 	}
 	i = 0;
 	while (i < height)
 	{
-		(*data)[i] = (int *)malloc(width * sizeof(int));
-		if (!(*data)[i])
+		(*data_array)[i] = (t_iso *)malloc(width * sizeof(t_iso));
+		if (!(*data_array)[i])
 		{
 			while (i)
-				free((*data)[--i]);
-			free(*data);
-			perror("Error malloc 2D array");
+				free((*data_array)[--i]);
+			free(*data_array);
+			perror("Error malloc data_array");
 			exit(1);
 		}
 		i++;
 	}
 }
 
-static void		populate_data_array(int fd, size_t width, size_t height, int ***data)
+static void		populate_data_array(int fd, t_dimensions map, t_math angle_values, t_iso ***data_array)
 {
 	size_t		row;
 	size_t		column;
@@ -69,14 +69,17 @@ static void		populate_data_array(int fd, size_t width, size_t height, int ***dat
 	char	**words;
 
 	row = 0;
-	while (row < height)
+	while (row < map.height)
 	{
 		line = get_next_line(fd);
 		words = ft_split(line, ' ');
 		column = 0;
-		while (column < width)
+		while (column < map.width)
 		{
-			(*data)[row][column] = ft_atoi(words[column]);
+			(*data_array)[row][column].z = ft_atoi(words[column]);
+			(*data_array)[row][column].x = column - ((*data_array)[row][column].z * angle_values.cos30);
+			(*data_array)[row][column].y = row + ((column + (*data_array)[row][column].z) * angle_values.sin30);
+			printf("x, y and z: %f, %f, %f\n", (*data_array)[row][column].x, (*data_array)[row][column].y, (*data_array)[row][column].z);
 			free(words[column]);
 			column++;
 		}
@@ -86,14 +89,18 @@ static void		populate_data_array(int fd, size_t width, size_t height, int ***dat
 	}
 }
 
-void		get_data(char *file, int ***data)
+t_iso		**get_data(char *file, t_dimensions *map)
 {
 	int		fd;
-	t_map	dimensions;
+	t_iso	**data_array;
+	t_math	angle_values;
 
-	get_dimensions(file, &dimensions);
-	allocate_data_array(dimensions.width, dimensions.height, data);
+	get_dimensions(file, map);
+	allocate_data_array(map->width, map->height, &data_array);
 	ft_open_rdonly(file, &fd);
-	populate_data_array(fd, dimensions.width, dimensions.height, data);
+	angle_values.sin30 = sin(M_PI / 6);
+	angle_values.cos30 = cos(M_PI / 6);
+	populate_data_array(fd, *map, angle_values, &data_array);
 	ft_close(fd);
+	return (data_array);
 }
