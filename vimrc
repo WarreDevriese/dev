@@ -72,11 +72,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Add your plugins here
-" Plugin 'tpope/vim-fugitive'    " Git integration
-" Plugin 'itchyny/lightline.vim' " Lightweight statusline
 Plugin 'preservim/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'dense-analysis/ale'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
