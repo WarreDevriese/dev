@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/30 15:50:08 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/30 17:40:12 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static void		populate_data_array(int fd, t_dimensions map, t_math angle_values, 
 			(*data_array)[row][column].z = ft_atoi(words[column]);
 			(*data_array)[row][column].x = column - ((*data_array)[row][column].z * angle_values.cos30);
 			(*data_array)[row][column].y = row + ((column + (*data_array)[row][column].z) * angle_values.sin30);
-			printf("x, y and z: %f, %f, %f\n", (*data_array)[row][column].x, (*data_array)[row][column].y, (*data_array)[row][column].z);
 			free(words[column]);
 			column++;
 		}

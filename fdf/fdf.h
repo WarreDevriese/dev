@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/30 16:15:13 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/30 16:49:00 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ typedef struct	s_frame_info
 	double	x_range;
 	double	y_range;
 }				t_frame_info;
+
+typedef struct	s_scaling_factor
+{
+	double	horizontal;
+	double	vertical;
+}				t_scaling_factor;
 
 t_iso		**get_data(char *file, t_dimensions *map);
 int			main(int argc, char **argv);
