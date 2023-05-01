@@ -1,44 +1,125 @@
-NAME = libft.a
+## FORMATTING
 
+GREEN = "\\033[32m"
+BOLD = "\\033[1m"
+RESET_FORMAT = "\\033[0m"
+ERASE_LINE = "\\033[A\\033[K\\033[A"
+
+## COMPILATION
+
+NAME = libft.a
 CC = cc
 AR = ar
 CFLAGS = -Wall -Werror -Wextra
 ARFLAGS = rcs
 
-SRC := 			ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
-				ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
-				ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c \
-				ft_memset.c ft_strchr.c ft_strdup.c ft_strjoin.c \
-				ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c \
-				ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
-				ft_tolower.c ft_toupper.c ft_split.c ft_itoa.c \
-				ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-				ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-				get_next_line.c get_next_line_utils.c ft_word_count.c \
-				ft_close.c ft_open_rdonly.c
-OBJ := $(SRC:.c=.o)
-BONUS_SRC := 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
-				ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
-				ft_lstclear.c ft_lstiter.c ft_lstmap.c
-BONUS_OBJ := $(BONUS_SRC:.c=.o)
+## HEADERS
+
+HDR_DIR = ./inc/
+HDR_FILES = libft.h \
+			get_next_line.h \
+HDR = $(addprefix $(HDR_DIR), $(HDR_FILES))
+
+## SOURCES
+
+SRC_DIR = ./src/
+
+SRC_FILES += char/ft_isalnum.c
+SRC_FILES += char/ft_isalpha.c
+SRC_FILES += char/ft_isascii.c
+SRC_FILES += char/ft_isdigit.c
+SRC_FILES += char/ft_isprint.c
+SRC_FILES += char/ft_tolower.c
+SRC_FILES += char/ft_toupper.c
+
+
+SRC_FILES += conversion/ft_itoa.c
+SRC_FILES += conversion/ft_atoi.c
+
+SRC_FILES += io/ft_close.c
+SRC_FILES += io/ft_open_rdonly.c
+SRC_FILES += io/ft_putchar_fd.c
+SRC_FILES += io/ft_putendl_fd.c
+SRC_FILES += io/ft_putnbr_fd.c
+SRC_FILES += io/ft_putstr_fd.c
+SRC_FILES += io/get_next_line.c
+SRC_FILES += io/get_next_line_utils.c
+
+SRC_FILES += list/ft_lstadd_back.c
+SRC_FILES += list/ft_lstadd_front.c
+SRC_FILES += list/ft_lstclear.c
+SRC_FILES += list/ft_lstdelone.c
+SRC_FILES += list/ft_lstiter.c
+SRC_FILES += list/ft_lstlast.c
+SRC_FILES += list/ft_lstmap.c
+SRC_FILES += list/ft_lstnew.c
+SRC_FILES += list/ft_lstsize.c
+
+SRC_FILES += memory/ft_bzero.c
+SRC_FILES += memory/ft_calloc.c
+SRC_FILES += memory/ft_memchr.c
+SRC_FILES += memory/ft_memcmp.c
+SRC_FILES += memory/ft_memcpy.c
+SRC_FILES += memory/ft_memmove.c
+SRC_FILES += memory/ft_memset.c
+
+SRC_FILES += string/ft_split.c
+SRC_FILES += string/ft_strchr.c
+SRC_FILES += string/ft_strdup.c
+SRC_FILES += string/ft_striteri.c
+SRC_FILES += string/ft_strjoin.c
+SRC_FILES += string/ft_strlcat.c
+SRC_FILES += string/ft_strlcpy.c
+SRC_FILES += string/ft_strlen.c
+SRC_FILES += string/ft_strmapi.c
+SRC_FILES += string/ft_strncmp.c
+SRC_FILES += string/ft_strnstr.c
+SRC_FILES += string/ft_strrchr.c
+SRC_FILES += string/ft_strtrim.c
+SRC_FILES += string/ft_substr.c
+SRC_FILES += string/ft_word_count.c
+
+SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+
+## OBJECT FILES
+
+OBJ_DIR = ./obj/
+OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $^
+	@echo "Object files related to libft created"
+	@$(AR) $(ARFLAGS) $(NAME) $^
+	@ranlib $(NAME)
+	@echo "$(BOLD)$(GREEN)$(NAME) successfully created!$(RESET_FORMAT)"
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/char
+	@mkdir -p $(OBJ_DIR)/conversion
+	@mkdir -p $(OBJ_DIR)/io
+	@mkdir -p $(OBJ_DIR)/list
+	@mkdir -p $(OBJ_DIR)/memory
+	@mkdir -p $(OBJ_DIR)/string
+
+$(OBJ_DIR)%.o:$(SRC_DIR)%.c $(HDR) Makefile | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -I$(HDR_DIR) -c $< -o $@ 
+	@echo "Compiled: $*.o $(GREEN)[OK]$(RESET_FORMAT)"
 
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ)
+	@rm -rf $(OBJ_DIR)
+	@echo "Object files related to libft deleted"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(NAME) deleted"
+	@echo "$(BOLD)$(GREEN)$(NAME) folder is clean!$(RESET_FORMAT)"
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@echo ""
+	@$(MAKE) all
 
-bonus: $(NAME) $(BONUS_OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJ)
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
