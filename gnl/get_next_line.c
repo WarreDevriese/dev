@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/01 20:56:17 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/01 22:17:31 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,46 @@ static int	ft_read(int fd, char **line_parse)
 	return (0);
 }
 
-static char	*ft_extract(char **line_parse)
+static char	*ft_extract_nl(char **line_parse, char *nl_position)
 {
 	char	*new_line_parse;
+	char	*line_return;
+
+	line_return = (char *)malloc
+		((nl_position - *line_parse + 2) * sizeof(char));
+	if (!line_return)
+		return (NULL);
+	ft_strlcpy(line_return, *line_parse, nl_position - *line_parse + 2);
+	new_line_parse = ft_strdup(nl_position + 1);
+	free(*line_parse);
+	*line_parse = new_line_parse;
+	return (line_return);
+}
+
+static char	*ft_extract_eof(char **line_parse)
+{
+	char	*line_return;
+
+	line_return = (char *)malloc
+		((ft_strlen(*line_parse) + 1) * sizeof(char));
+	if (!line_return)
+		return (NULL);
+	ft_strlcpy(line_return, *line_parse, ft_strlen(*line_parse) + 1);
+	free(*line_parse);
+	*line_parse = NULL;
+	return (line_return);
+}
+
+static char	*ft_extract(char **line_parse)
+{
 	char	*nl_position;
 	char	*line_return;
 
 	nl_position = ft_strchr(*line_parse, '\n');
 	if (nl_position)
-	{
-		line_return = (char *)malloc
-			((nl_position - *line_parse + 2) * sizeof(char));
-		if (!line_return)
-			return (NULL);
-		ft_strlcpy(line_return, *line_parse, nl_position - *line_parse + 2);
-		new_line_parse = ft_strdup(nl_position + 1);
-		free(*line_parse);
-		*line_parse = new_line_parse;
-	}
+		line_return = ft_extract_nl(line_parse, nl_position);
 	else
-	{
-		line_return = (char *)malloc
-			((ft_strlen(*line_parse) + 1) * sizeof(char));
-		ft_strlcpy(line_return, *line_parse, ft_strlen(*line_parse) + 1);
-		free(*line_parse);
-		*line_parse = NULL;
-	}
+		line_return = ft_extract_eof(line_parse);
 	return (line_return);
 }
 
@@ -74,9 +88,7 @@ char	*get_next_line(int fd)
 	char		*line_return;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
-	{
 		return (NULL);
-	}
 	if (ft_read(fd, &line_parse) == -1)
 	{
 		free(line_parse);
