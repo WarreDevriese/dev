@@ -5,13 +5,13 @@ ERASE_LINE = "\\033[A\\033[K\\033[A"
 
 
 
-NAME = fdf
+NAME = pipex
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-SRC_DIR = ./src/
-SRC_FILES = fdf.c get_data.c display_data.c
+SRC_DIR = ./src/      
+SRC_FILES = child1.c child2.c find_cmd_path.c main.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 OBJ_DIR = ./obj/
@@ -19,7 +19,7 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 HDR_DIR = ./inc/
-HDR_FILES = fdf.h
+HDR_FILES = pipex.h
 HDR_INC = -I $(HDR_DIR)
 HDR = $(addprefix $(HDR_DIR), $(HDR_FILES))
 
@@ -27,30 +27,25 @@ LIBFT_DIR = ./libft/
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 LIBFT_INC = -I $(LIBFT_DIR)
 
-MLX_DIR = ./mlx_linux/
-MLX_LIB = -L $(MLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11
-MLX_INC = -I $(MLX_DIR)
-
-MATH_LIB = -lm
-
 all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJ)
-	@echo "Object files for fdf created"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX_LIB) $(MATH_LIB) -o $(NAME)
+	@echo "Object files to be linked: $(OBJ)"
+	@echo "Object files created"
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o $(NAME)
 	@echo "$(BOLD)$(GREEN)$(NAME) program succesfully created!$(RESET_FORMAT)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(HDR_INC) $(MLX_INC) $(LIBFT_INC) -c $< -o $@ 
-	@echo "Compiled: $*.o $(GREEN)[OK]$(RESET_FORMAT)"
+##	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(HDR_INC) $(LIBFT_INC) -c $< -o $@
+##	@echo "Compiled: $*.o $(GREEN)[OK]$(RESET_FORMAT)"
 
 $(LIBFT_LIB): FORCE
 	@$(MAKE) -C $(LIBFT_DIR)
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "Object files related to $(NAME) deleted"
+	@echo "Object files related to pipex deleted"
 
 fclean: clean
 	@rm -f $(NAME)

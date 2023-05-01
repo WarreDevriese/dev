@@ -2,6 +2,7 @@
 
 GREEN = "\\033[32m"
 BOLD = "\\033[1m"
+PINK = "\\033[95m"
 RESET_FORMAT = "\\033[0m"
 ERASE_LINE = "\\033[A\\033[K\\033[A"
 
@@ -90,7 +91,8 @@ OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "Object files related to libft created"
+	@echo "$(ERASE_LINE)"
+	@echo "Object files for libft created"
 	@$(AR) $(ARFLAGS) $(NAME) $^
 	@ranlib $(NAME)
 	@echo "$(BOLD)$(GREEN)$(NAME) successfully created!$(RESET_FORMAT)"
@@ -103,10 +105,10 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/list
 	@mkdir -p $(OBJ_DIR)/memory
 	@mkdir -p $(OBJ_DIR)/string
+	@echo "$(BOLD)$(PINK)Compiling libft object files...$(RESET_FORMAT)"
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(HDR) Makefile | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I$(HDR_DIR) -c $< -o $@ 
-	@echo "Compiled: $*.o $(GREEN)[OK]$(RESET_FORMAT)"
 
 clean:
 	@rm -rf $(OBJ_DIR)
