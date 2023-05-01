@@ -6,41 +6,31 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/28 11:05:55 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:56:17 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 static int	ft_read(int fd, char **line_parse)
 {
 	char	*buffer;
 	char	*temp;
-	ssize_t	bytes_read;
+	ssize_t	ret;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (-1);
-	bytes_read = 1;
-	while (!ft_strchr(*line_parse, '\n') && bytes_read)
+	ret = 1;
+	while (!ft_strchr(*line_parse, '\n') && ret)
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
+		ret = read(fd, buffer, BUFFER_SIZE);
+		if (ret == -1)
 		{
 			free(buffer);
 			return (-1);
 		}
-		buffer[bytes_read] = '\0';
+		buffer[ret] = '\0';
 		temp = ft_strjoin(*line_parse, buffer);
 		free(*line_parse);
 		*line_parse = temp;

@@ -6,33 +6,20 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:25:06 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/01 17:53:35 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:56:15 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlen(const char *s)
 {
-	size_t	dst_len;
-	size_t	src_len;
 	size_t	i;
-	size_t	j;
 
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (size <= dst_len)
-		return (size + src_len);
-	i = dst_len;
-	j = 0;
-	while (src[j] && i < size - 1)
-	{
-		dst[i] = src[j];
+	i = 0;
+	while (s[i])
 		i++;
-		j++;
-	}
-	dst[i] = '\0';
-	return (dst_len + src_len);
+	return (i);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
@@ -56,7 +43,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 char	*ft_strchr(const char *s, int c)
 {
 	if (!s)
-		return (0);
+		return (NULL);
 	while (*s)
 	{
 		if (*s == (char)c)
@@ -76,7 +63,7 @@ char	*ft_strdup(const char *s)
 	len = ft_strlen(s);
 	p = (char *)malloc((len + 1) * sizeof(char));
 	if (!p)
-		return (0);
+		return (NULL);
 	ft_strlcpy(p, s, len + 1);
 	return (p);
 }
@@ -85,6 +72,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	len;
 	char	*new_s;
+	char	*temp;
 
 	if (!s1 && !s2)
 		return (NULL);
@@ -95,8 +83,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len = ft_strlen(s1) + ft_strlen(s2);
 	new_s = (char *)malloc((len + 1) * sizeof(char));
 	if (!new_s)
-		return (0);
+		return (NULL);
 	ft_strlcpy(new_s, s1, len + 1);
-	ft_strlcat(new_s, s2, len + 1);
+	temp = new_s + ft_strlen(new_s);
+	while (*s2)
+		*temp++ = *s2++;
+	*(temp) = '\0';
 	return (new_s);
 }
