@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/08 11:33:53 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/08 14:45:10 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+t_list	*ft_lstnew(void *content)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	t_list	*new_node;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
-	return (0);
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return (0);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
 }

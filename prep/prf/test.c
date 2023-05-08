@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/05/08 11:33:04 by wdevries          #+#    #+#             */
+/*   Updated: 2023/05/08 11:37:18 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <stdio.h>
 
-int		main(int argc, char **argv)
+int		main()
 {
-	t_iso		**data_array;
-	t_dimensions	map;
-
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
+	printf("What happens with a %m I wonder %s\n", "super curious now");
+	printf("What happens with a %w I wonder %s\n", "super curious now");
+	printf("What happens with a %r I wonder %s\n", "super curious now");
+	printf("What happens with a %t I wonder %s\n", "super curious now");
 	return (0);
 }

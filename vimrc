@@ -73,7 +73,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Add your plugins here
 Plugin 'preservim/nerdtree'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'dense-analysis/ale'
 
 " All of your Plugins must be added before the following line

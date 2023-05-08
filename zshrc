@@ -111,7 +111,7 @@ alias c="clear"
 alias n="norminette"
 alias nf="python3 -m c_formatter_42 *.c *.h"
 alias f="francinette"
-alias usb="cd /media/wdevries/Samsung\ USB/dev/"
+alias dev="cd /media/wdevries/Samsung\ USB/dev/"
 alias lib="cd /media/wdevries/Samsung\ USB/dev/lib"
 alias gnl="cd /media/wdevries/Samsung\ USB/dev/gnl"
 alias prf="cd /media/wdevries/Samsung\ USB/dev/prf"
@@ -121,6 +121,7 @@ alias psw="cd /media/wdevries/Samsung\ USB/dev/psw"
 alias prep="cd /media/wdevries/Samsung\ USB/dev/prep"
 alias vimrc="vim /media/wdevries/Samsung\ USB/dev/vimrc"
 alias .vimrc="cp /media/wdevries/Samsung\ USB/dev/vimrc ~/.vimrc"
+alias dotclean="find . -type f -name '._*' -delete"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

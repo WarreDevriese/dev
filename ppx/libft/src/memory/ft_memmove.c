@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/03 14:28:46 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/04 14:36:29 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <stddef.h>
 
-int		main(int argc, char **argv)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	unsigned char	*pd;
+	unsigned char	*ps;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
-	return (0);
+	pd = (unsigned char *)dest;
+	ps = (unsigned char *)src;
+	if (pd == ps || n == 0)
+	{
+		return (dest);
+	}
+	if (pd < ps)
+	{
+		while (n--)
+			*pd++ = *ps++;
+	}
+	if (pd > ps)
+	{
+		while (n--)
+			pd[n] = ps[n];
+	}
+	return (dest);
 }

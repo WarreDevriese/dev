@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/03 14:58:25 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/06 14:45:53 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	size_t	dst_len;
+	size_t	src_len;
+	size_t	i;
+	size_t	j;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
-	return (0);
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (size <= dst_len)
+		return (size + src_len);
+	i = dst_len;
+	j = 0;
+	while (src[j] && i < size - 1)
+	{
+		dst[i] = src[j];
+		i++;
+		j++;
+	}
+	dst[i] = '\0';
+	return (dst_len + src_len);
 }

@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/04 13:08:47 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/27 12:58:37 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	size_t	len;
+	char	*new_s;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
-	return (0);
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	new_s = (char *)malloc((len + 1) * sizeof(char));
+	if (!new_s)
+		return (NULL);
+	ft_strlcpy(new_s, s1, len + 1);
+	ft_strlcat(new_s, s2, len + 1);
+	return (new_s);
 }

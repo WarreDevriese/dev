@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 13:09:34 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/01 13:33:06 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:45:27 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ static void	put_pixels(t_frame_info frame_info, t_iso **data_array, t_dimensions
 	}
 }
 
+void close_hook(t_mlx_params *fdf, t_iso ***data_array, size_t height)
+{
+    mlx_hook(fdf->win, 17, 1L << 17, &free_data_array, data_array);
+    free_data_array(data_array, height);
+    exit(0);
+}
+
 void	display_data(t_iso **data_array, t_dimensions map)
 {
 	t_mlx_params fdf;
@@ -71,5 +78,6 @@ void	display_data(t_iso **data_array, t_dimensions map)
 	fdf.img = mlx_new_image(fdf.mlx, 1920, 1920);
 	get_frame_info(&frame_info, data_array, map);
 	put_pixels(frame_info, data_array, map, fdf);
+	close_hook(&fdf, &data_array, map.height);
 	mlx_loop(fdf. mlx);
 }

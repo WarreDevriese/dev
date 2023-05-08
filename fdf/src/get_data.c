@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/01 13:32:50 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:46:18 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@ static void	get_dimensions(char	*file, t_dimensions *map)
 		free(line);
 	}
 	ft_close(fd);
+}
+
+void free_data_array(t_iso ***data_array, size_t height) 
+{
+    size_t i;
+
+	i = 0;
+    while (i < height)
+        free((*data_array)[i++]);
+    free(*data_array);
+	printf("%s\n", "Data successfully freed");
 }
 
 static void		allocate_data_array(size_t width, size_t height, t_iso ***data_array)

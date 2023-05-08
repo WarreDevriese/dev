@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_word_count.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/28 17:17:04 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/28 19:06:04 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+size_t	ft_word_count(char const *s, char c)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	size_t	count;
+	char const	*start;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
-	return (0);
+	count = 0;
+	start = s;
+	while (*s)
+	{
+		if (*s != c && (s == start || *(s - 1) == c))
+			count++;
+		s++;
+	}
+	return (count);
 }

@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/04 12:38:20 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/06 14:46:43 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strdup(const char *s)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	int		len;
+	char	*p;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
-	return (0);
+	len = ft_strlen(s);
+	p = (char *)malloc((len + 1) * sizeof(char));
+	if (!p)
+		return (0);
+	ft_strlcpy(p, s, len + 1);
+	return (p);
 }

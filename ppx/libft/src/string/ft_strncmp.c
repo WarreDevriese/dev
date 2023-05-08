@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/03 15:35:20 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/06 16:27:58 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <stddef.h>
 
-int		main(int argc, char **argv)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	unsigned int	i;
+	unsigned char	*us1;
+	unsigned char	*us2;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
+	i = 0;
+	us1 = (unsigned char *)s1;
+	us2 = (unsigned char *)s2;
+	while (us1[i] && us2[i] && i < n)
+	{
+		if (us1[i] != us2[i])
+			return (us1[i] - us2[i]);
+		i++;
+	}
+	if (i < n)
+		return (us1[i] - us2[i]);
 	return (0);
 }

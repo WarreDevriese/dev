@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/04 12:16:00 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/06 15:12:04 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	void	*p;
+	size_t	total_size;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
-	return (0);
+	total_size = nmemb * size;
+	p = malloc(total_size);
+	if (!p)
+		return (NULL);
+	ft_bzero(p, total_size);
+	return (p);
 }

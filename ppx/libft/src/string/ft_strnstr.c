@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:48:11 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:28:58 by wdevries         ###   ########.fr       */
+/*   Created: 2023/04/03 16:40:38 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/06 14:55:06 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	t_iso		**data_array;
-	t_dimensions	map;
+	size_t	i;
+	size_t	j;
+	size_t	little_len;
 
-	(void)argc;
-	data_array = get_data(argv[1], &map);
-	display_data(data_array, map);
+	little_len = ft_strlen(little);
+	if (little_len == 0)
+		return ((char *)big);
+	i = 0;
+	while (big[i] && (i + little_len <= len))
+	{
+		j = 0;
+		while (big[i + j] == little[j] && little[j])
+			j++;
+		if (little[j] == '\0')
+			return ((char *)(big + i));
+		i++;
+	}
 	return (0);
 }
