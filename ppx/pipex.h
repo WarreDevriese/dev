@@ -13,13 +13,13 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <unistd.h>
+# include "../libft/inc/libft.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "../libft/inc/libft.h"
+# include <unistd.h>
 
 void	ft_close(int fd);
 char	*find_cmd_path(char **envp, char *cmd);

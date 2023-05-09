@@ -19,8 +19,8 @@ static void	ft_free_split(char **split, size_t i)
 	free(split);
 }
 
-static char	**ft_fill_split(char **split, char const *s,
-		char c, size_t word_count)
+static char	**ft_fill_split(char **split, char const *s, char c,
+		size_t word_count)
 {
 	char const	*start;
 	size_t		i;
@@ -47,8 +47,8 @@ static char	**ft_fill_split(char **split, char const *s,
 
 char	**ft_split(char const *s, char c)
 {
-	char		**split;
-	size_t		word_count;
+	char	**split;
+	size_t	word_count;
 
 	word_count = ft_word_count(s, c);
 	split = (char **)malloc((word_count + 1) * sizeof(char *));

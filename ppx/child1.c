@@ -30,7 +30,7 @@ static void	ft_execve(char **argv, char **envp)
 
 static void	execute_cmd1(int *pipefd, char **argv, char **envp)
 {
-	int		fd1;
+	int	fd1;
 
 	fd1 = open(argv[1], O_RDONLY);
 	if (fd1 == -1)

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/02 12:46:18 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:49:44 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ static void		populate_data_array(int fd, t_dimensions map, t_math angle_values, 
 		while (column < map.width)
 		{
 			(*data_array)[row][column].z = ft_atoi(words[column]);
+			/*
+			(*data_array)[row][column].x = (row - column) * angle_values.cos30;
+			(*data_array)[row][column].y = (row + column) * angle_values.sin30 - (*data_array)[row][column].z;
+			*/
 			(*data_array)[row][column].x = column - ((*data_array)[row][column].z * angle_values.cos30);
 			(*data_array)[row][column].y = row + ((column + (*data_array)[row][column].z) * angle_values.sin30);
 			free(words[column]);
@@ -108,8 +112,8 @@ t_iso		**get_data(char *file, t_dimensions *map)
 	get_dimensions(file, map);
 	allocate_data_array(map->width, map->height, &data_array);
 	ft_open_rdonly(file, &fd);
-	angle_values.sin30 = sin(M_PI / 6);
-	angle_values.cos30 = cos(M_PI / 6);
+	angle_values.sin30 = sin(0.523599);
+	angle_values.cos30 = cos(0.523599);
 	populate_data_array(fd, *map, angle_values, &data_array);
 	ft_close(fd);
 	return (data_array);

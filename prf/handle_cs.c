@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_cs%.c                                       :+:      :+:    :+:   */
+/*   handle_cs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:50:45 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/14 13:30:06 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:48:46 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	ft_handle_c(va_list *args)
 	char	c;
 
 	c = (char)va_arg(*args, int);
-	ft_putchar(c);
-	return (1);
+	return (ft_putchar_pf(c));
 }
 
 int	ft_handle_s(va_list *args)
@@ -28,6 +27,5 @@ int	ft_handle_s(va_list *args)
 	s = va_arg(*args, const char *);
 	if (s == NULL)
 		s = "(null)";
-	ft_putstr(s);
-	return (ft_strlen(s));
+	return (ft_putstr_pf(s));
 }

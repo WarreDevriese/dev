@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:52 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/28 16:04:34 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/04/28 15:48:39 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # endif
 
 char	*get_next_line(int fd);
-size_t	ft_strlen_gnl(const char *s);
-size_t	ft_strlcpy_gnl(char *dst, const char *src, size_t size);
-char	*ft_strchr_gnl(const char *s, int c);
-char	*ft_strdup_gnl(const char *s);
-char	*ft_strjoin_gnl(char const *s1, char const *s2);
+size_t	ft_strlen(const char *s);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

@@ -14,7 +14,7 @@
 
 static void	ft_free_dirs(char **dirs)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (dirs[i])
