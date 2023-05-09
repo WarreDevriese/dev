@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 13:09:34 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/08 13:28:19 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:45:35 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	get_frame_info(t_frame_info *frame_info, t_iso **data_array, t_dimensions map)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 	
 	i = 0;
-	while (i < map.height)
+	while ((size_t)i < map.height)
 	{
 		j = 0;
-		while (j < map.width)
+		while ((size_t)j < map.width)
 		{
 			if	(data_array[i][j].x < frame_info->min_x || (i == 0 && j == 0))
 				frame_info->min_x = data_array[i][j].x;
@@ -42,19 +42,21 @@ static void	get_frame_info(t_frame_info *frame_info, t_iso **data_array, t_dimen
 static void	put_pixels(t_frame_info frame_info, t_iso **data_array, t_dimensions map, t_mlx_params fdf)
 {
 	t_scaling_factor	scaling_factor;
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 	
 	scaling_factor.horizontal = 1920 * 0.8 / frame_info.x_range;
 	scaling_factor.vertical = 1920 * 0.8 / frame_info.y_range;
 	i = 0;
-	while (i < map.height)
+	while ((size_t)i < map.height)
 	{
 		j = 0;
-		while (j < map.width)
+		while ((size_t)j < map.width)
 		{
-			mlx_pixel_put(fdf.mlx, fdf.win, (data_array[i][j].x - frame_info.min_x) * scaling_factor.horizontal + 192,
-					(data_array[i][j].y - frame_info.min_y) * scaling_factor.vertical + 192, 0xFF00FF);
+			mlx_pixel_put(fdf.mlx, fdf.win, 
+					(data_array[i][j].x - frame_info.min_x) * scaling_factor.horizontal + (1920 / 2 - frame_info.x_range * scaling_factor.horizontal / 2),
+					(data_array[i][j].y - frame_info.min_y) * scaling_factor.vertical + (1920 / 2 - frame_info.y_range * scaling_factor.vertical / 2),
+					0xFF00FF);
 			j++;
 		}
 		i++;

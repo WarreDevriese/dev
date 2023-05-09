@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/08 13:49:44 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:43:48 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,22 @@ static void		allocate_data_array(size_t width, size_t height, t_iso ***data_arra
 
 static void		populate_data_array(int fd, t_dimensions map, t_math angle_values, t_iso ***data_array)
 {
-	size_t		row;
-	size_t		column;
+	int		row;
+	int		column;
 	char	*line;
 	char	**words;
 
 	row = 0;
-	while (row < map.height)
+	while ((size_t)row < map.height)
 	{
 		line = get_next_line(fd);
 		words = ft_split(line, ' ');
 		column = 0;
-		while (column < map.width)
+		while ((size_t)column < map.width)
 		{
 			(*data_array)[row][column].z = ft_atoi(words[column]);
-			/*
-			(*data_array)[row][column].x = (row - column) * angle_values.cos30;
+			(*data_array)[row][column].x = (column - row) * angle_values.cos30;
 			(*data_array)[row][column].y = (row + column) * angle_values.sin30 - (*data_array)[row][column].z;
-			*/
-			(*data_array)[row][column].x = column - ((*data_array)[row][column].z * angle_values.cos30);
-			(*data_array)[row][column].y = row + ((column + (*data_array)[row][column].z) * angle_values.sin30);
 			free(words[column]);
 			column++;
 		}
@@ -112,8 +108,8 @@ t_iso		**get_data(char *file, t_dimensions *map)
 	get_dimensions(file, map);
 	allocate_data_array(map->width, map->height, &data_array);
 	ft_open_rdonly(file, &fd);
-	angle_values.sin30 = sin(0.523599);
-	angle_values.cos30 = cos(0.523599);
+	angle_values.sin30 = sin(M_PI / 3);
+	angle_values.cos30 = cos(M_PI / 3);
 	populate_data_array(fd, *map, angle_values, &data_array);
 	ft_close(fd);
 	return (data_array);
