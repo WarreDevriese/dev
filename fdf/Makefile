@@ -11,7 +11,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 SRC_DIR = ./src/
-SRC_FILES = fdf.c get_data.c display_data.c
+SRC_FILES = fdf.c get_data.c get_data_utils.c display_data.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 OBJ_DIR = ./obj/
