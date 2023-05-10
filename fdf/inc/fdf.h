@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/10 10:36:55 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/10 15:39:13 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,17 @@ typedef struct	s_scaling_factor
 	double	ratio;
 }				t_scaling_factor;
 
-t_iso		**get_data(char *file, t_dimensions *map);
+typedef struct s_fdf_params
+{
+    t_mlx_params   mlx_params;
+    t_dimensions   map;
+    t_iso          **data_array;
+}               t_fdf_params;
+
 int			main(int argc, char **argv);
-void		display_data(void);
+void		get_data(char *file, t_iso ***data_array, t_dimensions *map);
 void 		free_data_array(t_iso ***data_array, size_t height);
 void 		close_hook(t_mlx_params *fdf, t_iso ***data_array, size_t height);
-void    	apply_scaling(t_frame_info frame_info, t_iso ***data_array, t_dimensions map);
-void    	get_frame_info(t_frame_info *frame_info, t_iso **data_array, t_dimensions map);
-void    	get_dimensions(char *file, t_dimensions *map);
+void    	apply_scaling(t_iso ***data_array, t_dimensions map);
 
 #endif

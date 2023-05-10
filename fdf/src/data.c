@@ -1,53 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_data.c                                         :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/10 10:53:49 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/10 13:45:07 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	get_scaling_factor(t_frame_info frame_info, t_scaling_factor *scaling_factor)
+static void	get_dimensions(char	*file, t_dimensions *map)
 {
-	scaling_factor->ratio = frame_info.x_range / frame_info.y_range;
-	if (scaling_factor->ratio > 1)
-	{
-		scaling_factor->horizontal = 1920 * 0.8 / frame_info.x_range;
-		scaling_factor->vertical = (1920 * 0.8 / frame_info.x_range) / scaling_factor->ratio;
-	}
-	else
-	{
-		scaling_factor->horizontal = (1920 * 0.8 / frame_info.y_range) * scaling_factor->ratio;
-		scaling_factor->vertical = 1920 * 0.8 / frame_info.y_range;
-	}
-}
+	int		fd;
+	char	*line;
+	size_t	temp_width;
 
-void	apply_scaling(t_frame_info frame_info, t_iso ***data_array, t_dimensions map)
-{
-	t_scaling_factor	scaling_factor;
-	int	i;
-	int	j;
-	
-	get_scaling_factor(frame_info, &scaling_factor);
-	i = 0;
-	while ((size_t)i < map.height)
+	map->width = 0;
+	map->height = 0;
+	ft_open_rdonly(file, &fd);
+	while (1)
 	{
-		j = 0;
-		while ((size_t)j < map.width)
-		{
-			data_array[i][j]->scaled_x = (data_array[i][j]->x - frame_info.min_x)
-				* scaling_factor.horizontal + (1920 / 2 - frame_info.x_range * scaling_factor.horizontal / 2);
-			data_array[i][j]->scaled_y = (data_array[i][j]->y - frame_info.min_y)
-				* scaling_factor.vertical + (1920 / 2 - frame_info.y_range * scaling_factor.vertical / 2);
-			j++;
-		}
-		i++;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		temp_width = ft_word_count(line, ' ');
+		if (temp_width > map->width)
+			map->width = temp_width;
+		map->height++;
+		free(line);
 	}
+	ft_close(fd);
 }
 
 static void		allocate_data_array(size_t width, size_t height, t_iso ***data_array)
@@ -103,18 +88,16 @@ static void		populate_data_array(int fd, t_dimensions map, t_math angle_values, 
 	}
 }
 
-t_iso		**get_data(char *file, t_dimensions *map)
+void	get_data(char *file, t_iso ***data_array, t_dimensions *map)
 {
 	int		fd;
-	t_iso	**data_array;
 	t_math	angle_values;
 
 	get_dimensions(file, map);
-	allocate_data_array(map->width, map->height, &data_array);
+	allocate_data_array(map->width, map->height, data_array);
 	ft_open_rdonly(file, &fd);
 	angle_values.sin30 = sin(M_PI / 6);
 	angle_values.cos30 = cos(M_PI / 6);
-	populate_data_array(fd, *map, angle_values, &data_array);
+	populate_data_array(fd, *map, angle_values, data_array);
 	ft_close(fd);
-	return (data_array);
 }
