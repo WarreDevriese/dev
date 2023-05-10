@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/09 16:40:02 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/10 10:36:55 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct	s_scaling_factor
 {
 	double	horizontal;
 	double	vertical;
+	double	ratio;
 }				t_scaling_factor;
 
 t_iso		**get_data(char *file, t_dimensions *map);

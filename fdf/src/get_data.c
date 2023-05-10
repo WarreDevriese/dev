@@ -6,11 +6,26 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/09 16:51:35 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/10 10:53:49 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	get_scaling_factor(t_frame_info frame_info, t_scaling_factor *scaling_factor)
+{
+	scaling_factor->ratio = frame_info.x_range / frame_info.y_range;
+	if (scaling_factor->ratio > 1)
+	{
+		scaling_factor->horizontal = 1920 * 0.8 / frame_info.x_range;
+		scaling_factor->vertical = (1920 * 0.8 / frame_info.x_range) / scaling_factor->ratio;
+	}
+	else
+	{
+		scaling_factor->horizontal = (1920 * 0.8 / frame_info.y_range) * scaling_factor->ratio;
+		scaling_factor->vertical = 1920 * 0.8 / frame_info.y_range;
+	}
+}
 
 void	apply_scaling(t_frame_info frame_info, t_iso ***data_array, t_dimensions map)
 {
@@ -18,16 +33,17 @@ void	apply_scaling(t_frame_info frame_info, t_iso ***data_array, t_dimensions ma
 	int	i;
 	int	j;
 	
-	scaling_factor.horizontal = 1920 * 0.8 / frame_info.x_range;
-	scaling_factor.vertical = 1920 * 0.8 / frame_info.y_range;
+	get_scaling_factor(frame_info, &scaling_factor);
 	i = 0;
 	while ((size_t)i < map.height)
 	{
 		j = 0;
 		while ((size_t)j < map.width)
 		{
-			data_array[i][j]->scaled_x = (data_array[i][j]->x - frame_info.min_x) * scaling_factor.horizontal + (1920 / 2 - frame_info.x_range * scaling_factor.horizontal / 2);
-			data_array[i][j]->scaled_y = (data_array[i][j]->y - frame_info.min_y) * scaling_factor.vertical + (1920 / 2 - frame_info.y_range * scaling_factor.vertical / 2);
+			data_array[i][j]->scaled_x = (data_array[i][j]->x - frame_info.min_x)
+				* scaling_factor.horizontal + (1920 / 2 - frame_info.x_range * scaling_factor.horizontal / 2);
+			data_array[i][j]->scaled_y = (data_array[i][j]->y - frame_info.min_y)
+				* scaling_factor.vertical + (1920 / 2 - frame_info.y_range * scaling_factor.vertical / 2);
 			j++;
 		}
 		i++;
