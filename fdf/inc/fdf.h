@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/10 19:05:22 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/10 19:14:29 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ int			main(int argc, char **argv);
 void		get_data(char *file, t_iso ***data_array, t_dimensions *map);
 void 		close_hook(t_mlx_params *fdf, t_iso ***data_array, size_t height);
 void    	apply_scaling(t_iso ***data_array, t_dimensions map);
+void		handle_hooks(t_iso **data_array, t_dimensions map, t_mlx_params mlx_params);
 
 #endif
