@@ -6,13 +6,13 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:00:00 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/10 15:39:11 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:05:00 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void free_data_array(t_iso ***data_array, size_t height)
+static void free_data_array(t_iso ***data_array, size_t height)
 {
     size_t i;
 
