@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/08 11:29:52 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:17:41 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_read(int fd, char **line_parse)
 {
 	char	*buffer;
-	char	*temp;
+	char	*new_line_parse;
 	ssize_t	bytes_read;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -31,9 +31,9 @@ static int	ft_read(int fd, char **line_parse)
 			return (-1);
 		}
 		buffer[bytes_read] = '\0';
-		temp = ft_strjoin(*line_parse, buffer);
+		new_line_parse = ft_strjoin(*line_parse, buffer);
 		free(*line_parse);
-		*line_parse = temp;
+		*line_parse = new_line_parse;
 	}
 	free(buffer);
 	return (0);

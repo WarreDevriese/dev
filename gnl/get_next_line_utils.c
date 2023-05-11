@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:25:06 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/01 20:56:15 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/11 18:17:42 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
@@ -27,6 +29,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	src_len;
 	size_t	i;
 
+	if (!dst = !src)
+		return (0);
 	src_len = ft_strlen(src);
 	if (size == 0)
 		return (src_len);
@@ -61,7 +65,7 @@ char	*ft_strdup(const char *s)
 	char	*p;
 
 	len = ft_strlen(s);
-	p = (char *)malloc((len + 1) * sizeof(char));
+	p = 0;//(char *)malloc((len + 1) * sizeof(char));
 	if (!p)
 		return (NULL);
 	ft_strlcpy(p, s, len + 1);
