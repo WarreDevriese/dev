@@ -16,6 +16,7 @@ set autowrite					" Automatically write files before opening another file
 set autoread					" Reload all files if changed externally
 
 " UI settings
+set number
 set relativenumber            " Show line numbers
 set showcmd                   " Show (partial) command in the status line
 set cursorline                " Highlight the current line

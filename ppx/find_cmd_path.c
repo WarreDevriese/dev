@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/25 21:54:20 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/12 14:28:49 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static char	*ft_strjoin_path(const char *dirs, const char *cmd)
 	return (full_path);
 }
 
+#include <stdio.h>
+
 static char	*search_cmd_in_dirs(char *path_env, char *cmd)
 {
 	char	*full_path;
@@ -66,6 +68,7 @@ static char	*search_cmd_in_dirs(char *path_env, char *cmd)
 		perror("Executable not found in PATH");
 		exit(1);
 	}
+	printf("%s", full_path);
 	return (full_path);
 }
 

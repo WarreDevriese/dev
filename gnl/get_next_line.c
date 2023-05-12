@@ -6,11 +6,21 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/11 18:17:41 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:52:25 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*free_line(char **line)
+{
+	if (*line)
+	{
+		free(*line);
+		*line = NULL;
+	}
+	return (NULL);
+}
 
 static int	ft_read(int fd, char **line_parse)
 {
@@ -39,54 +49,26 @@ static int	ft_read(int fd, char **line_parse)
 	return (0);
 }
 
-static char	*ft_extract_nl(char **line_parse, char *nl_position)
-{
-	char	*new_line_parse;
-	char	*line_return;
-
-	line_return = (char *)malloc
-		((nl_position - *line_parse + 2) * sizeof(char));
-	if (!line_return)
-	{
-		free(*line_parse);
-		line_parse = NULL;
-		return (NULL);
-	}
-	ft_strlcpy(line_return, *line_parse, nl_position - *line_parse + 2);
-	new_line_parse = ft_strdup(nl_position + 1);
-	free(*line_parse);
-	*line_parse = new_line_parse;
-	return (line_return);
-}
-
-static char	*ft_extract_eof(char **line_parse)
-{
-	char	*line_return;
-
-	line_return = (char *)malloc
-		((ft_strlen(*line_parse) + 1) * sizeof(char));
-	if (!line_return)
-	{
-		free(*line_parse);
-		*line_parse = NULL;
-		return (NULL);
-	}
-	ft_strlcpy(line_return, *line_parse, ft_strlen(*line_parse) + 1);
-	free(*line_parse);
-	*line_parse = NULL;
-	return (line_return);
-}
-
 static char	*ft_extract(char **line_parse)
 {
 	char	*nl_position;
 	char	*line_return;
+	char	*new_line_parse;
 
 	nl_position = ft_strchr(*line_parse, '\n');
 	if (nl_position)
-		line_return = ft_extract_nl(line_parse, nl_position);
+	{
+		new_line_parse = ft_strdup(nl_position + 1);
+		*(nl_position + 1) = '\0';
+		line_return = ft_strdup(*line_parse);
+		free_line(line_parse);
+		*line_parse = new_line_parse;
+	}
 	else
-		line_return = ft_extract_eof(line_parse);
+	{
+		line_return = *line_parse;
+		*line_parse = NULL;
+	}
 	return (line_return);
 }
 
@@ -98,17 +80,11 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	if (ft_read(fd, &line_parse) == -1)
-	{
-		free(line_parse);
-		line_parse = NULL;
+		return (free_line(&line_parse));
+	if (!line_parse)
 		return (NULL);
-	}
 	if (line_parse && *line_parse == 0)
-	{
-		free(line_parse);
-		line_parse = NULL;
-		return (NULL);
-	}
+		return (free_line(&line_parse));
 	line_return = ft_extract(&line_parse);
 	return (line_return);
 }

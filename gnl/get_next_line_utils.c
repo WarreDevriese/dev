@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:25:06 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/11 18:17:42 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:54:38 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	src_len;
 	size_t	i;
 
-	if (!dst = !src)
+	if (!dst || !src)
 		return (0);
 	src_len = ft_strlen(src);
 	if (size == 0)
@@ -65,33 +65,25 @@ char	*ft_strdup(const char *s)
 	char	*p;
 
 	len = ft_strlen(s);
-	p = 0;//(char *)malloc((len + 1) * sizeof(char));
+	p = (char *)malloc((len + 1) * sizeof(char));
 	if (!p)
 		return (NULL);
 	ft_strlcpy(p, s, len + 1);
 	return (p);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *line_parse, char const *buffer)
 {
 	size_t	len;
 	char	*new_s;
-	char	*temp;
 
-	if (!s1 && !s2)
+	if (!line_parse && !buffer)
 		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
-	len = ft_strlen(s1) + ft_strlen(s2);
+	len = ft_strlen(line_parse) + ft_strlen(buffer);
 	new_s = (char *)malloc((len + 1) * sizeof(char));
 	if (!new_s)
 		return (NULL);
-	ft_strlcpy(new_s, s1, len + 1);
-	temp = new_s + ft_strlen(new_s);
-	while (*s2)
-		*temp++ = *s2++;
-	*(temp) = '\0';
+	ft_strlcpy(new_s, line_parse, len + 1);
+	ft_strlcpy(new_s + ft_strlen(line_parse), buffer, len + 1);
 	return (new_s);
 }

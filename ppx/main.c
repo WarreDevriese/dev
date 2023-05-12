@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/24 14:45:13 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:54:36 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static void	validate_arguments(int argc, char **argv)
 	}
 	if (access(argv[1], F_OK | R_OK) == -1)
 	{
-		perror("Error file1:");
+		perror("Error file1");
 		exit(1);
 	}
 	if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) == -1)
 	{
-		perror("Error file2:");
+		perror("Error file2");
 		exit(1);
 	}
 }
