@@ -106,7 +106,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ccc="cc -Wall -Werror -Wextra"
+alias ccc="gcc -Wall -Werror -Wextra -g -fsanitize==address"
 alias c="clear"
 alias n="norminette"
 alias nf="python3 -m c_formatter_42 *.c *.h"
