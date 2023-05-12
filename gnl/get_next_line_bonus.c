@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/12 15:56:04 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:14:21 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*free_line(char **line)
 {
@@ -74,17 +74,17 @@ static char	*ft_extract(char **line_parse)
 
 char	*get_next_line(int fd)
 {
-	static char	*line_parse;
+	static char	*line_parse[OPEN_MAX];
 	char		*line_return;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE < 1)
 		return (NULL);
-	if (ft_read(fd, &line_parse) == -1)
-		return (free_line(&line_parse));
-	if (!line_parse)
+	if (ft_read(fd, &line_parse[fd]) == -1)
+		return (free_line(&line_parse[fd]));
+	if (!line_parse[fd])
 		return (NULL);
-	if (line_parse && *line_parse == 0)
-		return (free_line(&line_parse));
-	line_return = ft_extract(&line_parse);
+	if (line_parse[fd] && *line_parse[fd] == 0)
+		return (free_line(&line_parse[fd]));
+	line_return = ft_extract(&line_parse[fd]);
 	return (line_return);
 }
