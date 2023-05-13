@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:42:10 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 12:31:45 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 12:45:08 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void	execute_cmd2(int *pipefd, char **argv, char **envp)
 	if (fd2 == -1)
 		handle_error(ERR_OPEN_FILE2);
 	if (dup2(pipefd[0], STDIN_FILENO) == -1)
-		handle_error(ERR_REDIRECT_PIPE_STDIN_CMD2);
+		handle_error(ERR_DUP_PIPE_STDIN_CMD2);
 	if (dup2(fd2, STDOUT_FILENO) == -1)
-		handle_error(ERR_REDIRECT_STDOUT_CMD2_FILE2);
+		handle_error(ERR_DUP_STDOUT_CMD2_FILE2);
 	ft_close_ppx(fd2);
 	ft_execve(argv, envp);
 }
