@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 10:55:19 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/09 13:45:04 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:09:11 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	ft_parse(const char *ptr, va_list *args)
 {
 	int	print_len;
 
+	print_len = 0;
 	if (*ptr == 'c')
 		print_len = ft_handle_c(args);
 	else if (*ptr == 's')
@@ -32,8 +33,6 @@ static int	ft_parse(const char *ptr, va_list *args)
 		print_len = ft_handle_x_upper(args);
 	else if (*ptr == '%')
 		print_len = ft_putchar_pf('%');
-	else
-		print_len = write(2, "[INVALID FORMAT SPECIFIER]", 26);
 	return (print_len);
 }
 
