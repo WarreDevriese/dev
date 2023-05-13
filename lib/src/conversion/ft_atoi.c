@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:56:34 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/25 16:48:15 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:45:31 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@ int	ft_atoi(const char *nptr)
 	int	sign;
 	int	result;
 
+	if (!nptr)
+		return (0);
 	sign = 1;
 	result = 0;
 	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
