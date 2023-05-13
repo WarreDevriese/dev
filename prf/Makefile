@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -Wextra
 AR = ar
 ARFLAGS = rcs
 
-SRC := ft_printf.c ft_printf_utils.c handle_id.c handle_u.c handle_xX.c handle_p.c
+SRC := ft_printf.c ft_printf_utils.c ft_printf_conversions.c
 OBJ := $(SRC:.c=.o)
 
 all : $(NAME)

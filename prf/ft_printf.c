@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 10:55:19 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 20:29:44 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/13 21:45:04 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static int	ft_parse(const char *ptr, va_list *args)
 		print_len = ft_putchar((char)va_arg(*args, int));
 	else if (*ptr == 's')
 		print_len = ft_putstr(va_arg(*args, const char *));
-	else if (*ptr == 'p')
-		print_len = ft_handle_p(args);
 	else if (*ptr == 'd' || *ptr == 'i')
-		print_len = ft_handle_id(va_arg(*args, int));
+		print_len = ft_handle_signed(va_arg(*args, int));
 	else if (*ptr == 'u')
-		print_len = ft_handle_u(va_arg(*args, unsigned int));
+		print_len = ft_handle_unsigned(va_arg(*args, unsigned int));
+	else if (*ptr == 'p')
+		print_len = ft_handle_pointer(args);
 	else if (*ptr == 'x' || *ptr == 'X')
-		print_len = ft_handle_x(args, *ptr);
+		print_len = ft_handle_hex(va_arg(*args, unsigned int), *ptr);
 	else if (*ptr == '%')
 		print_len = ft_putchar('%');
 	return (print_len);
