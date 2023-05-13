@@ -6,21 +6,11 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/12 15:56:04 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 09:57:28 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*free_line(char **line)
-{
-	if (*line)
-	{
-		free(*line);
-		*line = NULL;
-	}
-	return (NULL);
-}
 
 static int	ft_read(int fd, char **line_parse)
 {
@@ -81,8 +71,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (ft_read(fd, &line_parse) == -1)
 		return (free_line(&line_parse));
-	if (!line_parse)
-		return (NULL);
 	if (line_parse && *line_parse == 0)
 		return (free_line(&line_parse));
 	line_return = ft_extract(&line_parse);

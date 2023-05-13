@@ -106,9 +106,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ccc="gcc -Wall -Werror -Wextra -g -fsanitize==address"
+alias ccc="gcc -Wall -Werror -Wextra -g -fsanitize=address"
 function san() {
-  ASAN_OPTIONS=detect_leaks=1:detect_stack_use_after_return=1:check_initialization_order=1:verbosity=1:halt_on_error=1:alloc_dealloc_mismatch=1:quarantine_size_mb=256 ./$1
+  ASAN_OPTIONS=detect_leaks=1:detect_stack_use_after_return=1:check_initialization_order=1: ./$1
 }
 alias c="clear"
 alias n="norminette"
