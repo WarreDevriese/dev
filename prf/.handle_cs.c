@@ -6,13 +6,13 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:50:45 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 14:13:22 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 20:15:15 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_handle_c(va_list *args)
+int	ft_handle_c(char c)
 {
 	return (ft_putchar((char)va_arg(*args, int)));
 }
