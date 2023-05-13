@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:36:25 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 12:43:51 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:26:26 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	handle_error(t_error_code err)
 
 	em[ERR_NONE] = "Unknown error";
 	em[ERR_CLOSE_FD] = "Close failed";
-	em[ERR_INVALID_ARGS] = "Usage: ./<program name> file1 cmd1 cmd2 file2";
 	em[ERR_FILE1_ACCESS] = "Error accessing file1";
 	em[ERR_FILE2_WRITE] = "Error: file2 exists but cannot be written to";
 	em[ERR_PIPE_CREATION] = "Error creating pipe";

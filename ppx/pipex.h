@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 13:49:21 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 12:44:37 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:26:43 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef enum e_error_code
 {
 	ERR_NONE,
 	ERR_CLOSE_FD,
-	ERR_INVALID_ARGS,
 	ERR_FILE1_ACCESS,
 	ERR_FILE2_WRITE,
 	ERR_PIPE_CREATION,

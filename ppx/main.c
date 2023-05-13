@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 14:34:55 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:23:46 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_close_ppx(int fd)
 static void	validate_arguments(int argc, char **argv)
 {
 	if (argc != 5)
-		handle_error(ERR_INVALID_ARGS);
+		write(STDERR_FILENO,
+			"Usage: ./<program name> file1 cmd1 cmd2 file2\n", 46);
 	if (access(argv[1], F_OK | R_OK) == -1)
 		handle_error(ERR_FILE1_ACCESS);
 	if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) == -1)
