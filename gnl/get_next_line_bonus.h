@@ -6,20 +6,20 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:52 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 09:57:28 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 14:41:15 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# ifndef OPEN_MAX
-#  define OPEN_MAX 1024
-# endif
-
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 1024
+# endif
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
