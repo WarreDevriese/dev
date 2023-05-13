@@ -3,7 +3,7 @@ NAME = pipex
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-SRC := child1.c child2.c find_cmd_path.c main.c
+SRC := child1.c child2.c find_cmd_path.c main.c error.c
 OBJ := $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft/

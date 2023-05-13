@@ -6,38 +6,26 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/12 13:54:36 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 12:29:00 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_close(int fd)
+void	ft_close_ppx(int fd)
 {
 	if (close(fd) == -1)
-	{
-		perror("Close failed");
-		exit(1);
-	}
+		handle_error(ERR_CLOSE_FD);
 }
 
 static void	validate_arguments(int argc, char **argv)
 {
 	if (argc != 5)
-	{
-		perror("Usage: ./<program name> file1 cmd1 cmd2 file2");
-		exit(1);
-	}
+		handle_error(ERR_INVALID_ARGS);
 	if (access(argv[1], F_OK | R_OK) == -1)
-	{
-		perror("Error file1");
-		exit(1);
-	}
+		handle_error(ERR_FILE1_ACCESS);
 	if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) == -1)
-	{
-		perror("Error file2");
-		exit(1);
-	}
+		handle_error(ERR_FILE2_WRITE);
 }
 
 static void	check_child_status(int status, const char *error_message)
@@ -58,26 +46,21 @@ static void	check_child_status(int status, const char *error_message)
 int	main(int argc, char **argv, char **envp)
 {
 	int		pipefd[2];
-	pid_t	pid1;
-	pid_t	pid2;
-	int		status1;
-	int		status2;
+	pid_t	pid[2];
+	int		status[2];
 
 	validate_arguments(argc, argv);
 	if (pipe(pipefd) == -1)
-	{
-		perror("Error pipe:");
-		exit(1);
-	}
-	pid1 = fork();
-	child1(pipefd, pid1, argv, envp);
-	pid2 = fork();
-	child2(pipefd, pid2, argv, envp);
-	ft_close(pipefd[0]);
-	ft_close(pipefd[1]);
-	waitpid(pid1, &status1, 0);
-	waitpid(pid2, &status2, 0);
-	check_child_status(status1, "Error executing cmd1");
-	check_child_status(status2, "Error executing cmd2");
+		handle_error(ERR_PIPE_CREATION);
+	pid[0] = fork();
+	child1(pipefd, pid[0], argv, envp);
+	pid[1] = fork();
+	child2(pipefd, pid[1], argv, envp);
+	ft_close_ppx(pipefd[0]);
+	ft_close_ppx(pipefd[1]);
+	waitpid(pid[0], &status[0], 0);
+	waitpid(pid[1], &status[1], 0);
+	check_child_status(status[0], "Error executing cmd1");
+	check_child_status(status[1], "Error executing cmd2");
 	return (0);
 }
