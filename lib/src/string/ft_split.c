@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:36:02 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/28 17:42:07 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:25:29 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	**ft_split(char const *s, char c)
 	char		**split;
 	size_t		word_count;
 
+	if (!s)
+		return (NULL);
 	word_count = ft_word_count(s, c);
 	split = (char **)malloc((word_count + 1) * sizeof(char *));
 	if (!split)

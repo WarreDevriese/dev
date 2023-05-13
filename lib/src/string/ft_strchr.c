@@ -6,12 +6,14 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:19:53 by wdevries          #+#    #+#             */
-/*   Updated: 2023/04/06 17:45:32 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:27:08 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == (char)c)
