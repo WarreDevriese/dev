@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_xXp.c                                       :+:      :+:    :+:   */
+/*   handle_xX.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:41:55 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/08 12:20:05 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 14:06:51 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_putnbr_base_x(unsigned int n, const char *hex_digits,
+void	ft_putnbr_base_x(unsigned int n, const char *hex_digits,
 		int *print_len)
 {
 	if (n >= 16)
@@ -21,28 +21,18 @@ static void	ft_putnbr_base_x(unsigned int n, const char *hex_digits,
 	(*print_len)++;
 }
 
-int	ft_handle_x_lower(va_list *args)
+int	ft_handle_x(va_list *args, const char format)
 {
 	int				print_len;
 	unsigned int	n;
-	const char		*hex_digits;
+	char			*hex_digits;
 
 	print_len = 0;
 	n = va_arg(*args, unsigned int);
-	hex_digits = "0123456789abcdef";
-	ft_putnbr_base_x(n, hex_digits, &print_len);
-	return (print_len);
-}
-
-int	ft_handle_x_upper(va_list *args)
-{
-	int				print_len;
-	unsigned int	n;
-	const char		*hex_digits;
-
-	print_len = 0;
-	n = va_arg(*args, unsigned int);
-	hex_digits = "0123456789ABCDEF";
+	if (format == 'x')
+		hex_digits = "0123456789abcdef";
+	else if (format == 'X')
+		hex_digits = "0123456789ABCDEF";
 	ft_putnbr_base_x(n, hex_digits, &print_len);
 	return (print_len);
 }

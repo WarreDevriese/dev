@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:40:45 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/09 13:51:51 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 13:59:36 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@
 
 int		ft_printf(const char *s, ...);
 int		ft_strlen(const char *s);
-void	ft_putchar(char c);
-int		ft_putstr_pf(const char *s);
+int		ft_putstr(const char *s);
 int		ft_handle_s(va_list *args);
 int		ft_handle_c(va_list *args);
 int		ft_handle_id(va_list *args);
 int		ft_handle_u(va_list *args);
-int		ft_handle_x_lower(va_list *args);
-int		ft_handle_x_upper(va_list *args);
+int		ft_handle_x(va_list *args, const char format);
 int		ft_handle_p(va_list *args);
-int		ft_putchar_pf(char c);
+int		ft_putchar(const char c);
 
 #endif

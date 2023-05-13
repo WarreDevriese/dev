@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 10:55:19 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/12 17:09:11 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 14:09:32 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ static int	ft_parse(const char *ptr, va_list *args)
 		print_len = ft_handle_id(args);
 	else if (*ptr == 'u')
 		print_len = ft_handle_u(args);
-	else if (*ptr == 'x')
-		print_len = ft_handle_x_lower(args);
-	else if (*ptr == 'X')
-		print_len = ft_handle_x_upper(args);
+	else if (*ptr == 'x' || *ptr == 'X')
+		print_len = ft_handle_x(args, *ptr);
 	else if (*ptr == '%')
-		print_len = ft_putchar_pf('%');
+		print_len = ft_putchar('%');
 	return (print_len);
 }
 
@@ -48,14 +46,9 @@ int	ft_printf(const char *format_string, ...)
 	while (*ptr)
 	{
 		if (*ptr == '%')
-		{
-			ptr++;
-			print_len += ft_parse(ptr, &args);
-		}
+			print_len += ft_parse(++ptr, &args);
 		else
-		{
-			print_len += ft_putchar_pf(*ptr);
-		}
+			print_len += ft_putchar(*ptr);
 		ptr++;
 	}
 	va_end(args);

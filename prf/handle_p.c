@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:17:23 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/09 13:53:47 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/13 14:15:36 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ int	ft_handle_p(va_list *args)
 	hex_digits = "0123456789abcdef";
 	ptr_value = (uintptr_t)va_arg(*args, void *);
 	if (ptr_value == 0)
-	{
-		print_len = ft_putstr_pf("(nil)");
-	}
+		print_len = ft_putstr("(nil)");
 	else
 	{
-		print_len = ft_putstr_pf("0x");
+		print_len = ft_putstr("0x");
 		ft_putnbr_base_p(ptr_value, hex_digits, &print_len);
 	}
 	return (print_len);
