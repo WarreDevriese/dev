@@ -54,6 +54,13 @@ nnoremap <C-l> <C-w>l
 nnoremap <silent> > :tabn<CR>
 nnoremap <silent> < :tabp<CR>
 
+"Key mappings (auto-pairs)
+vnoremap { <Esc>`>a}<Esc>`<i{<Esc>
+vnoremap ( <Esc>`>a)<Esc>`<i(<Esc>
+vnoremap [ <Esc>`>a]<Esc>`<i[<Esc>
+vnoremap ' <Esc>`>a'<Esc>`<i'<Esc>
+vnoremap " <Esc>`>a"<Esc>`<i"<Esc>
+
 " C-specific settings
 autocmd FileType c setlocal cindent " Enable C indentation
 
@@ -75,6 +82,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Add your plugins here
 Plugin 'preservim/nerdtree'
 Plugin 'dense-analysis/ale'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
