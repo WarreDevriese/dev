@@ -8,7 +8,7 @@ NAME = fdf
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
-SRC_FILES = fdf.c scaling.c data.c hooks.c
+SRC_FILES = fdf.c scaling.c data.c hooks.c draw.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 HDR_FILES = fdf.h
