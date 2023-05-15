@@ -50,46 +50,46 @@ int	ft_handle_unsigned(unsigned int n)
 	return (print_len);
 }
 
-int ft_handle_hex(unsigned int n, const char format)
+int	ft_handle_hex(unsigned int n, const char format)
 {
-    int             print_len;
-    char            *hex_digits;
+	int		print_len;
+	char	*hex_digits;
 
-    print_len = 0;
-    hex_digits = "0123456789abcdef";
-    if (format == 'X')
-        hex_digits = "0123456789ABCDEF";
-    if (n >= 16)
-        print_len += ft_handle_hex(n / 16, format);
-    print_len += ft_putchar(hex_digits[n % 16]);
-    return (print_len);
+	print_len = 0;
+	hex_digits = "0123456789abcdef";
+	if (format == 'X')
+		hex_digits = "0123456789ABCDEF";
+	if (n >= 16)
+		print_len += ft_handle_hex(n / 16, format);
+	print_len += ft_putchar(hex_digits[n % 16]);
+	return (print_len);
 }
 
-static int ft_handle_hex_p(uintptr_t n)
+static int	ft_handle_hex_p(uintptr_t n)
 {
-    int print_len;
-    const char *hex_digits;
+	int			print_len;
+	const char	*hex_digits;
 
-    print_len = 0;
-    hex_digits = "0123456789abcdef";
-    if (n >= 16)
-        print_len += ft_handle_hex_p(n / 16);
-    print_len += ft_putchar(hex_digits[n % 16]);
-    return (print_len);
+	print_len = 0;
+	hex_digits = "0123456789abcdef";
+	if (n >= 16)
+		print_len += ft_handle_hex_p(n / 16);
+	print_len += ft_putchar(hex_digits[n % 16]);
+	return (print_len);
 }
 
-int ft_handle_pointer(va_list *args)
+int	ft_handle_pointer(va_list *args)
 {
-    uintptr_t p;
-    int print_len;
+	uintptr_t	p;
+	int			print_len;
 
-    p = va_arg(*args, uintptr_t);
-    if (p == 0)
-        print_len = ft_putstr("0x0");
-	else 
+	p = va_arg(*args, uintptr_t);
+	if (p == 0)
+		print_len = ft_putstr("0x0");
+	else
 	{
-        print_len = ft_putstr("0x");
-        print_len += ft_handle_hex_p(p);
-    }
-    return (print_len);
+		print_len = ft_putstr("0x");
+		print_len += ft_handle_hex_p(p);
+	}
+	return (print_len);
 }
