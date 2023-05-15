@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:23:31 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/15 12:50:00 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:39:37 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ t_mlx_params init_mlx_params(t_fdf_params *fdf)
 
 void	draw_to_image(t_iso **data_array, t_dimensions map, t_mlx_params *params)
 {
-
+	
 }
