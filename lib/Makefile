@@ -37,6 +37,10 @@ SRC_FILES += char/ft_toupper.c
 SRC_FILES += conversion/ft_itoa.c
 SRC_FILES += conversion/ft_atoi.c
 
+SRC_FILES += math/ft_abs.c
+SRC_FILES += math/ft_max.c
+SRC_FILES += math/ft_min.c
+
 SRC_FILES += io/ft_close.c
 SRC_FILES += io/ft_open_rdonly.c
 SRC_FILES += io/ft_putchar_fd.c
@@ -101,6 +105,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/char
 	@mkdir -p $(OBJ_DIR)/conversion
+	@mkdir -p $(OBJ_DIR)/math
 	@mkdir -p $(OBJ_DIR)/io
 	@mkdir -p $(OBJ_DIR)/list
 	@mkdir -p $(OBJ_DIR)/memory
