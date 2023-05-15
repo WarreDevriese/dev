@@ -1,4 +1,5 @@
 " General settings
+set mouse=a
 set nocompatible              " Use Vim settings, rather than Vi settings
 filetype plugin indent on     " Enable filetype detection, plugins, and indentation
 syntax on                     " Enable syntax highlighting
