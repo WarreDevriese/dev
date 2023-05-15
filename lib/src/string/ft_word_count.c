@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:17:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 15:38:11 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/15 08:59:10 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_word_count(char const *s, char c)
 	char const	*start;
 
 	if (!s)
-		return (NULL)
+		return (0);
 	count = 0;
 	start = s;
 	while (*s)

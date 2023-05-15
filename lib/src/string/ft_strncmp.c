@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:35:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 15:38:11 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/15 08:57:51 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned char	*us2;
 
 	if (!s1 || !s2)
-		return (-1)
+		return (-1);
 	i = 0;
 	us1 = (unsigned char *)s1;
 	us2 = (unsigned char *)s2;

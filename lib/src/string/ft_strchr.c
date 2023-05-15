@@ -6,9 +6,11 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:19:53 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 15:27:08 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/15 08:56:58 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stddef.h>
 
 char	*ft_strchr(const char *s, int c)
 {

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:24:47 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 15:38:11 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/15 08:58:25 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*new_s;
 	size_t	len;
 
-	if (!s || !set)
+	if (!s1 || !set)
 		return (NULL);
 	while (*s1 && ft_strchr(set, *s1))
 		s1++;
