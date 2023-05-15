@@ -6,7 +6,7 @@
 /*   By: warredevriese <marvin@42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:02:16 by warredevriese     #+#    #+#             */
-/*   Updated: 2023/05/13 21:46:33 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/15 12:35:59 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ int	ft_handle_pointer(va_list *args)
 	uintptr_t	p;
 	int			print_len;
 
-	p = va_arg(*args, uintptr_t);
+	p = (uintptr_t)va_arg(*args, void *);
 	if (p == 0)
-		print_len = ft_putstr("0x0");
+		print_len = ft_putstr("(nil)");
 	else
 	{
 		print_len = ft_putstr("0x");
