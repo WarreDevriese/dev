@@ -3,15 +3,25 @@ BOLD = "\\033[1m"
 RESET_FORMAT = "\\033[0m"
 ERASE_LINE = "\\033[A\\033[K\\033[A"
 
+
+
 NAME = fdf
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
+SRC_DIR = ./src/
 SRC_FILES = fdf.c scaling.c data.c hooks.c
-OBJ_FILES = $(SRC_FILES:.c=.o)
+SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
+OBJ_DIR = ./obj/
+OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
+
+HDR_DIR = ./inc/
 HDR_FILES = fdf.h
+HDR_INC = -I $(HDR_DIR)
+HDR = $(addprefix $(HDR_DIR), $(HDR_FILES))
 
 LIBFT_DIR = ./libft/
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
@@ -25,20 +35,21 @@ MATH_LIB = -lm
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_LIB) $(OBJ_FILES)
+$(NAME): $(LIBFT_LIB) $(OBJ)
 	@echo "Object files for fdf created"
-	@$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT_LIB) $(MLX_LIB) $(MATH_LIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX_LIB) $(MATH_LIB) -o $(NAME)
 	@echo "$(BOLD)$(GREEN)$(NAME) program succesfully created!$(RESET_FORMAT)"
 
-%.o: %.c
-	@$(CC) $(CFLAGS) $(MLX_INC) $(LIBFT_INC) -c $< -o $@ 
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(HDR_INC) $(MLX_INC) $(LIBFT_INC) -c $< -o $@ 
 	@echo "Compiled: $*.o $(GREEN)[OK]$(RESET_FORMAT)"
 
 $(LIBFT_LIB): FORCE
 	@$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	@rm -f $(OBJ_FILES)
+	@rm -rf $(OBJ_DIR)
 	@echo "Object files related to $(NAME) deleted"
 
 fclean: clean
