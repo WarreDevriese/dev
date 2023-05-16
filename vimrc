@@ -50,7 +50,7 @@ vnoremap <leader><leader> <Esc>:wq<CR>
 nnoremap zm zM
 
 " Key mappings (NERDTree) 
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap nn :NERDTreeToggle<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -87,6 +87,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'dense-analysis/ale'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-commentary'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
