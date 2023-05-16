@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/15 12:42:54 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:17:08 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 typedef struct s_dimensions
 {
-	size_t			width;
-	size_t			height;
+	int				width;
+	int				height;
 }					t_dimensions;
 
 typedef struct s_mlx_params
@@ -42,35 +42,45 @@ typedef struct s_mlx_params
 
 typedef struct s_iso
 {
-	double			x;
-	double			y;
-	double			z;
-	double			scaled_x;
-	double			scaled_y;
+	float			unscaled_x;
+	float			unscaled_y;
+	float			x;
+	float			y;
+	float			z;
 }					t_iso;
 
 typedef struct s_math
 {
-	double			sin30;
-	double			cos30;
+	float			sin30;
+	float			cos30;
 }					t_math;
 
 typedef struct s_frame_info
 {
-	double			min_x;
-	double			max_x;
-	double			min_y;
-	double			max_y;
-	double			x_range;
-	double			y_range;
+	float			min_x;
+	float			max_x;
+	float			min_y;
+	float			max_y;
+	float			x_range;
+	float			y_range;
 }					t_frame_info;
 
 typedef struct s_scaling_factor
 {
-	double			horizontal;
-	double			vertical;
-	double			ratio;
+	float			horizontal;
+	float			vertical;
+	float			ratio;
 }					t_scaling_factor;
+
+typedef struct	s_bresenham_params
+{
+	int				dx;
+	int				dy;
+	int				stepx;
+	int				stepy;
+	int				err;
+	int				err2;
+}				t_bresenham_params;
 
 typedef struct s_fdf_params
 {
@@ -87,6 +97,6 @@ void				close_hook(t_mlx_params *fdf, t_iso ***data_array,
 void				apply_scaling(t_iso ***data_array, t_dimensions map);
 void				handle_hooks(t_iso **data_array, t_dimensions map,
 						t_mlx_params mlx_params);
-t_mlx_params		init_mlx_params(t_fdf_params *fdf);
+void				create_image(t_iso **data_array, t_mlx_params *mlx_params, t_dimensions map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/11 12:08:56 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:59:30 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	get_dimensions(char	*file, t_dimensions *map)
 {
 	int		fd;
 	char	*line;
-	size_t	temp_width;
+	int		temp_width;
 
 	map->width = 0;
 	map->height = 0;
@@ -35,9 +35,9 @@ static void	get_dimensions(char	*file, t_dimensions *map)
 	ft_close(fd);
 }
 
-static void		allocate_data_array(size_t width, size_t height, t_iso ***data_array)
+static void		allocate_data_array(int width, int height, t_iso ***data_array)
 {
-	size_t	i;
+	int	i;
 
 	*data_array = (t_iso **)malloc((height) * sizeof(t_iso *));
 	if (!*data_array)
@@ -69,16 +69,16 @@ static void		populate_data_array(int fd, t_dimensions map, t_math angle_values, 
 	char	**words;
 
 	row = 0;
-	while ((size_t)row < map.height)
+	while (row < map.height)
 	{
 		line = get_next_line(fd);
 		words = ft_split(line, ' ');
 		column = 0;
-		while ((size_t)column < map.width)
+		while (column < map.width)
 		{
 			(*data_array)[row][column].z = ft_atoi(words[column]);
-			(*data_array)[row][column].x = (column - row) * angle_values.cos30;
-			(*data_array)[row][column].y = (column + row) * angle_values.sin30 - (*data_array)[row][column].z;
+			(*data_array)[row][column].unscaled_x = (column - row) * angle_values.cos30;
+			(*data_array)[row][column].unscaled_y = (column + row) * angle_values.sin30 - (*data_array)[row][column].z;
 			free(words[column]);
 			column++;
 		}
