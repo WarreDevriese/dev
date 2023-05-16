@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:27:05 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/15 13:02:58 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 09:03:24 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <string.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <string.h>
+# include <limits.h>
 
 typedef struct s_list
 {

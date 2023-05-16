@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:57:16 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/15 13:00:12 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 09:04:23 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	ft_abs(int n)
 {
+	if (n == INT_MIN)
+		return (INT_MAX);
 	if (n < 0)
-		return (-(unsigned int)n);
-	return (n);
+		return (-n);
+	else
+		return (n);
 }
