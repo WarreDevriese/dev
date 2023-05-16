@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/16 14:45:27 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:03:13 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ typedef struct s_frame_info
 	float			max_x;
 	float			min_y;
 	float			max_y;
+	float			min_z;
+	float			max_z;
 	float			x_range;
 	float			y_range;
+	float			z_range;
 }					t_frame_info;
 
 typedef struct s_scaling_factor
