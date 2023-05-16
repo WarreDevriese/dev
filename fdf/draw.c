@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 09:23:31 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/16 12:16:11 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:44:34 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	draw_line(t_iso point1, t_iso point2, t_mlx_params *mlx_params)
 	while (1)
 	{
 		set_pixel(mlx_params, (int)round(point1.x), (int)round(point1.y), 0xFFFFFF);//IMPLEMENT GET_COLOR FUNCTION
-		if ((int)round(point1.x) == (int)round(point2.x)&& (int)(roundpoint1.y) == (int)round(point2.y))
+		if ((int)round(point1.x) == (int)round(point2.x)&& (int)round(point1.y) == (int)round(point2.y))
 			break ;
 		line.err2 = line.err;
 		if (line.err2 > -line.dx)
@@ -69,15 +69,15 @@ void	create_image(t_iso **data_array, t_mlx_params *mlx_params, t_dimensions map
 	int	j;
 	
 	i = 0;
-	while (i < map.height)
+	while (i < map.rows)
 	{
 		j = 0;
-		while (j < map.width)
+		while (j < map.columns)
 		{
-			if (j + 1 < map.width)
-				draw_line(data_array[i][j], data_array[i][j + 1], mlx_params, data_array);
-			if (i + 1 < map.height)
-				draw_line(data_array[i][j], data_array[i + 1][j], mlx_params, data_array);
+			if (j + 1 < map.columns)
+				draw_line(data_array[i][j], data_array[i][j + 1], mlx_params);
+			if (i + 1 < map.rows)
+				draw_line(data_array[i][j], data_array[i + 1][j], mlx_params);
 			j++;
 		}
 		i++;

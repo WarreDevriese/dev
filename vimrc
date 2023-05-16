@@ -38,6 +38,9 @@ set autoindent                " Enable auto-indentation
 set smarttab                  " Use shiftwidth for tab commands
 
 " Key mappings (general)
+inoremap ww <Esc>:w<CR>
+vnoremap ww <Esc>:w<CR>
+nnoremap ww :w<CR>
 inoremap ij <Esc>1
 vnoremap ij <Esc>1
 nnoremap ij <Esc>1

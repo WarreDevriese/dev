@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:14:04 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/16 10:59:30 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:44:34 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,39 @@ static void	get_dimensions(char	*file, t_dimensions *map)
 {
 	int		fd;
 	char	*line;
-	int		temp_width;
+	int		temp_columns;
 
-	map->width = 0;
-	map->height = 0;
+	map->columns = 0;
+	map->rows = 0;
 	ft_open_rdonly(file, &fd);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		temp_width = ft_word_count(line, ' ');
-		if (temp_width > map->width)
-			map->width = temp_width;
-		map->height++;
+		temp_columns = ft_word_count(line, ' ');
+		if (temp_columns > map->columns)
+			map->columns = temp_columns;
+		map->rows++;
 		free(line);
 	}
 	ft_close(fd);
 }
 
-static void		allocate_data_array(int width, int height, t_iso ***data_array)
+static void		allocate_data_array(int columns, int rows, t_iso ***data_array)
 {
 	int	i;
 
-	*data_array = (t_iso **)malloc((height) * sizeof(t_iso *));
+	*data_array = (t_iso **)malloc((rows) * sizeof(t_iso *));
 	if (!*data_array)
 	{
 		perror("Error malloc data_array");
 		exit(1);
 	}
 	i = 0;
-	while (i < height)
+	while (i < rows)
 	{
-		(*data_array)[i] = (t_iso *)malloc(width * sizeof(t_iso));
+		(*data_array)[i] = (t_iso *)malloc(columns * sizeof(t_iso));
 		if (!(*data_array)[i])
 		{
 			while (i)
@@ -69,12 +69,12 @@ static void		populate_data_array(int fd, t_dimensions map, t_math angle_values, 
 	char	**words;
 
 	row = 0;
-	while (row < map.height)
+	while (row < map.rows)
 	{
 		line = get_next_line(fd);
 		words = ft_split(line, ' ');
 		column = 0;
-		while (column < map.width)
+		while (column < map.columns)
 		{
 			(*data_array)[row][column].z = ft_atoi(words[column]);
 			(*data_array)[row][column].unscaled_x = (column - row) * angle_values.cos30;
@@ -94,7 +94,7 @@ void	get_data(char *file, t_iso ***data_array, t_dimensions *map)
 	t_math	angle_values;
 
 	get_dimensions(file, map);
-	allocate_data_array(map->width, map->height, data_array);
+	allocate_data_array(map->columns, map->rows, data_array);
 	ft_open_rdonly(file, &fd);
 	angle_values.sin30 = sin(M_PI / 6);
 	angle_values.cos30 = cos(M_PI / 6);

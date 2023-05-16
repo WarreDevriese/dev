@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:00:00 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/10 19:21:54 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/16 14:46:38 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ static void free_data_array(t_iso ***data_array, size_t height)
 {
     size_t i;
 
+	if (*data_array == NULL)
+		return ;
     i = 0;
     while (i < height)
-        free((*data_array)[i++]);
+		free((*data_array)[i++]);
     free(*data_array);
+	*data_array = NULL;
     write(1 , "Data successfully freed", 23);
 }
 
@@ -27,19 +30,23 @@ static int keypress_hook(int keycode, void *param)
 {
     t_fdf_params *params = (t_fdf_params *)param;
     if (keycode == 65307)
-    {
-        free_data_array(&(params->data_array), params->map.height);
-        mlx_destroy_window(params->mlx_params.mlx, params->mlx_params.win);
-        exit(0);
-    }
+		if (params->mlx_params.win != NULL) 
+		{
+			mlx_destroy_window(params->mlx_params.mlx, params->mlx_params.win);
+			params->mlx_params.win = NULL;
+		}
     return (0);
 }
 
 static int destroy_hook(t_fdf_params *params)
 {
-    free_data_array(&(params->data_array), params->map.height);
-    mlx_destroy_window(params->mlx_params.mlx, params->mlx_params.win);
-    exit(0);
+    free_data_array(&(params->data_array), params->map.rows);
+    if (params->mlx_params.win != NULL) 
+	{
+		mlx_destroy_window(params->mlx_params.mlx, params->mlx_params.win);
+		params->mlx_params.win = NULL;
+	}
+	exit(0);
     return (0);
 }
 

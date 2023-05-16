@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:56:03 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/16 10:57:32 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:44:35 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	get_frame_info(t_frame_info *frame_info, t_iso **data_array, t_dimen
 	int	j;
 	
 	i = 0;
-	while (i < map.height)
+	while (i < map.rows)
 	{
 		j = 0;
-		while (j < map.width)
+		while (j < map.columns)
 		{
 			if	((i == 0 && j == 0) || data_array[i][j].unscaled_x < frame_info->min_x)
 				frame_info->min_x = data_array[i][j].unscaled_x;
@@ -38,6 +38,14 @@ static void	get_frame_info(t_frame_info *frame_info, t_iso **data_array, t_dimen
 	frame_info->x_range = frame_info->max_x - frame_info->min_x;
 	frame_info->y_range = frame_info->max_y - frame_info->min_y;
 }
+
+/*
+static void	get_scaling_factor(t_frame_info frame_info, t_scaling_factor *scaling_factor)
+{
+		scaling_factor->vertical = 1920 * 0.8 / frame_info.y_range;
+		scaling_factor->horizontal = 1920 * 0.8 / frame_info.x_range;
+}
+*/
 
 static void	get_scaling_factor(t_frame_info frame_info, t_scaling_factor *scaling_factor)
 {
@@ -64,10 +72,10 @@ void	apply_scaling(t_iso ***data_array, t_dimensions map)
 	get_frame_info(&frame_info, *data_array, map);
 	get_scaling_factor(frame_info, &scaling_factor);
 	i = 0;
-	while (i < map.height)
+	while (i < map.rows)
 	{
 		j = 0;
-		while (j < map.width)
+		while (j < map.columns)
 		{
 			(*data_array)[i][j].x = ((*data_array)[i][j].unscaled_x - frame_info.min_x)
 				* scaling_factor.horizontal + (1920 / 2 - frame_info.x_range * scaling_factor.horizontal / 2);

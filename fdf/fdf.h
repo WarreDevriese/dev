@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:09:17 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/16 12:17:08 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:45:27 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 typedef struct s_dimensions
 {
-	int				width;
-	int				height;
+	int				rows;
+	int				columns;
 }					t_dimensions;
 
 typedef struct s_mlx_params
