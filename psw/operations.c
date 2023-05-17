@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 09:38:30 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/17 13:39:36 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:16:57 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	rotate(t_stack *stack)
 	top_node->next = NULL;
 	stack->tail->next = top_node;
 	stack->tail = top_node;
+		perform_operation(stackA, stackB, operation);
 }
 
 void	rev_rotate(t_stack *stack)
