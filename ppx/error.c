@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:36:25 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 16:26:26 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:56:51 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	handle_error(t_error_code err)
 {
-	const char	*em[ERR_TOTAL];
+	static const char	*em[ERR_TOTAL];
 
 	em[ERR_NONE] = "Unknown error";
 	em[ERR_CLOSE_FD] = "Close failed";
