@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	stackA = init_stack(argv);
 	while (!is_sorted(stackA))

@@ -34,10 +34,10 @@ void	perform_operation(t_stack *stackA, t_stack *stackB, int operation)
 		rev_rotate(stackB);
 }
 
-int		is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	t_node	*node;
-	
+
 	if (!stack || stack->head)
 		return (1);
 	node = stack->head;
