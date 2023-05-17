@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 09:38:30 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/17 11:16:47 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:39:36 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,20 @@ void	rev_rotate(t_stack *stack)
 }
 
 void	twice(t_stack *stackA, t_stack *stackB, int operation)
-
+{
+	if (operation == SS)
+	{
+		swap(stackA);
+		swap(stackB);
+	}
+	else if (operation == RR)
+	{
+		rotate(stackA);
+		rotate(stackB);
+	}
+	else if (operation == RRR)
+	{
+		rev_rotate(stackA);
+		rev_rotate(stackB);
+	}
+}
