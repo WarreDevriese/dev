@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:00:00 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/16 14:46:38 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:52:12 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,8 @@ static void free_data_array(t_iso ***data_array, size_t height)
 
 static int keypress_hook(int keycode, void *param)
 {
-    t_fdf_params *params = (t_fdf_params *)param;
     if (keycode == 65307)
-		if (params->mlx_params.win != NULL) 
-		{
 			mlx_destroy_window(params->mlx_params.mlx, params->mlx_params.win);
-			params->mlx_params.win = NULL;
-		}
     return (0);
 }
 

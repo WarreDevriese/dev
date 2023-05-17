@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:42:10 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/15 16:27:39 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/17 21:17:16 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_execve(char **argv, char **envp)
 	cmd1_argv = ft_split(cmd1, ' ');
 	cmd1_path = find_cmd_path(envp, cmd1_argv[0]);
 	if (execve(cmd1_path, cmd1_argv, envp) == -1)
-		handle_error(ERR_CMD1_EXECUTION);
+		exit(ERR_CMD1_EXECUTION);
 }
 
 static void	execute_cmd1(int *pipefd, char **argv, char **envp)
@@ -31,12 +31,12 @@ static void	execute_cmd1(int *pipefd, char **argv, char **envp)
 
 	fd1 = open(argv[1], O_RDONLY);
 	if (fd1 == -1)
-		handle_error(ERR_OPEN_FILE1);
+		exit(ERR_OPEN_FILE1);
 	if (dup2(fd1, STDIN_FILENO) == -1)
-		handle_error(ERR_DUP_FILE1_STDIN);
+		exit(ERR_DUP_FILE1_STDIN);
 	ft_close_ppx(fd1);
 	if (dup2(pipefd[1], STDOUT_FILENO) == -1)
-		handle_error(ERR_DUP_CMD1_PIPE);
+		exit(ERR_DUP_CMD1_PIPE);
 	ft_execve(argv, envp);
 }
 
@@ -46,13 +46,13 @@ void	child1(int pipefd[], pid_t pid1, char **argv, char **envp)
 	{
 		ft_close_ppx(pipefd[0]);
 		ft_close_ppx(pipefd[1]);
-		handle_error(ERR_FORK1_FAILED);
+		exit(ERR_FORK1_FAILED);
 	}
 	if (pid1 == 0)
 	{
 		ft_close_ppx(pipefd[0]);
 		execute_cmd1(pipefd, argv, envp);
 		ft_close_ppx(pipefd[1]);
-		exit(0);
+		exit(ERR_NONE);
 	}
 }

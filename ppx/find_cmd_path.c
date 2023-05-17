@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 12:17:42 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/17 21:17:13 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*ft_strjoin_path(const char *dirs, const char *cmd)
 	cmd_len = ft_strlen(cmd);
 	full_path = malloc(dirs_len + cmd_len + 2);
 	if (!full_path)
-		handle_error(ERR_MALLOC_FAILED);
+		exit(ERR_MALLOC_FAILED);
 	ft_memcpy(full_path, dirs, dirs_len);
 	full_path[dirs_len] = '/';
 	ft_memcpy(full_path + dirs_len + 1, cmd, cmd_len);
@@ -59,7 +59,7 @@ static char	*search_cmd_in_dirs(char *path_env, char *cmd)
 	}
 	ft_free_dirs(dirs);
 	if (!full_path)
-		handle_error(ERR_EXEC_NOT_FOUND);
+		exit(ERR_EXEC_NOT_FOUND);
 	return (full_path);
 }
 
@@ -78,7 +78,7 @@ static char	*find_path_env(char **envp)
 		envp++;
 	}
 	if (!path_env)
-		handle_error(ERR_PATH_NOT_FOUND);
+		exit(ERR_PATH_NOT_FOUND);
 	return (path_env);
 }
 
