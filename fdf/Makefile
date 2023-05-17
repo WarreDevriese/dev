@@ -6,7 +6,7 @@ ERASE_LINE = "\\033[A\\033[K\\033[A"
 NAME = fdf
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 
 SRC_FILES = fdf.c scaling.c data.c hooks.c draw.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
