@@ -5,30 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 08:55:01 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/17 15:04:57 by wdevries         ###   ########.fr       */
+/*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
+/*   Updated: 2023/05/18 17:14:38 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/inc/libft.h"
-# include <stdio.h>
+# define A = 0
+# define B = 1
 
-typedef struct s_node
-{
-	int				value;
-	struct s_node	*next;
-}					t_node;
-
-typedef struct s_stack
-{
-	t_node			*head;
-	t_node			*tail;
-}					t_stack;
-
-typedef enum e_operations
+typedef enum	e_operations
 {
 	SA,
 	SB,
@@ -40,21 +28,34 @@ typedef enum e_operations
 	RR,
 	RRA,
 	RRB,
-	RRR,
-	TOTAL
-}					t_operations;
+	RRR
+}				t_operations;
 
-int					main(int argc, char **argv);
-t_stack				*init_stack(char **argv);
-int					is_sorted(t_stack *stack);
-int					decide_operation(t_stack *stackA, t_stack *stackB);
-void				perform_operation(t_stack *stackA, t_stack *stackB,
-						int operation);
-void				print_operation(int operation);
-void				swap(t_stack *stack);
-void				push(t_stack *from_stack, t_stack *to_stack);
-void				rotate(t_stack *stack);
-void				rev_rotate(t_stack *stack);
-void				twice(t_stack *stackA, t_stack *stackB, int operation);
+typedef enum	e_cases
+{
+	CASE1,
+	CASE2,
+	CASE3,
+	CASE4
+}				t_cases;
+
+//index: normalized value of input;
+//pos: desired position in opposite stack;
+//cost: min amount of operations to achieve pos;
+//CASE: set of operations to achieve pos;
+typedef struct	s_element
+{
+	unsigned short	index;
+	unsigned short	pos;
+	unsigned short	cost;
+	unsigned short 	CASE;
+}				t_element;
+
+//size: current amount of elements in stack;
+typedef struct	s_stack
+{
+	t_element		*array;
+	unsigned short	size;
+}				t_stack;
 
 #endif

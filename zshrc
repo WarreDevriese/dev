@@ -127,6 +127,7 @@ alias vimrc="vim /media/wdevries/Samsung\ USB/dev/vimrc"
 alias .vimrc="cp /media/wdevries/Samsung\ USB/dev/vimrc ~/.vimrc"
 alias dotclean="find . -type f -name '._*' -delete"
 alias ap=":AutoPairsToggle"
+alias ?="echo ${?}"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
