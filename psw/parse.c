@@ -6,29 +6,12 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 18:40:03 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:44:18 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-
-static int  *ft_init_int_array(size_t size, char **args)
-{
-    int     *int_array;
-    size_t  i;    
-
-    int_array = (int *)malloc(size * sizeof(int));
-    if (!int_array)
-        ft_error();
-    i = 0;
-    while (i < size)
-    {
-        int_array[i] = ft_atoi(args[i]);
-        i++;      
-    }
-    return (int_array);
-}  
 
 static int	ft_numbers_ok(size_t size, char **args)
 {
@@ -56,6 +39,23 @@ static int	ft_numbers_ok(size_t size, char **args)
 	}
 	return (1);
 }
+
+static int  *ft_init_int_array(size_t size, char **args)
+{
+    int     *int_array;
+    size_t  i;    
+
+    int_array = (int *)malloc(size * sizeof(int));
+    if (!int_array)
+        ft_error();
+    i = 0;
+    while (i < size)
+    {
+        int_array[i] = ft_atoi(args[i]);
+        i++;      
+    }
+    return (int_array);
+}  
 
 static int	ft_doubles_ok(size_t size, int *int_array)
 {

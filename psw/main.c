@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:42:39 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 18:36:59 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:44:21 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,5 @@ int		main(int argc, char **argv)
 	if (argc > 2)
 		stacks = ft_parse_args((size_t)(argc - 1), argv + 1);
 	/* ft_sort(stacks); */
-	for (size_t i = 0; i < stacks.A->size; i++)
-    	printf("stacks.A->array[%zu]: %d\n", i, stacks.B->array[i]);
 	ft_free_stacks(&stacks);
 }
