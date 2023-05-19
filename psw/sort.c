@@ -6,12 +6,12 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 10:58:46 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:14:11 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort(t_stack *stacks)
-{
-}
+/* void	ft_sort(t_stack *stacks) */
+/* { */
+/* } */

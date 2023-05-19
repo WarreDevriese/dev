@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:57:57 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 15:01:15 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:51:34 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,24 @@ int	ft_numbers_ok(size_t size, char **args)
 {
 	long	num;
 	int		sign;
+	char	*ptr;
+
 	while (size--)
 	{
 		num = 0;
 		sign = 1;
+		ptr = args[size];
 		if (*args[size] == '-')
 		{
 			sign = -1;
-			args[size]++;
+			ptr++;
 		}
-		while (*args[size])
+		while (*ptr)
 		{
-			if (!ft_isdigit(*args[size]))
+			num = num * 10 + (*ptr - '0');
+			if (!ft_isdigit(*ptr) || sign * num > INT_MAX || sign * num < INT_MIN)
 				return (0);
-			num = num * 10 + (*args[size] - '0');
-			if (sign * num > INT_MAX || sign * num < INT_MIN)
-				return (0);
-			args[size]++;
+			ptr++;
 		}
 	}
 	return (1);

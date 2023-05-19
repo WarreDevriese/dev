@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 15:00:27 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:04:21 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,13 @@ typedef struct	s_normalizing_params
 }				t_normalizing_params;
 
 //FUNCTIONS
-void		ft_sort(t_stacks stacks);
+/* void		ft_sort(t_stacks &stacks); */
 void		ft_error(void);
 int			ft_numbers_ok(size_t size, char **args);
 int			ft_doubles_ok(size_t size, int *int_array);
 t_stacks	ft_parse_args(size_t size, char **args);
 t_stacks	ft_parse_string(char *argv);
+void 		ft_free_stacks(t_stacks *stacks);
 
 #endif
 

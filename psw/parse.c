@@ -6,23 +6,29 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 15:06:07 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:06:12 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
-static int	*ft_initialize_int_array(size_t size, char **args)
+static int  *ft_initialize_int_array(size_t size, char **args)
 {
-	int		*int_array;
+    int     *int_array;
+    size_t  i;    
 
-	int_array = (int *)malloc(size * sizeof(int));
-	if (!int_array)
-		ft_error();
-	while (size--)
-		int_array[size] = ft_atoi(args[size]);
-	return (int_array);
-}
+    int_array = (int *)malloc(size * sizeof(int));
+    if (!int_array)
+        ft_error();
+    i = 0;
+    while (i < size)
+    {
+        int_array[i] = ft_atoi(args[i]);
+        i++;      
+    }
+    return (int_array);
+}  
 
 static void	ft_normalize_int_array(size_t size, int *int_array, t_stacks *stacks)
 {
@@ -51,6 +57,12 @@ static void	ft_normalize_int_array(size_t size, int *int_array, t_stacks *stacks
 
 static int	ft_initialize_stacks(size_t size, int *int_array, t_stacks *stacks)
 {
+	stacks->A = (t_stack *)malloc(sizeof(t_stack));
+	if (!stacks->A)
+		return (0);
+	stacks->B = (t_stack *)malloc(sizeof(t_stack));
+	if (!stacks->B)
+		return (0);
 	stacks->A->array = (short *)malloc(size * sizeof(short));
 	if (!stacks->A->array)
 		return (0);
@@ -92,7 +104,7 @@ t_stacks	ft_parse_string(char *argv)
 	t_stacks	stacks;
 
 	size = ft_word_count(argv, ' ');
-	if (size < 2 || size > 500)
+	if (size > 500)
 		exit(0);
 	args = ft_split(argv, ' ');
 	stacks = ft_parse_args(size, args);
