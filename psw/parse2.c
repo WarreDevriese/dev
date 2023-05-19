@@ -6,55 +6,60 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:57:57 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 16:51:34 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:38:54 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_numbers_ok(size_t size, char **args)
+static void	ft_init_normalized_stack_A(size_t size, int *int_array, t_stacks *stacks)
 {
-	long	num;
-	int		sign;
-	char	*ptr;
-
-	while (size--)
+	t_normalizing_params	p;
+	p.j = -1;
+	while (++p.j < size)
+		if (int_array[p.j] == INT_MAX)
+			stacks->A->array[p.j] = (short)(size - 1);
+	p.i = -1;
+	while (++p.i < size)
 	{
-		num = 0;
-		sign = 1;
-		ptr = args[size];
-		if (*args[size] == '-')
+		p.j = -1;
+		p.min_value = INT_MAX;
+		while (++p.j < size)
 		{
-			sign = -1;
-			ptr++;
+			if (int_array[p.j] < p.min_value)
+			{
+				p.min_pos = p.j;
+				p.min_value = int_array[p.j];
+			}
 		}
-		while (*ptr)
-		{
-			num = num * 10 + (*ptr - '0');
-			if (!ft_isdigit(*ptr) || sign * num > INT_MAX || sign * num < INT_MIN)
-				return (0);
-			ptr++;
-		}
+		stacks->A->array[p.min_pos] = (short)p.i;
+		int_array[p.min_pos] = INT_MAX;
 	}
-	return (1);
 }
 
-int	ft_doubles_ok(size_t size, int *int_array)
+static void	ft_init_empty_stack_B(size_t size, t_stacks *stacks)
 {
-	size_t	i;
-	size_t	j;
+	while (size--)
+		stacks->B->array[size] = -1;
+}
 
-	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (int_array[i] == int_array[j])
-				return (0);
-			j++;
-		}
-		i++;
-	}
+int	ft_init_stacks(size_t size, int *int_array, t_stacks *stacks)
+{
+	stacks->A = (t_stack *)malloc(sizeof(t_stack));
+	if (!stacks->A)
+		return (0);
+	stacks->B = (t_stack *)malloc(sizeof(t_stack));
+	if (!stacks->B)
+		return (0);
+	stacks->A->array = (short *)malloc(size * sizeof(short));
+	if (!stacks->A->array)
+		return (0);
+	ft_init_normalized_stack_A(size, int_array, stacks);
+	stacks->B->array = (short *)malloc(size * sizeof(short));
+	if (!stacks->B->array)
+		return (0);
+	ft_init_empty_stack_B(size, stacks);
+	stacks->A->size = size;
+	stacks->B->size = 0;
 	return (1);
 }
