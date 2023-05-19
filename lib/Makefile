@@ -67,6 +67,7 @@ SRC_FILES += memory/ft_memcmp.c
 SRC_FILES += memory/ft_memcpy.c
 SRC_FILES += memory/ft_memmove.c
 SRC_FILES += memory/ft_memset.c
+SRC_FILES += memory/ft_free_array.c
 
 SRC_FILES += string/ft_split.c
 SRC_FILES += string/ft_strchr.c
