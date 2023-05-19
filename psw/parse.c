@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 18:44:18 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:54:20 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static int	ft_numbers_ok(size_t size, char **args)
 		while (*ptr)
 		{
 			num = num * 10 + (*ptr - '0');
-			if (!ft_isdigit(*ptr) || sign * num > INT_MAX || sign * num < INT_MIN)
+			if (!ft_isdigit(*ptr) || sign * num > INT_MAX || sign
+				* num < INT_MIN)
 				return (0);
 			ptr++;
 		}
@@ -40,22 +41,22 @@ static int	ft_numbers_ok(size_t size, char **args)
 	return (1);
 }
 
-static int  *ft_init_int_array(size_t size, char **args)
+static int	*ft_init_int_array(size_t size, char **args)
 {
-    int     *int_array;
-    size_t  i;    
+	int		*int_array;
+	size_t	i;
 
-    int_array = (int *)malloc(size * sizeof(int));
-    if (!int_array)
-        ft_error();
-    i = 0;
-    while (i < size)
-    {
-        int_array[i] = ft_atoi(args[i]);
-        i++;      
-    }
-    return (int_array);
-}  
+	int_array = (int *)malloc(size * sizeof(int));
+	if (!int_array)
+		ft_error();
+	i = 0;
+	while (i < size)
+	{
+		int_array[i] = ft_atoi(args[i]);
+		i++;
+	}
+	return (int_array);
+}
 
 static int	ft_doubles_ok(size_t size, int *int_array)
 {
@@ -80,7 +81,7 @@ static int	ft_doubles_ok(size_t size, int *int_array)
 t_stacks	ft_parse_args(size_t size, char **args)
 {
 	t_stacks	stacks;
-	int		*int_array;
+	int	*int_array;
 
 	if (!ft_numbers_ok(size, args))
 		ft_error();
@@ -101,9 +102,9 @@ t_stacks	ft_parse_args(size_t size, char **args)
 
 t_stacks	ft_parse_string(char *argv)
 {
-	size_t		size;
+	size_t	size;
 	char	**args;
-	t_stacks	stacks;
+	t_stacks		stacks;
 
 	size = ft_word_count(argv, ' ');
 	if (size > 500)

@@ -6,31 +6,30 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:01:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 17:04:24 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:56:38 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error()
+void	ft_error(void)
 {
 	write(2, "Error\n", 6);
-	exit (1);
+	exit(1);
 }
 
-void ft_free_stacks(t_stacks *stacks)
+void	ft_free_stacks(t_stacks *stacks)
 {
-    if (stacks->A) 
-    {
-        if (stacks->A->array)
-            free(stacks->A->array);
-        free(stacks->A);
-    }
-
-    if (stacks->B)
-    {
-        if (stacks->B->array)
-            free(stacks->B->array);
-        free(stacks->B);
-    }
+	if (stacks->a)
+	{
+		if (stacks->a->array)
+			free(stacks->a->array);
+		free(stacks->a);
+	}
+	if (stacks->b)
+	{
+		if (stacks->b->array)
+			free(stacks->b->array);
+		free(stacks->b);
+	}
 }
