@@ -6,14 +6,16 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:01:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 18:56:38 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 21:54:54 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(void)
+void	ft_error(void *ptr)
 {
+	if (ptr)
+		free(ptr);
 	write(2, "Error\n", 6);
 	exit(1);
 }

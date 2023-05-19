@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 18:54:20 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/19 21:55:49 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_numbers_ok(size_t size, char **args)
 		num = 0;
 		sign = 1;
 		ptr = args[size];
-		if (*args[size] == '-')
+		if (*ptr == '-')
 		{
 			sign = -1;
 			ptr++;
@@ -44,17 +44,12 @@ static int	ft_numbers_ok(size_t size, char **args)
 static int	*ft_init_int_array(size_t size, char **args)
 {
 	int		*int_array;
-	size_t	i;
 
 	int_array = (int *)malloc(size * sizeof(int));
 	if (!int_array)
-		ft_error();
-	i = 0;
-	while (i < size)
-	{
-		int_array[i] = ft_atoi(args[i]);
-		i++;
-	}
+		ft_error(NULL);
+	while (size--)
+		int_array[size] = ft_atoi(args[size]);
 	return (int_array);
 }
 
@@ -63,17 +58,13 @@ static int	ft_doubles_ok(size_t size, int *int_array)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	while (i < size)
+	i = -1;
+	while (++i < size)
 	{
-		j = i + 1;
-		while (j < size)
-		{
+		j = i;
+		while (++j < size)
 			if (int_array[i] == int_array[j])
 				return (0);
-			j++;
-		}
-		i++;
 	}
 	return (1);
 }
@@ -84,18 +75,12 @@ t_stacks	ft_parse_args(size_t size, char **args)
 	int	*int_array;
 
 	if (!ft_numbers_ok(size, args))
-		ft_error();
+		ft_error(NULL);
 	int_array = ft_init_int_array(size, args);
 	if (!ft_doubles_ok(size, int_array))
-	{
-		free(int_array);
-		ft_error();
-	}
+		ft_error(int_array);
 	if (!ft_init_stacks(size, int_array, &stacks))
-	{
-		free(int_array);
-		ft_error();
-	}
+		ft_error(int_array);
 	free(int_array);
 	return (stacks);
 }
