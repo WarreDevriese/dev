@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 21:54:54 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/20 10:17:07 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define PA = -6
 # define PB = 6
 
+//TYPEDEFS
 typedef enum e_cases
 {
 	CASE1,
@@ -40,13 +41,13 @@ typedef enum e_cases
 	CASE4
 }			t_cases;
 
-typedef struct s_params
+typedef struct s_sorting_params
 {
 	short	cost;
 	short	case_nr;
 	short	from_pos;
 	short	to_pos;
-}			t_params;
+}			t_sorting_params;
 
 typedef struct s_stack
 {
@@ -64,6 +65,7 @@ typedef struct s_normalizing_params
 {
 	size_t	i;
 	size_t	j;
+	size_t	int_max_flag;
 	size_t	min_pos;
 	int		min_value;
 }			t_normalizing_params;

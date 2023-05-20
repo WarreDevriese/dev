@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse2.c                                           :+:      :+:    :+:   */
+/*   stacks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:57:57 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 18:49:20 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 10:18:49 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_free_stacks(t_stacks *stacks)
+{
+	if (stacks->a)
+	{
+		if (stacks->a->array)
+			free(stacks->a->array);
+		free(stacks->a);
+	}
+	if (stacks->b)
+	{
+		if (stacks->b->array)
+			free(stacks->b->array);
+		free(stacks->b);
+	}
+}
 
 static void	ft_init_normalized_stack(size_t size, int *int_array,
 		t_stacks *stacks)
@@ -20,7 +36,7 @@ static void	ft_init_normalized_stack(size_t size, int *int_array,
 	p.j = -1;
 	while (++p.j < size)
 		if (int_array[p.j] == INT_MAX)
-			stacks->a->array[p.j] = (short)(size - 1);
+			p.int_max_flag = p.j;
 	p.i = -1;
 	while (++p.i < size)
 	{
@@ -28,7 +44,8 @@ static void	ft_init_normalized_stack(size_t size, int *int_array,
 		p.min_value = INT_MAX;
 		while (++p.j < size)
 		{
-			if (int_array[p.j] < p.min_value)
+			if (int_array[p.j] < p.min_value || (p.i == size - 1
+					&& p.j == p.int_max_flag))
 			{
 				p.min_pos = p.j;
 				p.min_value = int_array[p.j];

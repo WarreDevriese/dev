@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 21:55:49 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/20 10:12:32 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_numbers_ok(size_t size, char **args)
 
 static int	*ft_init_int_array(size_t size, char **args)
 {
-	int		*int_array;
+	int	*int_array;
 
 	int_array = (int *)malloc(size * sizeof(int));
 	if (!int_array)
@@ -72,7 +72,7 @@ static int	ft_doubles_ok(size_t size, int *int_array)
 t_stacks	ft_parse_args(size_t size, char **args)
 {
 	t_stacks	stacks;
-	int	*int_array;
+	int			*int_array;
 
 	if (!ft_numbers_ok(size, args))
 		ft_error(NULL);
@@ -87,9 +87,9 @@ t_stacks	ft_parse_args(size_t size, char **args)
 
 t_stacks	ft_parse_string(char *argv)
 {
-	size_t	size;
-	char	**args;
-	t_stacks		stacks;
+	size_t		size;
+	char		**args;
+	t_stacks	stacks;
 
 	size = ft_word_count(argv, ' ');
 	if (size > 500)

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:42:39 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 18:44:21 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 10:13:24 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int	main(int argc, char **argv)
 		stacks = ft_parse_string(argv[1]);
 	if (argc > 2)
 		stacks = ft_parse_args((size_t)(argc - 1), argv + 1);
-	/* ft_sort(stacks); */
 	ft_free_stacks(&stacks);
 }
