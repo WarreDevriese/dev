@@ -5,26 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 10:50:51 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 11:41:10 by wdevries         ###   ########.fr       */
+/*   Created: 2023/05/20 12:08:03 by wdevries          #+#    #+#             */
+/*   Updated: 2023/05/20 12:17:17 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_stack *stack)
+static void	ft_swap(t_stacks *stacks, short operation)
 {
-	short	temp;
-
-	if (stack->size < 2)
-		return ;
-	temp = stack->array[0];
-	stack->array[0] = stack->array[1];
-	stack->array[1] = temp;
+	if (operation == SA || operation == SS)
+		if (stacks->a->size >= 2)
+		{
+			short temp = stacks->a->array[0];
+			stacks->a->array[0] = stacks->a->array[1];
+			stacks->a->array[1] = temp;
+		}
+	if (operation == SB || operation == SS)
+		if (stacks->b->size >= 2)
+		{
+			short temp = stacks->b->array[0];
+			stacks->b->array[0] = stacks->b->array[1];
+			stacks->b->array[1] = temp;
+		}
 }
 
-void	ft_push(t_stack *from_stack, t_stack *to_stack)
+static void	ft_push(t_stacks *stacks, short operation)
 {
+	t_stack *from_stack;
+    t_stack *to_stack;
+	
+    if (operation == PA)
+    {
+        from_stack = stacks->b;
+        to_stack = stacks->a;
+    }
+    else
+    {
+        from_stack = stacks->a;
+        to_stack = stacks->b;
+    }
 	if (from_stack->size == 0)
 		return ;
 	ft_memmove(&to_stack->array[1], &to_stack->array[0], sizeof(short) * to_stack->size);
@@ -35,43 +55,50 @@ void	ft_push(t_stack *from_stack, t_stack *to_stack)
 	to_stack->size++;
 }
 
-void	ft_rot(t_stack *stack)
+static void	ft_rot(t_stacks *stacks, short operation)
 {
-	short	temp;
-
-	if (stack->size < 2)
-		return ;
-	temp = stack->array[0];
-	ft_memmove(&stack->array[0], &stack->array[1], sizeof(short) * (stack->size - 1));
-	stack->array[stack->size - 1] = temp;
+	if (operation == RA || operation == RR)
+		if (stacks->a->size >= 2)
+		{
+			short temp = stacks->a->array[0];
+			ft_memmove(&stacks->a->array[0], &stacks->a->array[1], sizeof(short) * (stacks->a->size - 1));
+			stacks->a->array[stacks->a->size - 1] = temp;
+		}
+	if (operation == RB || operation == RR)
+		if (stacks->b->size >= 2)
+		{
+			short temp = stacks->b->array[0];
+			ft_memmove(&stacks->b->array[0], &stacks->b->array[1], sizeof(short) * (stacks->b->size - 1));
+			stacks->b->array[stacks->b->size - 1] = temp;
+		}
 }
 
-void	ft_rrot(t_stack *stack)
+static void	ft_rrot(t_stacks *stacks, short operation)
 {
-	short	temp;
-
-	if (stack->size < 2)
-		return ;
-	temp = stack->array[stack->size - 1];
-	ft_memmove(&stack->array[1], &stack->array[0], sizeof(short) * (stack->size - 1));
-	stack->array[0] = temp;
+	if (operation == RRA || operation == RRR)
+		if (stacks->a->size >= 2)
+		{
+			short temp = stacks->a->array[stacks->a->size - 1];
+			ft_memmove(&stacks->a->array[1], &stacks->a->array[0], sizeof(short) * (stacks->a->size - 1));
+			stacks->a->array[0] = temp;
+		}
+	if (operation == RRB || operation == RRR)
+		if (stacks->b->size >= 2)
+		{
+			short temp = stacks->b->array[stacks->b->size - 1];
+			ft_memmove(&stacks->b->array[1], &stacks->b->array[0], sizeof(short) * (stacks->b->size - 1));
+			stacks->b->array[0] = temp;
+		}
 }
 
-void	ft_twice(t_stack *a, t_stack *b, short operation)
+void	ft_exec_operation(t_stacks *stacks, short operation)
 {
-	if (operation == SS)
-	{
-		ft_swap(a);
-		ft_swap(b);
-	}
-	else if (operation == RR)
-	{
-		ft_rot(a);
-		ft_rot(b);
-	}
-	else if (operation == RRR)
-	{
-		ft_rrot(a);
-		ft_rrot(b);
-	}
+	if (operation == SA || operation == SB || operation == SS)
+		ft_swap(stacks, operation);
+	else if (operation == PA || operation == PB)
+		ft_push(stacks, operation);
+	else if (operation == RA || operation == RB || operation == RR)
+		ft_rot(stacks, operation);
+	else if (operation == RRA || operation == RRB || operation == RRR)
+		ft_rrot(stacks, operation);
 }

@@ -6,11 +6,19 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:42:39 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 10:13:24 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 12:19:46 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_error(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
 int	main(int argc, char **argv)
 {
