@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:57:57 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 15:33:03 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 21:34:43 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	ft_init_normalized_stack(size_t size, int *int_array,
 		p.min_value = INT_MAX;
 		while (++p.j < size)
 		{
-			if (int_array[p.j] < p.min_value || (p.i == size - 1
-					&& p.j == p.int_max_flag))
+			if (int_array[p.j] < p.min_value ||
+				(p.i == size - 1 && p.j == p.int_max_flag))
 			{
 				p.min_pos = p.j;
 				p.min_value = int_array[p.j];
