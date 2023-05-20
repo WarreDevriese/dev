@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 10:17:07 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 11:41:10 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@
 
 //OPERATION ID'S
 //nullifying operations cancel out (double swaps do not happen)
-# define SS = 0
-# define SA = 1
-# define SB = 2
-# define RA = -3
-# define RRA = 3
-# define RB = -4
-# define RRB = 4
-# define RR = -5
-# define RRR = 5
-# define PA = -6
-# define PB = 6
+# define SS 0
+# define SA 1
+# define SB 2
+# define RA -3
+# define RRA 3
+# define RB -4
+# define RRB 4
+# define RR -5
+# define RRR 5
+# define PA -6
+# define PB 6
 
 //TYPEDEFS
 typedef enum e_cases
@@ -73,10 +73,18 @@ typedef struct s_normalizing_params
 //FUNCTIONS
 /* void		ft_sort(t_stacks &stacks); */
 void		ft_error(void *ptr);
+//PARSING
 t_stacks	ft_parse_args(size_t size, char **args);
 t_stacks	ft_parse_string(char *argv);
 int			ft_init_stacks(size_t size, int *int_array, t_stacks *stacks);
 void		ft_free_stacks(t_stacks *stacks);
+//OPERATIONS
+void		perform_operation(t_stack *a, t_stack *b, short operation);
+void		ft_swap(t_stack *stack);
+void		ft_push(t_stack *from_stack, t_stack *to_stack);
+void		ft_rot(t_stack *stack);
+void		ft_rrot(t_stack *stack);
+void		ft_twice(t_stack *a, t_stack *b, short operation);
 
 #endif
 
