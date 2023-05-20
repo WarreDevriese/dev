@@ -6,14 +6,14 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 10:12:32 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 13:35:51 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-static int	ft_numbers_ok(size_t size, char **args)
+static bool	ft_numbers_ok(size_t size, char **args)
 {
 	long	num;
 	int		sign;
@@ -34,11 +34,11 @@ static int	ft_numbers_ok(size_t size, char **args)
 			num = num * 10 + (*ptr - '0');
 			if (!ft_isdigit(*ptr) || sign * num > INT_MAX || sign
 				* num < INT_MIN)
-				return (0);
+				return (false);
 			ptr++;
 		}
 	}
-	return (1);
+	return (true);
 }
 
 static int	*ft_init_int_array(size_t size, char **args)
@@ -53,7 +53,7 @@ static int	*ft_init_int_array(size_t size, char **args)
 	return (int_array);
 }
 
-static int	ft_doubles_ok(size_t size, int *int_array)
+static bool	ft_doubles_ok(size_t size, int *int_array)
 {
 	size_t	i;
 	size_t	j;
@@ -64,9 +64,9 @@ static int	ft_doubles_ok(size_t size, int *int_array)
 		j = i;
 		while (++j < size)
 			if (int_array[i] == int_array[j])
-				return (0);
+				return (false);
 	}
-	return (1);
+	return (true);
 }
 
 t_stacks	ft_parse_args(size_t size, char **args)

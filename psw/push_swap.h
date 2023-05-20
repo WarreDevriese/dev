@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 12:15:25 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 13:49:45 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft/inc/libft.h"
 # include <limits.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 //OPERATION ID'S
 //nullifying operations cancel out (double swaps do not happen)
@@ -80,6 +81,8 @@ int			ft_init_stacks(size_t size, int *int_array, t_stacks *stacks);
 void		ft_free_stacks(t_stacks *stacks);
 //OPERATIONS
 void		ft_exec_operation(t_stacks *stacks, short operation);
+//SORTING
+bool		ft_is_sorted(t_stacks *stacks);
 
 #endif
 

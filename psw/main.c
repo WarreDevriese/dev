@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:42:39 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 12:19:46 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 13:48:18 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,9 @@ int	main(int argc, char **argv)
 		stacks = ft_parse_string(argv[1]);
 	if (argc > 2)
 		stacks = ft_parse_args((size_t)(argc - 1), argv + 1);
+	if (ft_is_sorted(&stacks))
+		printf("SORTED");
+	else
+		printf("NOT SORTED");
 	ft_free_stacks(&stacks);
 }
