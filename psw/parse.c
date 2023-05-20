@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 15:40:10 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 21:31:34 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,6 @@ static bool	ft_numbers_ok(size_t size, char **args)
 	return (true);
 }
 
-static int	*ft_init_int_array(size_t size, char **args)
-{
-	int	*int_array;
-
-	int_array = (int *)malloc(size * sizeof(int));
-	if (!int_array)
-		ft_error(NULL);
-	while (size--)
-		int_array[size] = ft_atoi(args[size]);
-	return (int_array);
-}
-
 static bool	ft_doubles_ok(size_t size, int *int_array)
 {
 	size_t	i;
@@ -69,9 +57,20 @@ static bool	ft_doubles_ok(size_t size, int *int_array)
 	return (true);
 }
 
-t_stacks	ft_parse_args(size_t size, char **args)
+static int	*ft_init_int_array(size_t size, char **args)
 {
-	t_stacks	stacks;
+	int	*int_array;
+
+	int_array = (int *)malloc(size * sizeof(int));
+	if (!int_array)
+		ft_error(NULL);
+	while (size--)
+		int_array[size] = ft_atoi(args[size]);
+	return (int_array);
+}
+
+void	ft_parse_args(t_stacks *stacks, size_t size, char **args)
+{
 	int			*int_array;
 
 	if (!ft_numbers_ok(size, args))
@@ -79,23 +78,20 @@ t_stacks	ft_parse_args(size_t size, char **args)
 	int_array = ft_init_int_array(size, args);
 	if (!ft_doubles_ok(size, int_array))
 		ft_error(int_array);
-	if (!ft_init_stacks(size, int_array, &stacks))
+	if (!ft_init_stacks(size, int_array, stacks))
 		ft_error(int_array);
 	free(int_array);
-	return (stacks);
 }
 
-t_stacks	ft_parse_string(char *argv)
+void	ft_parse_string(t_stacks *stacks, char *argv)
 {
 	size_t		size;
 	char		**args;
-	t_stacks	stacks;
 
 	size = ft_word_count(argv, ' ');
 	if (size > 500)
 		exit(0);
 	args = ft_split(argv, ' ');
-	stacks = ft_parse_args(size, args);
+	ft_parse_args(stacks, size, args);
 	ft_free_array(args, size);
-	return (stacks);
 }
