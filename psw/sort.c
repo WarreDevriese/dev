@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 13:50:46 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:35:48 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ bool	ft_is_sorted(t_stacks *stacks)
 {
 	short	i;
 
-	//THIS LINE IS UNTESTED
 	if (stacks->b->size)
 		return (false);
 	i = stacks->a->size;
@@ -25,6 +24,14 @@ bool	ft_is_sorted(t_stacks *stacks)
 			return (false);
 	return (true);
 }
+
+/* last3 */
+/* if 012 */ 
+/* if 021 r s */
+/* if 120 r */
+/* if 102 s */
+/* if 201 rr */
+/* if 210 s r */
 
 /* void	ft_sort(t_stack *stacks) */
 /* { */
