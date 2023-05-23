@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 21:31:34 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/23 14:18:16 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_parse_string(t_stacks *stacks, char *argv)
 	char		**args;
 
 	size = ft_word_count(argv, ' ');
-	if (size > 500)
+	if (size < 2 || size > 500)
 		exit(0);
 	args = ft_split(argv, ' ');
 	ft_parse_args(stacks, size, args);

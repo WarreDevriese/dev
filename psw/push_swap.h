@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 21:33:10 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/23 15:23:38 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,28 @@
 
 //OPERATION ID'S
 //nullifying operations cancel out (double swaps do not happen)
-# define SS 0
-# define SA 1
-# define SB 2
-# define RA -3
-# define RRA 3
-# define RB -4
-# define RRB 4
-# define RR -5
-# define RRR 5
-# define PA -6
-# define PB 6
+# define SS 1
+# define SA 2
+# define SB 3
+# define RA 4
+# define RRA 5
+# define RB 6
+# define RRB 7
+# define RR 8
+# define RRR 9
+# define PA 10
+# define PB 11
 
 //TYPEDEFS
-typedef enum e_cases
-{
-	CASE1,
-	CASE2,
-	CASE3,
-	CASE4
-}			t_cases;
+# define CASE1 0
+# define CASE2 1
+# define CASE3 2
+# define CASE4 3
 
 typedef struct s_sorting_params
 {
 	short	cost;
-	short	case_nr;
+	short	casex;
 	short	from_pos;
 	short	to_pos;
 }			t_sorting_params;
@@ -53,7 +50,7 @@ typedef struct s_sorting_params
 typedef struct s_stack
 {
 	short	*array;
-	size_t	size;
+	short	size;
 }			t_stack;
 
 typedef struct s_stacks
