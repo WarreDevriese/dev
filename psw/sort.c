@@ -6,24 +6,12 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/23 15:23:37 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/23 17:43:08 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	ft_is_sorted(t_stacks *stacks)
-{
-	short	i;
-
-	if (stacks->b->size)
-		return (false);
-	i = stacks->a->size;
-	while (--i)
-		if (stacks->a->array[i] != i)
-			return (false);
-	return (true);
-}
 
 static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp)
 {
@@ -76,7 +64,7 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 	t_sorting_params	temp;
 
 	posA = 0;
-	ft_get_sorting_params(posA, stacks, &temp);
+	ft_get_sorting_params(posA, stacks, sp);
 	while (++posA < stacks.a->size)
 	{
 		if (posA < sp->cost || posA > stacks.a->size - sp->cost)
@@ -88,6 +76,23 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 	}
 }
 
+void	ft_sort(t_stacks *stacks)
+{
+	t_sorting_params	sp;
+
+	while (stacks->a->size)
+	{
+		ft_get_next_to_sort(*stacks, &sp);
+
+		printf("casex: %i\n", sp.casex);
+		printf("from_pos: %i\n", sp.from_pos);
+		printf("to_pos: %i\n", sp.from_pos);
+		printf("cost: %i\n", sp.from_pos);
+		ft_execute_case(stacks, sp);
+		ft_exec_operation(stacks, PA);
+	}
+}
+
 /* last3 */
 /* if 012 */ 
 /* if 021 r s */
@@ -96,13 +101,16 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 /* if 201 rr */
 /* if 210 s r */
 
-void	ft_sort(t_stacks *stacks)
-{
-	t_sorting_params	sp;
+/* bool	ft_is_sorted(t_stacks *stacks) */
+/* { */
+/* 	short	i; */
 
-	while (stacks->a->size)
-	{
-		ft_get_next_to_sort(stacks, &sp);
-		ft_exec_operation(stacks, PA);
-	}
-}
+/* 	if (stacks->b->size) */
+/* 		return (false); */
+/* 	i = stacks->a->size; */
+/* 	while (--i) */
+/* 		if (stacks->a->array[i] != i) */
+/* 			return (false); */
+/* 	return (true); */
+/* } */
+

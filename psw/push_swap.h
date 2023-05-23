@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/23 15:23:38 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/23 17:04:53 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ int			ft_init_stacks(size_t size, int *int_array, t_stacks *stacks);
 //OPERATIONS
 void		ft_exec_operation(t_stacks *stacks, short operation);
 //SORTING
-bool		ft_is_sorted(t_stacks *stacks);
+void	ft_sort(t_stacks *stacks);
+void	ft_execute_case(t_stacks *stacks, t_sorting_params sp);
+/* bool		ft_is_sorted(t_stacks *stacks); */
 
 #endif
 
