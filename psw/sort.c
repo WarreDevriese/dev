@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/23 17:43:08 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:09:16 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,8 @@ void	ft_sort(t_stacks *stacks)
 	while (stacks->a->size)
 	{
 		ft_get_next_to_sort(*stacks, &sp);
-
-		printf("casex: %i\n", sp.casex);
-		printf("from_pos: %i\n", sp.from_pos);
-		printf("to_pos: %i\n", sp.from_pos);
-		printf("cost: %i\n", sp.from_pos);
 		ft_execute_case(stacks, sp);
-		ft_exec_operation(stacks, PA);
+		ft_exec_operation(stacks, PB);
 	}
 }
 
