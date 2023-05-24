@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 12:08:03 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/23 17:42:43 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:11:51 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static void	ft_rrot(t_stacks *stacks, short operation)
 
 void	ft_exec_operation(t_stacks *stacks, short operation)
 {
-	printf("operation: %i", operation);
 	if (operation == PA || operation == PB)
 		ft_push(stacks, operation);
 	else if (operation == SA || operation == SB || operation == SS)

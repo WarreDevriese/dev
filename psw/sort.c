@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/24 11:09:16 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:45:14 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,28 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 	}
 }
 
+static void    ft_print_stacks(t_stacks *stacks)
+{
+    short i;
+
+    printf("Stack A: \n");
+    for(i = 0; i < stacks->a->size; i++)
+        printf("%d ", stacks->a->array[i]);
+    printf("\n");
+
+    printf("Stack B: \n");
+    for(i = 0; i < stacks->b->size; i++)
+        printf("%d ", stacks->b->array[i]);
+    printf("\n");
+}
+
 void	ft_sort(t_stacks *stacks)
 {
 	t_sorting_params	sp;
 
 	while (stacks->a->size)
 	{
+		ft_print_stacks(stacks);
 		ft_get_next_to_sort(*stacks, &sp);
 		ft_execute_case(stacks, sp);
 		ft_exec_operation(stacks, PB);

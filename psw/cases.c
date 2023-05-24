@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:19:44 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/23 17:36:27 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:50:37 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_case2(t_stacks *stacks, t_sorting_params sp)
 	while (i++ < ft_min(sp.from_pos, sp.to_pos))
 	{
 		ft_exec_operation(stacks, RRR);
-			write(1, "RRR\n", 4);
+		write(1, "RRR\n", 4);
 	}
 	i = 0;
 	if (sp.from_pos > sp.to_pos)
@@ -70,13 +70,13 @@ static void	ft_case3(t_stacks *stacks, t_sorting_params sp)
 	while (i++ < (stacks->a->size - sp.from_pos))
 	{
 		ft_exec_operation(stacks, RA);
-			write(1, "RA\n", 3);
+		write(1, "RA\n", 3);
 	}
 	i = 0;
 	while (i++ < sp.to_pos)
 	{
 		ft_exec_operation(stacks, RRB);
-			write(1, "RRB\n", 4);
+		write(1, "RRB\n", 4);
 	}
 }
 
@@ -88,7 +88,7 @@ static void	ft_case4(t_stacks *stacks, t_sorting_params sp)
 	while (i++ < sp.from_pos)
 	{
 		ft_exec_operation(stacks, RRA);
-			write(1, "RRA\n", 4);
+		write(1, "RRA\n", 4);
 	}
 	i = 0;
 	while (i++ < (stacks->b->size - sp.to_pos))
@@ -100,9 +100,6 @@ static void	ft_case4(t_stacks *stacks, t_sorting_params sp)
 
 void	ft_execute_case(t_stacks *stacks, t_sorting_params sp)
 {
-	int i = (int)sp.casex;
-	printf("%i\n", i);
-
 	if (sp.casex == CASE1)
 		ft_case1(stacks, sp);
 	else if (sp.casex == CASE2)
@@ -111,6 +108,4 @@ void	ft_execute_case(t_stacks *stacks, t_sorting_params sp)
 		ft_case3(stacks, sp);
 	else if (sp.casex == CASE4)
 		ft_case4(stacks, sp);
-	else
-		exit(1);
 }

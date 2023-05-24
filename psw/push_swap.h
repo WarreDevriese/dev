@@ -6,12 +6,15 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/23 17:04:53 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:46:08 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+//TAKE OUT PRINTF LATER
+# include <stdio.h>
 
 //LIBRARIES
 # include "libft/inc/libft.h"
@@ -69,7 +72,6 @@ typedef struct s_normalizing_params
 }			t_normalizing_params;
 
 //FUNCTIONS
-/* void		ft_sort(t_stacks &stacks); */
 //GENERAL
 void		ft_error(void *ptr);
 void		ft_free_stacks(t_stacks *stacks);
