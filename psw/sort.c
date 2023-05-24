@@ -6,35 +6,69 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/24 11:45:14 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:25:54 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
+/* static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp) */
+/* { */
+/* 	short	posB; */
+/* 	short	maxB; */
+
+/* 	posB = -1; */
+/* 	maxB = stacks.b->size - 1; */
+/* 	sp->to_pos = -1; */
+/* 	while (++posB < stacks.b->size) */
+/* 	{ */
+/* 		if (stacks.b->array[posB] > stacks.b->array[maxB]) */
+/* 			maxB = posB; */
+/* 		if (stacks.b->array[posB] < stacks.a->array[posA] */
+/* 			&& (sp->to_pos == -1 || */
+/* 				stacks.b->array[posB] > stacks.b->array[sp->to_pos])) */
+/* 			sp->to_pos = posB; */
+/* 		if (stacks.b->array[posB] == stacks.a->array[posA] - 1) */
+/* 			break ; */
+/* 	} */
+/* 	if (stacks.b->size == 0) */
+/* 		sp->to_pos = 0; */
+/* 	else if (sp->to_pos == -1) */
+/* 		sp->to_pos = maxB; */ 
+/* } */
+
 static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp)
 {
-	short	posB;
-	short	maxB;
+	short posB;
+	short maxB;
+	short maxB_value;
+	short to_pos_value;
 
+	posB = 0;
+	maxB = -1;
+	maxB_value = SHRT_MIN;
+	to_pos_value = SHRT_MIN;
 	sp->to_pos = -1;
-	posB = -1;
-	maxB = stacks.b->size - 1;
-	while (++posB < stacks.b->size)
+	while (posB < stacks.b->size)
 	{
-		if (stacks.b->array[posB] > stacks.b->array[maxB])
+		if (stacks.b->array[posB] > maxB_value)
+		{
 			maxB = posB;
-		if (stacks.b->array[posB] < stacks.a->array[posA]
-			&& stacks.b->array[posB] > sp->to_pos)
+			maxB_value = stacks.b->array[posB];
+		}
+		if (stacks.b->array[posB] < stacks.a->array[posA] &&
+				stacks.b->array[posB] > to_pos_value)
+		{
 			sp->to_pos = posB;
-		if (stacks.b->array[posB] == stacks.a->array[posA] - 1)
-			break ;
+			to_pos_value = stacks.b->array[posB];
+		}
+		posB++;
 	}
+	if (sp->to_pos == -1)
+		sp->to_pos = maxB;
 	if (stacks.b->size == 0)
 		sp->to_pos = 0;
-	else if (sp->to_pos == -1)
-		sp->to_pos = maxB; 
 }
 
 static void	ft_get_sorting_params(short posA, t_stacks stacks, t_sorting_params *sp)
@@ -44,12 +78,12 @@ static void	ft_get_sorting_params(short posA, t_stacks stacks, t_sorting_params 
 
 	sp->from_pos = posA;
 	ft_get_to_pos(posA, stacks, sp);
-	costs[CASE1] = ft_max((stacks.a->size - sp->from_pos), (stacks.a->size - sp->to_pos));
+	costs[CASE1] = ft_max((stacks.a->size - sp->from_pos), (stacks.b->size - sp->to_pos));
 	costs[CASE2] = ft_max(sp->from_pos, sp->to_pos);
 	costs[CASE3] = (stacks.a->size - sp->from_pos) + sp->to_pos;
 	costs[CASE4] = sp->from_pos + (stacks.b->size - sp->to_pos);
 	i = -1;
-	sp->cost = 251;
+	sp->cost = MAX_COST;
 	while (++i < 4)
 		if (costs[i] < sp->cost)
 		{
@@ -67,12 +101,12 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 	ft_get_sorting_params(posA, stacks, sp);
 	while (++posA < stacks.a->size)
 	{
-		if (posA < sp->cost || posA > stacks.a->size - sp->cost)
-		{
-			ft_get_sorting_params(posA, stacks, &temp);
-			if (temp.cost < sp->cost)
-				*sp = temp;
-		}
+		/* if (posA < sp->cost || posA > stacks.a->size - sp->cost) */
+		/* { */
+		ft_get_sorting_params(posA, stacks, &temp);
+		if (temp.cost < sp->cost)
+			*sp = temp;
+		/* } */
 	}
 }
 
@@ -91,6 +125,15 @@ static void    ft_print_stacks(t_stacks *stacks)
     printf("\n");
 }
 
+static void    ft_print_sorting_params(t_sorting_params sp)
+{
+    printf("Sorting Params: \n");
+    printf("from_pos: %d\n", sp.from_pos);
+    printf("to_pos: %d\n", sp.to_pos);
+    printf("cost: %d\n", sp.cost);
+    printf("casex: %d\n", sp.casex);
+}
+
 void	ft_sort(t_stacks *stacks)
 {
 	t_sorting_params	sp;
@@ -99,8 +142,12 @@ void	ft_sort(t_stacks *stacks)
 	{
 		ft_print_stacks(stacks);
 		ft_get_next_to_sort(*stacks, &sp);
+		ft_print_sorting_params(sp);
 		ft_execute_case(stacks, sp);
 		ft_exec_operation(stacks, PB);
+		write(1, "PB\n", 3);
+		ft_print_stacks(stacks);
+    	printf("\n\n\n\n");
 	}
 }
 

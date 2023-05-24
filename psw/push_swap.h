@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/24 11:46:08 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:29:35 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@
 # define PB 11
 
 //TYPEDEFS
-# define CASE1 0
-# define CASE2 1
-# define CASE3 2
-# define CASE4 3
+# define CASE1 1
+# define CASE2 2
+# define CASE3 3
+# define CASE4 4
 
 typedef struct s_sorting_params
 {
@@ -49,6 +49,7 @@ typedef struct s_sorting_params
 	short	from_pos;
 	short	to_pos;
 }			t_sorting_params;
+#define MAX_COST 251
 
 typedef struct s_stack
 {

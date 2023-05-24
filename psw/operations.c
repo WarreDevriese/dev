@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 12:08:03 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/24 11:11:51 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:30:45 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ static void	ft_rot(t_stacks *stacks, short operation)
 
 	if ((operation == RA || operation == RR) && (stacks->a->size > 1))
 	{
-		temp = stacks->a->array[0];
-		ft_memmove(&stacks->a->array[0], &stacks->a->array[1], sizeof(short)
+		temp = stacks->a->array[stacks->a->size - 1];
+		ft_memmove(&stacks->a->array[1], &stacks->a->array[0], sizeof(short)
 			* (stacks->a->size - 1));
-		stacks->a->array[stacks->a->size - 1] = temp;
+		stacks->a->array[0] = temp;
 	}
 	if ((operation == RB || operation == RR) && (stacks->b->size > 1))
 	{
-		temp = stacks->b->array[0];
-		ft_memmove(&stacks->b->array[0], &stacks->b->array[1], sizeof(short)
+		temp = stacks->b->array[stacks->b->size - 1];
+		ft_memmove(&stacks->b->array[1], &stacks->b->array[0], sizeof(short)
 			* (stacks->b->size - 1));
-		stacks->b->array[stacks->b->size - 1] = temp;
+		stacks->b->array[0] = temp;
 	}
 }
 
@@ -83,17 +83,17 @@ static void	ft_rrot(t_stacks *stacks, short operation)
 
 	if ((operation == RRA || operation == RRR) && (stacks->a->size > 1))
 	{
-		temp = stacks->a->array[stacks->a->size - 1];
-		ft_memmove(&stacks->a->array[1], &stacks->a->array[0], sizeof(short)
+		temp = stacks->a->array[0];
+		ft_memmove(&stacks->a->array[0], &stacks->a->array[1], sizeof(short)
 			* (stacks->a->size - 1));
-		stacks->a->array[0] = temp;
+		stacks->a->array[stacks->a->size - 1] = temp;
 	}
 	if ((operation == RRB || operation == RRR) && (stacks->b->size > 1))
 	{
-		temp = stacks->b->array[stacks->b->size - 1];
-		ft_memmove(&stacks->b->array[1], &stacks->b->array[0], sizeof(short)
+		temp = stacks->b->array[0];
+		ft_memmove(&stacks->b->array[0], &stacks->b->array[1], sizeof(short)
 			* (stacks->b->size - 1));
-		stacks->b->array[0] = temp;
+		stacks->b->array[stacks->b->size - 1] = temp;
 	}
 }
 
