@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 14:22:53 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:11:06 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	ft_sort(t_stacks *stacks)
 
 	while (stacks->a->size)
 	{
+		/* ft_print_stacks(stacks); */
 		ft_get_next_to_sort(*stacks, &sp);
 		ft_execute_case(stacks, sp);
 		ft_exec_operation(stacks, PB);

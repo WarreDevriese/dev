@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 12:08:03 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 13:41:09 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:23:40 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	ft_rrot(t_stacks *stacks, short operation)
 
 static void	ft_print_operation(short operation)
 {
-	char	*operations[11];
+	static char	*operations[11];
 
 	operations[SA] = "sa\n";
 	operations[SB] = "sb\n";
