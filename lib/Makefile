@@ -19,6 +19,7 @@ ARFLAGS = rcs
 HDR_DIR = ./inc/
 HDR_FILES = libft.h \
 			get_next_line.h \
+			ft_printf.h
 HDR = $(addprefix $(HDR_DIR), $(HDR_FILES))
 
 ## SOURCES
@@ -85,6 +86,10 @@ SRC_FILES += string/ft_strtrim.c
 SRC_FILES += string/ft_substr.c
 SRC_FILES += string/ft_word_count.c
 
+SRC_FILES += ft_printf/ft_printf.c
+SRC_FILES += ft_printf/ft_printf_conversions.c
+SRC_FILES += ft_printf/ft_printf_utils.c
+
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 ## OBJECT FILES
@@ -111,6 +116,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)/list
 	@mkdir -p $(OBJ_DIR)/memory
 	@mkdir -p $(OBJ_DIR)/string
+	@mkdir -p $(OBJ_DIR)/ft_printf
 	@echo "$(BOLD)$(PINK)Compiling libft object files...$(RESET_FORMAT)"
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(HDR) Makefile | $(OBJ_DIR)

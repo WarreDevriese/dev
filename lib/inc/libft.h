@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:27:05 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/19 11:45:24 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:40:20 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 }					t_list;
 
 int					ft_atoi(const char *nptr);
+int					ft_printf(const char *s, ...);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t nmemb, size_t size);
 int					ft_isalnum(int c);
