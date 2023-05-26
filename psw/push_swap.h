@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 10:00:34 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:09:20 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ typedef struct s_sorting_params
 	short	cost;
 	short	casex;
 	short	from_pos;
+	short	from_val;
 	short	to_pos;
+	short	to_val;
 }			t_sorting_params;
 #define MAX_COST 251
 

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/24 17:25:54 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:21:50 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,11 @@ static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp)
 	short posB;
 	short maxB;
 	short maxB_value;
-	short to_pos_value;
 
 	posB = 0;
 	maxB = -1;
 	maxB_value = SHRT_MIN;
-	to_pos_value = SHRT_MIN;
+	sp->to_val = SHRT_MIN;
 	sp->to_pos = -1;
 	while (posB < stacks.b->size)
 	{
@@ -58,17 +57,23 @@ static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp)
 			maxB_value = stacks.b->array[posB];
 		}
 		if (stacks.b->array[posB] < stacks.a->array[posA] &&
-				stacks.b->array[posB] > to_pos_value)
+				stacks.b->array[posB] > sp->to_val)
 		{
 			sp->to_pos = posB;
-			to_pos_value = stacks.b->array[posB];
+			sp->to_val = stacks.b->array[posB];
 		}
 		posB++;
 	}
 	if (sp->to_pos == -1)
+	{
 		sp->to_pos = maxB;
+		sp->to_val = maxB_value;
+	}
 	if (stacks.b->size == 0)
+	{
 		sp->to_pos = 0;
+		sp->to_val = -1;
+	}
 }
 
 static void	ft_get_sorting_params(short posA, t_stacks stacks, t_sorting_params *sp)
@@ -87,6 +92,7 @@ static void	ft_get_sorting_params(short posA, t_stacks stacks, t_sorting_params 
 	while (++i < 4)
 		if (costs[i] < sp->cost)
 		{
+			sp->from_val = stacks.a->array[posA];
 			sp->cost = costs[i];
 			sp->casex = i;
 		}
