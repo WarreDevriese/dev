@@ -6,37 +6,11 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 13:45:15 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:22:53 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
-/* static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp) */
-/* { */
-/* 	short	posB; */
-/* 	short	maxB; */
-
-/* 	posB = -1; */
-/* 	maxB = stacks.b->size - 1; */
-/* 	sp->to_pos = -1; */
-/* 	while (++posB < stacks.b->size) */
-/* 	{ */
-/* 		if (stacks.b->array[posB] > stacks.b->array[maxB]) */
-/* 			maxB = posB; */
-/* 		if (stacks.b->array[posB] < stacks.a->array[posA] */
-/* 			&& (sp->to_pos == -1 || */
-/* 				stacks.b->array[posB] > stacks.b->array[sp->to_pos])) */
-/* 			sp->to_pos = posB; */
-/* 		if (stacks.b->array[posB] == stacks.a->array[posA] - 1) */
-/* 			break ; */
-/* 	} */
-/* 	if (stacks.b->size == 0) */
-/* 		sp->to_pos = 0; */
-/* 	else if (sp->to_pos == -1) */
-/* 		sp->to_pos = maxB; */ 
-/* } */
 
 static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp)
 {
@@ -107,12 +81,9 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 	ft_get_sorting_params(posA, stacks, sp);
 	while (++posA < stacks.a->size)
 	{
-		/* if (posA < sp->cost || posA > stacks.a->size - sp->cost) */
-		/* { */
 		ft_get_sorting_params(posA, stacks, &temp);
 		if (temp.cost < sp->cost)
 			*sp = temp;
-		/* } */
 	}
 }
 
