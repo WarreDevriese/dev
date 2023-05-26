@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 12:08:03 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 13:39:11 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:41:09 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ static void	ft_push(t_stacks *stacks, short operation)
 	{
 		from_stack = stacks->b;
 		to_stack = stacks->a;
-		write(1, "pa\n", 3);
 	}
 	else
 	{
 		from_stack = stacks->a;
 		to_stack = stacks->b;
-		write(1, "pb\n", 3);
 	}
 	if (from_stack->size == 0)
 		return ;
