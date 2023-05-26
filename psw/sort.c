@@ -6,49 +6,82 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 16:11:06 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:12:26 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static void	ft_set_to_pos(t_sorting_params *sp, short to_pos, short to_val)
+{
+	sp->to_pos = to_pos;
+	sp->to_val = to_val;
+}
+
 static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp)
 {
 	short posB;
-	short maxB;
-	short maxB_value;
+	short max_pos;
+	short max_val;
 
-	posB = 0;
-	maxB = -1;
-	maxB_value = SHRT_MIN;
-	sp->to_val = SHRT_MIN;
+	max_pos = -1;
+	max_val = SHRT_MIN;
 	sp->to_pos = -1;
-	while (posB < stacks.b->size)
+	sp->to_val = SHRT_MIN;
+	posB = -1;
+	while (++posB < stacks.b->size)
 	{
-		if (stacks.b->array[posB] > maxB_value)
-		{
-			maxB = posB;
-			maxB_value = stacks.b->array[posB];
-		}
+		if (stacks.b->array[posB] > max_val)
+			max_pos = posB;
+		if (stacks.b->array[posB] > max_val)
+			max_val = stacks.b->array[posB];
 		if (stacks.b->array[posB] < stacks.a->array[posA] &&
 				stacks.b->array[posB] > sp->to_val)
-		{
-			sp->to_pos = posB;
-			sp->to_val = stacks.b->array[posB];
-		}
-		posB++;
+			ft_set_to_pos(sp, posB, stacks.b->array[posB]);
 	}
 	if (sp->to_pos == -1)
-	{
-		sp->to_pos = maxB;
-		sp->to_val = maxB_value;
-	}
+		ft_set_to_pos(sp, max_pos, max_val);
 	if (stacks.b->size == 0)
-	{
-		sp->to_pos = 0;
-		sp->to_val = -1;
-	}
+		ft_set_to_pos(sp, 0, -1);
 }
+
+/* static void	ft_get_to_pos(short posA, t_stacks stacks, t_sorting_params *sp) */
+/* { */
+/* 	short posB; */
+/* 	short max_pos; */
+/* 	short max_val; */
+
+/* 	posB = 0; */
+/* 	max_pos = -1; */
+/* 	max_val = SHRT_MIN; */
+/* 	sp->to_val = SHRT_MIN; */
+/* 	sp->to_pos = -1; */
+/* 	while (posB < stacks.b->size) */
+/* 	{ */
+/* 		if (stacks.b->array[posB] > max_val) */
+/* 		{ */
+/* 			max_pos = posB; */
+/* 			max_val = stacks.b->array[posB]; */
+/* 		} */
+/* 		if (stacks.b->array[posB] < stacks.a->array[posA] && */
+/* 				stacks.b->array[posB] > sp->to_val) */
+/* 		{ */
+/* 			sp->to_pos = posB; */
+/* 			sp->to_val = stacks.b->array[posB]; */
+/* 		} */
+/* 		posB++; */
+/* 	} */
+/* 	if (sp->to_pos == -1) */
+/* 	{ */
+/* 		sp->to_pos = max_pos; */
+/* 		sp->to_val = max_val; */
+/* 	} */
+/* 	if (stacks.b->size == 0) */
+/* 	{ */
+/* 		sp->to_pos = 0; */
+/* 		sp->to_val = -1; */
+/* 	} */
+/* } */
 
 static void	ft_get_sorting_params(short posA, t_stacks stacks, t_sorting_params *sp)
 {

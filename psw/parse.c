@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:41:20 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/23 14:18:16 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:20:04 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	ft_parse_args(t_stacks *stacks, size_t size, char **args)
 	if (!ft_doubles_ok(size, int_array))
 		ft_error(int_array);
 	if (!ft_init_stacks(size, int_array, stacks))
+		//FREE STACKS AS WELL, MIGHT HAVE ALLOCATE ONE STACK BEFORE THE OTHER ONE FAILED
 		ft_error(int_array);
 	free(int_array);
 }
