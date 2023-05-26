@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:57:57 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 12:55:50 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:23:05 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	ft_init_stacks(size_t size, int *int_array, t_stacks *stacks)
 	stacks->a->array = (short *)malloc(size * sizeof(short));
 	if (!stacks->a->array)
 		return (0);
-	ft_init_normalized_stack(size, int_array, stacks);
 	stacks->b->array = (short *)malloc(size * sizeof(short));
 	if (!stacks->b->array)
 		return (0);
+	ft_init_normalized_stack(size, int_array, stacks);
 	ft_init_empty_stack(size, stacks);
 	stacks->a->size = size;
 	stacks->b->size = 0;
