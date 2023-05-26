@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:57:57 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/20 21:34:43 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/26 12:55:50 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,21 @@ void	ft_free_stacks(t_stacks *stacks)
 	}
 }
 
-static void	ft_init_normalized_stack(size_t size, int *int_array,
-		t_stacks *stacks)
+static void	ft_init_normalized_stack(size_t size, int *int_array, t_stacks *stacks)
 {
-	t_normalizing_params	p;
+	size_t	i;
+	size_t	j;
+	short	index;
 
-	p.j = -1;
-	while (++p.j < size)
-		if (int_array[p.j] == INT_MAX)
-			p.int_max_flag = p.j;
-	p.i = -1;
-	while (++p.i < size)
+	i = -1;
+	while (++i < size)
 	{
-		p.j = -1;
-		p.min_value = INT_MAX;
-		while (++p.j < size)
-		{
-			if (int_array[p.j] < p.min_value ||
-				(p.i == size - 1 && p.j == p.int_max_flag))
-			{
-				p.min_pos = p.j;
-				p.min_value = int_array[p.j];
-			}
-		}
-		stacks->a->array[p.min_pos] = (short)p.i;
-		int_array[p.min_pos] = INT_MAX;
+		j = -1;
+		index = 0;
+		while (++j < size)
+			if (int_array[j] < int_array[i])
+				index++;
+		stacks->a->array[i] = index;
 	}
 }
 

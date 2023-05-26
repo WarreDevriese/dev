@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 12:08:03 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/24 16:30:45 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:22:49 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ static void	ft_push(t_stacks *stacks, short operation)
 	{
 		from_stack = stacks->b;
 		to_stack = stacks->a;
+		write(1, "pa\n", 3);
 	}
 	else
 	{
 		from_stack = stacks->a;
 		to_stack = stacks->b;
+		write(1, "pb\n", 3);
 	}
 	if (from_stack->size == 0)
 		return ;
@@ -97,8 +99,27 @@ static void	ft_rrot(t_stacks *stacks, short operation)
 	}
 }
 
+static void	ft_print_operation(short operation)
+{
+	char	*operations[11];
+
+	operations[SA] = "sa\n";
+	operations[SB] = "sb\n";
+	operations[SS] = "ss\n";
+	operations[PA] = "pa\n";
+	operations[PB] = "pb\n";
+	operations[RA] = "ra\n";
+	operations[RB] = "rb\n";
+	operations[RR] = "rr\n";
+	operations[RRA] = "rra\n";
+	operations[RRB] = "rrb\n";
+	operations[RRR] = "rrr\n";
+	;
+}
+
 void	ft_exec_operation(t_stacks *stacks, short operation)
 {
+	ft_print_operation(operation);
 	if (operation == PA || operation == PB)
 		ft_push(stacks, operation);
 	else if (operation == SA || operation == SB || operation == SS)

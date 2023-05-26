@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 11:21:50 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:59:42 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,13 +131,30 @@ static void    ft_print_stacks(t_stacks *stacks)
     printf("\n");
 }
 
-static void    ft_print_sorting_params(t_sorting_params sp)
+/* static void    ft_print_sorting_params(t_sorting_params sp) */
+/* { */
+/*     printf("Sorting Params: \n"); */
+/*     printf("from_pos: %d\n", sp.from_pos); */
+/*     printf("to_pos: %d\n", sp.to_pos); */
+/*     printf("cost: %d\n", sp.cost); */
+/*     printf("casex: %d\n", sp.casex); */
+/* } */
+
+static void	ft_b_to_a(t_stacks *stacks)
 {
-    printf("Sorting Params: \n");
-    printf("from_pos: %d\n", sp.from_pos);
-    printf("to_pos: %d\n", sp.to_pos);
-    printf("cost: %d\n", sp.cost);
-    printf("casex: %d\n", sp.casex);
+	short	i;
+
+	i = 0;
+	while (stacks->b->array[i] != stacks->b->size - 1)
+		i++;
+	if (i <= stacks->b->size)
+		while (stacks->b->array[0] != stacks->b->size - 1)
+			ft_exec_operation(stacks, RRB);
+	else
+		while (stacks->b->array[0] != stacks->b->size - 1)
+			ft_exec_operation(stacks, RB);
+	while (stacks->b->size)
+		ft_exec_operation(stacks, PA);
 }
 
 void	ft_sort(t_stacks *stacks)
@@ -146,15 +163,12 @@ void	ft_sort(t_stacks *stacks)
 
 	while (stacks->a->size)
 	{
-		ft_print_stacks(stacks);
 		ft_get_next_to_sort(*stacks, &sp);
-		ft_print_sorting_params(sp);
 		ft_execute_case(stacks, sp);
 		ft_exec_operation(stacks, PB);
-		write(1, "PB\n", 3);
-		ft_print_stacks(stacks);
-    	printf("\n\n\n\n");
 	}
+	ft_b_to_a(stacks);
+	ft_print_stacks(stacks);
 }
 
 /* last3 */

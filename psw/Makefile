@@ -13,12 +13,7 @@ LIBFT_INC = -I $(LIBFT_DIR)
 all : $(NAME)
 
 $(NAME) : $(LIBFT_LIB) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o psw
-
-#$(NAME) : $(LIBFT_LIB) $(OBJ)
-#	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o $(NAME)
-
-
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(LIBFT_INC) -c $< -o $@
