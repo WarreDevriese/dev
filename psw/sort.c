@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/27 12:33:42 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:30:03 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,7 @@ static void	ft_position_stackb(t_stacks *stacks)
 
 static void	ft_insert_b2a(t_stacks *stacks)
 {
-	if (stacks->a->array[0] > stacks->b->array[0])
-		ft_exec_operation(stacks, PA);
-	else if (stacks->a->array[0] < stacks->b->array[0]
-		&& stacks->a->array[1] < stacks->b->array[0])
-		while(stacks->a->array[0] < stacks->b->array[0])
-			ft_exec_operation(stacks, RRA);
-	else if (stacks->a->array[0] < stacks->b->array[0])
-		while(stacks->a->array[0] < stacks->b->array[0])
-			ft_exec_operation(stacks, RA);
+
 }
 
 static void	ft_position_stacka(t_stacks *stacks)
