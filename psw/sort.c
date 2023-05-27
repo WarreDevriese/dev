@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/27 11:44:53 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/27 12:33:42 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,64 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 			*sp = temp;
 	}
 }
-static void	ft_b_to_a(t_stacks *stacks)
+
+static void	ft_position_stackb(t_stacks *stacks)
+{
+	short	i;
+	short	max_pos;
+	short	max_val;
+
+	i = -1;
+	max_pos = -1;
+	max_val = -1;
+	while (++i < stacks->b->size)
+		if (stacks->b->array[i] > max_val)
+		{
+			max_pos = i;
+			max_val = stacks->b->array[i];
+		}
+	if (max_pos <= stacks->b->size / 2)
+		while (stacks->b->array[0] != max_val)
+			ft_exec_operation(stacks, RB);
+	else
+		while (stacks->b->array[0] != max_val)
+			ft_exec_operation(stacks, RRB);
+}
+
+static void	ft_insert_b2a(t_stacks *stacks)
+{
+	if (stacks->a->array[0] > stacks->b->array[0])
+		ft_exec_operation(stacks, PA);
+	else if (stacks->a->array[0] < stacks->b->array[0]
+		&& stacks->a->array[1] < stacks->b->array[0])
+		while(stacks->a->array[0] < stacks->b->array[0])
+			ft_exec_operation(stacks, RRA);
+	else if (stacks->a->array[0] < stacks->b->array[0])
+		while(stacks->a->array[0] < stacks->b->array[0])
+			ft_exec_operation(stacks, RA);
+}
+
+static void	ft_position_stacka(t_stacks *stacks)
 {
 	short	i;
 
 	i = 0;
-	while (stacks->b->array[i] != stacks->b->size - 1)
+	while (stacks->a->array[i] != 0)
 		i++;
-	if (i <= stacks->b->size / 2)
-		while (stacks->b->array[0] != stacks->b->size - 1)
-			ft_exec_operation(stacks, RB);
+	if (i <= stacks->a->size / 2)
+		while (stacks->a->array[0] != 0)
+			ft_exec_operation(stacks, RA);
 	else
-		while (stacks->b->array[0] != stacks->b->size - 1)
-			ft_exec_operation(stacks, RRB);
+		while (stacks->a->array[0] != 0)
+			ft_exec_operation(stacks, RRA);
+}
+
+static void	ft_sort_phase2(t_stacks *stacks)
+{
+	ft_position_stackb(stacks);
 	while (stacks->b->size)
-		ft_exec_operation(stacks, PA);
+		ft_insert_b2a(stacks);
+	ft_position_stacka(stacks);
 }
 
 static void	ft_sort_two(t_stacks *stacks)
@@ -130,17 +173,18 @@ void	ft_sort(t_stacks *stacks)
 
 	if (stacks->a->size == 2)
 		ft_sort_two(stacks);
-	if (stacks->a->size == 3)
+	else if (stacks->a->size == 3)
 		ft_sort_three(stacks);
-	if (stacks->a->size > 3)
+	else if (stacks->a->size > 3)
 	{
-		while (stacks->a->size)
+		while (stacks->a->size > 3)
 		{
 			ft_get_next_to_sort(*stacks, &sp);
 			ft_execute_case(stacks, sp);
 			ft_exec_operation(stacks, PB);
 		}
-		ft_b_to_a(stacks);
+		ft_sort_three(stacks);
+		ft_sort_phase2(stacks);
 	}
 	/* ft_print_stacks(stacks); */
 }
