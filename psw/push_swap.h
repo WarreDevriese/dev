@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 13:15:00 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/27 10:42:02 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@
 # define RRB 9
 # define RRR 10
 
-//TYPEDEFS
+//CASE ID'S
 # define CASE1 0
 # define CASE2 1
 # define CASE3 2
 # define CASE4 3
 
+//TYPEDEFS
 typedef struct s_sorting_params
 {
 	short	cost;
