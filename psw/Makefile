@@ -3,7 +3,7 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
-SRC := main.c parse.c stacks.c operations.c cases.c sort.c
+SRC := main.c parse.c stacks.c operations.c cases.c sort_phase1.c sort_phase2.c sort_small.c
 OBJ := $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft/

@@ -6,11 +6,24 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:42:39 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/24 11:09:20 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/05/27 21:36:33 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+bool	ft_is_sorted(t_stacks *stacks)
+{
+	short	i;
+
+	if (stacks->b->size)
+		return (false);
+	i = stacks->a->size;
+	while (--i)
+		if (stacks->a->array[i] != i)
+			return (false);
+	return (true);
+}
 
 void	ft_error(void *ptr)
 {
