@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/27 21:50:09 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/30 08:27:08 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,21 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 	}
 }
 
-static void    ft_print_stacks(t_stacks *stacks)
-{
-    short i;
+/* static void    ft_print_stacks(t_stacks *stacks) */
+/* { */
+/*     short i; */
 
-	printf("\n");
-    printf("Stack A: \n");
-    for(i = 0; i < stacks->a->size; i++)
-        printf("%d ", stacks->a->array[i]);
-    printf("\n");
+/* 	printf("\n"); */
+/*     printf("Stack A: \n"); */
+/*     for(i = 0; i < stacks->a->size; i++) */
+/*         printf("%d ", stacks->a->array[i]); */
+/*     printf("\n"); */
 
-    printf("Stack B: \n");
-    for(i = 0; i < stacks->b->size; i++)
-        printf("%d ", stacks->b->array[i]);
-    printf("\n\n");
-}
+/*     printf("Stack B: \n"); */
+/*     for(i = 0; i < stacks->b->size; i++) */
+/*         printf("%d ", stacks->b->array[i]); */
+/*     printf("\n\n"); */
+/* } */
 
 void	ft_sort(t_stacks *stacks)
 {
@@ -112,7 +112,7 @@ void	ft_sort(t_stacks *stacks)
 	{
 		while (stacks->a->size > 3)
 		{
-			ft_print_stacks(stacks);
+			/* ft_print_stacks(stacks); */
 			ft_get_next_to_sort(*stacks, &sp);
 			ft_execute_case(stacks, sp);
 			ft_exec_operation(stacks, PB);
@@ -120,9 +120,4 @@ void	ft_sort(t_stacks *stacks)
 		ft_sort_three(stacks);
 		ft_sort_phase2(stacks);
 	}
-	ft_print_stacks(stacks);
-	if (!ft_is_sorted(stacks))
-		ft_printf("FAIL\n");
-	if (ft_is_sorted(stacks))
-		ft_printf("SUCCES\n");
 }

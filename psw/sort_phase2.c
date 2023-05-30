@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/27 21:22:37 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/30 08:22:26 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,35 @@ static void	ft_position_stacka(t_stacks *stacks)
 			ft_exec_operation(stacks, RRA);
 }
 
+/* static void    ft_print_stacks(t_stacks *stacks) */
+/* { */
+/*     short i; */
+
+/* 	printf("\n"); */
+/*     printf("Stack A: \n"); */
+/*     for(i = 0; i < stacks->a->size; i++) */
+/*         printf("%d ", stacks->a->array[i]); */
+/*     printf("\n"); */
+
+/*     printf("Stack B: \n"); */
+/*     for(i = 0; i < stacks->b->size; i++) */
+/*         printf("%d ", stacks->b->array[i]); */
+/*     printf("\n\n"); */
+/* } */
+
 void	ft_sort_phase2(t_stacks *stacks)
 {
 	t_sorting_params	sp;
 	ft_position_stackb(stacks);
 	while (stacks->b->size)
 	{
+		/* ft_print_stacks(stacks); */
 		ft_get_to_pos2(*stacks, &sp);
 		if (sp.to_pos <= stacks->a->size / 2)
-			while (stacks->a->array[sp.to_pos] != sp.to_val)
+			while (stacks->a->array[0] != sp.to_val)
 				ft_exec_operation(stacks, RA);
 		else
-			while (stacks->a->array[sp.to_pos] != sp.to_val)
+			while (stacks->a->array[0] != sp.to_val)
 				ft_exec_operation(stacks, RRA);
 		ft_exec_operation(stacks, PA);
 	}
