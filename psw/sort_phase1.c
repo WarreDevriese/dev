@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/30 08:27:08 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/05/30 08:35:47 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,8 @@ void	ft_sort(t_stacks *stacks)
 		ft_sort_three(stacks);
 		ft_sort_phase2(stacks);
 	}
+	/* if (ft_is_sorted(stacks)) */
+	/* 	printf("SUCCES"); */
+	/* else */
+	/* 	printf("FAIL"); */
 }
