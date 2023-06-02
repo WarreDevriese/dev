@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:36:06 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/02 12:42:39 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:30:00 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <pthread.h>
 # include <stdio.h>
+# include <string.h>
 # include <stdlib.h>
 # include <stdbool.h>
 
@@ -27,6 +28,8 @@ typedef struct	s_params
 	int	number_of_times_each_philosopher_must_eat;
 	pthread_t		*philosophers;
 	pthread_mutex_t	*forks;
+	int	philosopher_number;
+	int	fork_number;
 }				t_params;
 
 int		ft_atoi(const char *nptr);
