@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:36:06 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/02 17:30:00 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/06/03 08:52:19 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ typedef struct	s_params
 }				t_params;
 
 int		ft_atoi(const char *nptr);
+void	ft_init_params(t_params *p, int argc, char **argv);
+bool	ft_init_forks(t_params  *p);
+bool ft_init_philosophers(t_params *p);
 
 #endif
