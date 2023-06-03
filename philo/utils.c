@@ -6,11 +6,27 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:24:26 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/02 10:25:41 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/03 12:59:59 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+long long ft_max(long long a, long long b)
+{
+    if (a >= b)
+        return a;
+    else
+        return b;
+}
+
+long long ft_min(long long a, long long b)
+{
+    if (a <= b)
+        return a;
+    else
+        return b;
+}
 
 int	ft_atoi(const char *nptr)
 {

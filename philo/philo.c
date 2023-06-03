@@ -6,7 +6,7 @@
 /*   By: warredevriese <marvin@42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:40:09 by warredevriese     #+#    #+#             */
-/*   Updated: 2023/06/03 08:56:42 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/06/03 11:43:09 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 static void	ft_cleanup(t_params *p)
 {
+	//FINISH UP
+	if (p->philosophers)
+		free(p->philosophers);
+	if (p->forks)
+		free(p->forks);
+	while (p->fork_number--)
 
 }
 

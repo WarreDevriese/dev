@@ -6,13 +6,13 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:02:29 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/15 13:02:59 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/03 12:59:33 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_min(int a, int b)
+long long ft_min(long long a, long long b)
 {
     if (a <= b)
         return a;

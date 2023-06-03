@@ -6,7 +6,7 @@
 /*   By: warredevriese <marvin@42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 08:42:14 by warredevriese     #+#    #+#             */
-/*   Updated: 2023/06/03 08:56:46 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/06/03 13:44:08 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_init_params(t_params *p, int argc, char **argv)
 	p->number_of_times_each_philosopher_must_eat = 0; 
 	if (argc == 6)
 		p->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+	p->is_alive = true;
 }
 
 bool	ft_init_forks(t_params  *p)
