@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 09:36:06 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/03 13:45:37 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/03 21:54:59 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ typedef struct	s_params
 	int	fork_number;
 	long long	last_meal;
 	bool	is_alive;
+	bool	*death_flag;
 }				t_params;
 
 int		ft_atoi(const char *nptr);
-void	ft_init_params(t_params *p, int argc, char **argv);
+bool	ft_init_params(t_params *p, int argc, char **argv);
 bool	ft_init_forks(t_params  *p);
 bool	 ft_init_philosophers(t_params *p);
 long long ft_max(long long a, long long b);

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 12:10:19 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/03 13:45:27 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/03 21:37:49 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ static void	ft_monitor_life(void *arg)
 	t_params	*p;
 
 	p = (t_params *)arg;
+	while (p->is_alive)
+	{
+		if ()
+		{
+			p->is_alive = false;
+			ft_print_status(p, "died");
+		}
+	}
 
 }
 

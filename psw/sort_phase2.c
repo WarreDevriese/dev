@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/30 08:22:26 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/06/03 20:46:59 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,16 @@ void	ft_sort_phase2(t_stacks *stacks)
 	while (stacks->b->size)
 	{
 		/* ft_print_stacks(stacks); */
-		ft_get_to_pos2(*stacks, &sp);
-		if (sp.to_pos <= stacks->a->size / 2)
-			while (stacks->a->array[0] != sp.to_val)
-				ft_exec_operation(stacks, RA);
-		else
-			while (stacks->a->array[0] != sp.to_val)
-				ft_exec_operation(stacks, RRA);
+		if (stacks->a->array[0] != stacks->b->array[0] + 1)
+		{
+			ft_get_to_pos2(*stacks, &sp);
+			if (sp.to_pos <= stacks->a->size / 2)
+				while (stacks->a->array[0] != sp.to_val)
+					ft_exec_operation(stacks, RA);
+			else
+				while (stacks->a->array[0] != sp.to_val)
+					ft_exec_operation(stacks, RRA);
+		}
 		ft_exec_operation(stacks, PA);
 	}
 	ft_position_stacka(stacks);

@@ -6,7 +6,7 @@
 /*   By: warredevriese <marvin@42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:40:09 by warredevriese     #+#    #+#             */
-/*   Updated: 2023/06/03 11:43:09 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/03 22:17:58 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	ft_cleanup(t_params *p)
 	if (p->forks)
 		free(p->forks);
 	while (p->fork_number--)
-
 }
 
 int	main(int argc, char **argv)
@@ -32,8 +31,7 @@ int	main(int argc, char **argv)
 		printf("Usage: ./philosophers number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
 		return (1);
 	}
-	ft_init_params(&p, argc, argv);	
-	if (!ft_init_forks(&p) || !ft_init_philosophers(&p))
+	if (!ft_init_params(&p, argc, argv) || !ft_init_forks(&p) || !ft_init_philosophers(&p))
 	{
 		ft_cleanup(&p);
 		return (1);

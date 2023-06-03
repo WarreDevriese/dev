@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/30 08:35:47 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/06/03 20:34:51 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,13 @@ static void	ft_get_next_to_sort(t_stacks stacks, t_sorting_params *sp)
 	ft_get_sorting_params(posA, stacks, sp);
 	while (++posA < stacks.a->size)
 	{
-		ft_get_sorting_params(posA, stacks, &temp);
-		if (temp.cost < sp->cost)
-			*sp = temp;
+		//UNTESTED CONTROL STATEMENT, OPTIMIZATION
+		if (posA < sp->cost || posA > stacks.a->size - sp->cost)
+		{
+			ft_get_sorting_params(posA, stacks, &temp);
+			if (temp.cost < sp->cost)
+				*sp = temp;
+		}
 	}
 }
 
