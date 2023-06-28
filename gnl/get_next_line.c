@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:24:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 09:57:28 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:00:15 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,21 @@ char	*get_next_line(int fd)
 		return (free_line(&line_parse));
 	line_return = ft_extract(&line_parse);
 	return (line_return);
+}
+
+#include "stdio.h"
+#include "fcntl.h"
+
+int	main()
+{
+	int	fd;
+	char	*line;
+
+	fd = open("test.txt", O_RDONLY);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
 }

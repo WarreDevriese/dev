@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:19:44 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 16:25:20 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:27:41 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,42 @@
 
 static void	ft_case1(t_stacks *stacks, t_sorting_params sp)
 {
-	while (stacks->a->array[0] != sp.from_val && stacks->b->array[0] != sp.to_val)
+	while (stacks->a->array[0] != sp.to_val && stacks->b->array[0] != sp.from_val)
 		ft_exec_operation(stacks, RRR);
-	if (stacks->b->array[0] == sp.to_val)
-		while (stacks->a->array[0] != sp.from_val)
+	if (stacks->b->array[0] == sp.from_val)
+		while (stacks->a->array[0] != sp.to_val)
 			ft_exec_operation(stacks, RRA);
 	else
-		while (stacks->b->array[0] != sp.to_val)
+		while (stacks->b->array[0] != sp.from_val)
 			ft_exec_operation(stacks, RRB);
 }
 
 static void	ft_case2(t_stacks *stacks, t_sorting_params sp)
 {
-	while (stacks->a->array[0] != sp.from_val && stacks->b->array[0] != sp.to_val)
+	while (stacks->a->array[0] != sp.to_val && stacks->b->array[0] != sp.from_val)
 		ft_exec_operation(stacks, RR);
-	if (stacks->b->array[0] == sp.to_val)
-		while (stacks->a->array[0] != sp.from_val)
+	if (stacks->b->array[0] == sp.from_val)
+		while (stacks->a->array[0] != sp.to_val)
 			ft_exec_operation(stacks, RA);
 	else
-		while (stacks->b->array[0] != sp.to_val)
+		while (stacks->b->array[0] != sp.from_val)
 			ft_exec_operation(stacks, RB);
 }
 
 static void	ft_case3(t_stacks *stacks, t_sorting_params sp)
 {
-	while (stacks->a->array[0] != sp.from_val)
-		ft_exec_operation(stacks, RRA);
-	while (stacks->b->array[0] != sp.to_val)
-		ft_exec_operation(stacks, RB);
+	while (stacks->a->array[0] != sp.to_val)
+		ft_exec_operation(stacks, RA);
+	while (stacks->b->array[0] != sp.from_val)
+		ft_exec_operation(stacks, RRB);
 }
 
 static void	ft_case4(t_stacks *stacks, t_sorting_params sp)
 {
-	while (stacks->a->array[0] != sp.from_val)
-		ft_exec_operation(stacks, RA);
-	while (stacks->b->array[0] != sp.to_val)
-		ft_exec_operation(stacks, RRB);
+	while (stacks->a->array[0] != sp.to_val)
+		ft_exec_operation(stacks, RRA);
+	while (stacks->b->array[0] != sp.from_val)
+		ft_exec_operation(stacks, RB);
 }
 
 void	ft_execute_case(t_stacks *stacks, t_sorting_params sp)

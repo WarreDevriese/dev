@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:40:45 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 21:45:35 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/06/13 11:36:06 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include <stddef.h>
 # include <stdint.h>
 # include <unistd.h>
 

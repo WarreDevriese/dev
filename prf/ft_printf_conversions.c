@@ -6,7 +6,7 @@
 /*   By: warredevriese <marvin@42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:02:16 by warredevriese     #+#    #+#             */
-/*   Updated: 2023/05/15 12:35:59 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:17:30 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,7 @@ int	ft_handle_pointer(va_list *args)
 	int			print_len;
 
 	p = (uintptr_t)va_arg(*args, void *);
-	if (p == 0)
-		print_len = ft_putstr("(nil)");
-	else
-	{
-		print_len = ft_putstr("0x");
-		print_len += ft_handle_hex_p(p);
-	}
+	print_len = ft_putstr("0x");
+	print_len += ft_handle_hex_p(p);
 	return (print_len);
 }

@@ -6,13 +6,13 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 12:08:03 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/26 16:25:19 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:02:44 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_push(t_stacks *stacks, short operation)
+static void	ft_push(t_stacks *stacks, int operation)
 {
 	t_stack	*from_stack;
 	t_stack	*to_stack;
@@ -29,19 +29,19 @@ static void	ft_push(t_stacks *stacks, short operation)
 	}
 	if (from_stack->size == 0)
 		return ;
-	ft_memmove(&to_stack->array[1], &to_stack->array[0], sizeof(short)
+	ft_memmove(&to_stack->array[1], &to_stack->array[0], sizeof(int)
 		* to_stack->size);
 	to_stack->array[0] = from_stack->array[0];
-	ft_memmove(&from_stack->array[0], &from_stack->array[1], sizeof(short)
+	ft_memmove(&from_stack->array[0], &from_stack->array[1], sizeof(int)
 		* (from_stack->size - 1));
 	from_stack->array[from_stack->size - 1] = -1;
 	from_stack->size--;
 	to_stack->size++;
 }
 
-static void	ft_swap(t_stacks *stacks, short operation)
+static void	ft_swap(t_stacks *stacks, int operation)
 {
-	short	temp;
+	int	temp;
 
 	if ((operation == SA || operation == SS) && (stacks->a->size > 1))
 	{
@@ -57,65 +57,47 @@ static void	ft_swap(t_stacks *stacks, short operation)
 	}
 }
 
-static void	ft_rot(t_stacks *stacks, short operation)
+static void	ft_rot(t_stacks *stacks, int operation)
 {
-	short	temp;
+	int	temp;
 
 	if ((operation == RA || operation == RR) && (stacks->a->size > 1))
 	{
 		temp = stacks->a->array[0];
-		ft_memmove(&stacks->a->array[0], &stacks->a->array[1], sizeof(short)
+		ft_memmove(&stacks->a->array[0], &stacks->a->array[1], sizeof(int)
 			* (stacks->a->size - 1));
 		stacks->a->array[stacks->a->size - 1] = temp;
 	}
 	if ((operation == RB || operation == RR) && (stacks->b->size > 1))
 	{
 		temp = stacks->b->array[0];
-		ft_memmove(&stacks->b->array[0], &stacks->b->array[1], sizeof(short)
+		ft_memmove(&stacks->b->array[0], &stacks->b->array[1], sizeof(int)
 			* (stacks->b->size - 1));
 		stacks->b->array[stacks->b->size - 1] = temp;
 	}
 }
 
-static void	ft_rrot(t_stacks *stacks, short operation)
+static void	ft_rrot(t_stacks *stacks, int operation)
 {
-	short	temp;
+	int	temp;
 
 	if ((operation == RRA || operation == RRR) && (stacks->a->size > 1))
 	{
 		temp = stacks->a->array[stacks->a->size - 1];
-		ft_memmove(&stacks->a->array[1], &stacks->a->array[0], sizeof(short)
+		ft_memmove(&stacks->a->array[1], &stacks->a->array[0], sizeof(int)
 			* (stacks->a->size - 1));
 		stacks->a->array[0] = temp;
 	}
 	if ((operation == RRB || operation == RRR) && (stacks->b->size > 1))
 	{
 		temp = stacks->b->array[stacks->b->size - 1];
-		ft_memmove(&stacks->b->array[1], &stacks->b->array[0], sizeof(short)
+		ft_memmove(&stacks->b->array[1], &stacks->b->array[0], sizeof(int)
 			* (stacks->b->size - 1));
 		stacks->b->array[0] = temp;
 	}
 }
 
-static void	ft_print_operation(short operation)
-{
-	static char	*operations[11];
-
-	operations[SA] = "sa\n";
-	operations[SB] = "sb\n";
-	operations[SS] = "ss\n";
-	operations[PA] = "pa\n";
-	operations[PB] = "pb\n";
-	operations[RA] = "ra\n";
-	operations[RB] = "rb\n";
-	operations[RR] = "rr\n";
-	operations[RRA] = "rra\n";
-	operations[RRB] = "rrb\n";
-	operations[RRR] = "rrr\n";
-	ft_printf("%s", operations[operation]);
-}
-
-void	ft_exec_operation(t_stacks *stacks, short operation)
+void	ft_exec_operation(t_stacks *stacks, int operation)
 {
 	ft_print_operation(operation);
 	if (operation == PA || operation == PB)

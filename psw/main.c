@@ -6,11 +6,29 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:42:39 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/27 21:36:33 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/06/28 12:02:42 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_print_operation(int operation)
+{
+	static char	*operations[11];
+
+	operations[SA] = "sa\n";
+	operations[SB] = "sb\n";
+	operations[SS] = "ss\n";
+	operations[PA] = "pa\n";
+	operations[PB] = "pb\n";
+	operations[RA] = "ra\n";
+	operations[RB] = "rb\n";
+	operations[RR] = "rr\n";
+	operations[RRA] = "rra\n";
+	operations[RRB] = "rrb\n";
+	operations[RRR] = "rrr\n";
+	ft_printf("%s", operations[operation]);
+}
 
 bool	ft_is_sorted(t_stacks *stacks)
 {

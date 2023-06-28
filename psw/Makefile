@@ -3,8 +3,10 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
-SRC := main.c parse.c stacks.c operations.c cases.c sort_phase1.c sort_phase2.c sort_small.c
-OBJ := $(SRC:.c=.o)
+SRC := main.c parse.c stacks.c operations.c cases.c sort.c sort1.c sort2.c
+
+OBJ_DIR	:= ./obj/
+OBJ := $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 LIBFT_DIR = ./libft/
 LIBFT_LIB = $(LIBFT_DIR)libft.a
@@ -15,7 +17,8 @@ all : $(NAME)
 $(NAME) : $(LIBFT_LIB) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o $(NAME)
 
-%.o : %.c
+$(OBJ_DIR)%.o : %.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(LIBFT_INC) -c $< -o $@
 
 $(LIBFT_LIB): FORCE
@@ -28,6 +31,7 @@ clean :
 fclean : clean
 	$(MAKE) -s fclean -C $(LIBFT_DIR)
 	rm -f $(NAME)
+	rm -rf $(OBJ_DIR)
 
 re : fclean all
 
