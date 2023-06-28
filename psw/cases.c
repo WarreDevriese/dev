@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:19:44 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/28 10:27:41 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:08:03 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static void	ft_case4(t_stacks *stacks, t_sorting_params sp)
 
 void	ft_execute_case(t_stacks *stacks, t_sorting_params sp)
 {
-	if (sp.casex == CASE1)
+	if (sp.case_number == CASE1)
 		ft_case1(stacks, sp);
-	else if (sp.casex == CASE2)
+	else if (sp.case_number == CASE2)
 		ft_case2(stacks, sp);
-	else if (sp.casex == CASE3)
+	else if (sp.case_number == CASE3)
 		ft_case3(stacks, sp);
-	else if (sp.casex == CASE4)
+	else if (sp.case_number == CASE4)
 		ft_case4(stacks, sp);
 }

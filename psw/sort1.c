@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 08:23:47 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/28 13:16:28 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:36:50 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_threshold(t_stacks stacks)
 	i = -1;
 	while (++i < stacks.a->size)
 		sum += stacks.a->array[i];
-	median = sum / i;
+	median = sum / stacks.a->size;
 	threshold = median - stacks.a->size / 5;
 	return (threshold);
 }

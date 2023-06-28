@@ -6,16 +6,27 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:57:40 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/28 12:40:43 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:07:09 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_set_to_pos(t_sorting_params *sp, int to_pos, int to_val)
+static void ft_get_min_pos_val(t_stacks stacks, int *min_pos, int *min_val)
 {
-	sp->to_pos = to_pos;
-	sp->to_val = to_val;
+    int posA;
+
+	posA = -1;
+    *min_pos = -1;
+    *min_val = INT_MAX;
+    while (++posA < stacks.a->size)
+    {
+        if (stacks.a->array[posA] < *min_val)
+        {
+            *min_pos = posA;
+            *min_val = stacks.a->array[posA];
+        }
+    }
 }
 
 static void	ft_get_to_pos(int posB, t_stacks stacks, t_sorting_params *sp)
@@ -24,23 +35,24 @@ static void	ft_get_to_pos(int posB, t_stacks stacks, t_sorting_params *sp)
 	int min_pos;
 	int min_val;
 
-	min_pos = -1;
-	min_val = INT_MAX;
+	ft_get_min_pos_val(stacks, &min_pos, &min_val);
 	sp->to_pos = -1;
 	sp->to_val = INT_MAX;
 	posA = -1;
 	while (++posA < stacks.a->size)
 	{
-		if (stacks.a->array[posA] < min_val)
-			min_pos = posA;
-		if (stacks.a->array[posA] < min_val)
-			min_val = stacks.a->array[posA];
 		if (stacks.a->array[posA] > stacks.b->array[posB] &&
 				stacks.a->array[posA] < sp->to_val)
-			ft_set_to_pos(sp, posA, stacks.a->array[posA]);
+		{
+			sp->to_pos = posA;
+			sp->to_val = stacks.a->array[posA];
+		}
 	}
 	if (sp->to_pos == -1)
-		ft_set_to_pos(sp, min_pos, min_val);
+	{
+		sp->to_pos = min_pos;
+		sp->to_val = min_val;
+	}
 }
 
 static void	ft_get_sorting_params(int posB, t_stacks stacks, t_sorting_params *sp)
@@ -55,13 +67,13 @@ static void	ft_get_sorting_params(int posB, t_stacks stacks, t_sorting_params *s
 	costs[CASE3] = (stacks.b->size - sp->from_pos) + sp->to_pos;
 	costs[CASE4] = sp->from_pos + (stacks.a->size - sp->to_pos);
 	i = -1;
-	sp->cost = MAX_COST;
+	sp->cost = INT_MAX;
 	while (++i < 4)
 		if (costs[i] < sp->cost)
 		{
 			sp->from_val = stacks.b->array[posB];
 			sp->cost = costs[i];
-			sp->casex = i;
+			sp->case_number = i;
 		}
 }
 

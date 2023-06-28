@@ -6,15 +6,12 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:02:15 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/28 12:45:08 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:07:09 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
-//TAKE OUT PRINTF LATER
-# include <stdio.h>
 
 //LIBRARIES
 # include "libft/inc/libft.h"
@@ -45,14 +42,12 @@
 typedef struct s_sorting_params
 {
 	int	cost;
-	int	casex;
+	int	case_number;
 	int	from_pos;
 	int	from_val;
 	int	to_pos;
 	int	to_val;
 }			t_sorting_params;
-
-# define MAX_COST 251
 
 typedef struct s_stack
 {
