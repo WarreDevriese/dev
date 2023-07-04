@@ -6,21 +6,11 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/17 21:17:13 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/07/04 15:27:45 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static void	ft_free_dirs(char **dirs)
-{
-	int	i;
-
-	i = 0;
-	while (dirs[i])
-		free(dirs[i++]);
-	free(dirs);
-}
 
 static char	*ft_strjoin_path(const char *dirs, const char *cmd)
 {
@@ -38,6 +28,19 @@ static char	*ft_strjoin_path(const char *dirs, const char *cmd)
 	ft_memcpy(full_path + dirs_len + 1, cmd, cmd_len);
 	full_path[dirs_len + cmd_len + 1] = '\0';
 	return (full_path);
+}
+static void	exit_exec_not_found()
+{
+	static bool	first;
+
+	first = true;
+	if (first)
+	{
+		first = false;
+		exit(ERR_EXEC1_NOT_FOUND);
+	}
+	else
+		exit(ERR_EXEC2_NOT_FOUND);
 }
 
 static char	*search_cmd_in_dirs(char *path_env, char *cmd)
@@ -57,9 +60,9 @@ static char	*search_cmd_in_dirs(char *path_env, char *cmd)
 		free(full_path);
 		full_path = NULL;
 	}
-	ft_free_dirs(dirs);
+	ft_free_array(dirs);
 	if (!full_path)
-		exit(ERR_EXEC_NOT_FOUND);
+		exit_exec_not_found();
 	return (full_path);
 }
 
@@ -84,10 +87,11 @@ static char	*find_path_env(char **envp)
 
 char	*find_cmd_path(char **envp, char *cmd)
 {
-	char	*path_env;
+	static char	*path_env;
 	char	*full_path;
 
-	path_env = find_path_env(envp);
+    if (!path_env)
+		path_env = find_path_env(envp);
 	full_path = search_cmd_in_dirs(path_env, cmd);
 	return (full_path);
 }

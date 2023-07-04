@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 13:49:21 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/13 16:26:43 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:42:53 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <errno.h>
+# include <stdbool.h>
 
 typedef enum e_error_code
 {
@@ -39,7 +41,8 @@ typedef enum e_error_code
 	ERR_DUP_STDOUT_CMD2_FILE2,
 	ERR_FORK2_FAILED,
 	ERR_MALLOC_FAILED,
-	ERR_EXEC_NOT_FOUND,
+	ERR_EXEC1_NOT_FOUND,
+	ERR_EXEC2_NOT_FOUND,
 	ERR_PATH_NOT_FOUND,
 	ERR_TOTAL
 }		t_error_code;

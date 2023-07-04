@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:14:48 by wdevries          #+#    #+#             */
-/*   Updated: 2023/05/17 21:17:07 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/07/04 15:01:51 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	ft_close_ppx(int fd)
 static void	validate_arguments(int argc, char **argv)
 {
 	if (argc != 5)
-		write(STDERR_FILENO,
-			"Usage: ./<program name> file1 cmd1 cmd2 file2\n", 46);
+		ft_putstr_fd(
+			"Usage: ./<program name> file1 cmd1 cmd2 file2\n", STDERR_FILENO);
 	if (access(argv[1], F_OK | R_OK) == -1)
 		handle_error(ERR_FILE1_ACCESS);
 	if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) == -1)
 		handle_error(ERR_FILE2_WRITE);
 }
 
-static void	check_child_status(int status)
+static void	check_child_status(int status, char ** argv)
 {
 	int	error_code;
 
@@ -37,7 +37,7 @@ static void	check_child_status(int status)
 	{
 		error_code = WEXITSTATUS(status);
 		if (error_code != 0)
-			handle_error(error_code);
+			handle_error(error_code, argv);
 	}
 }
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_close_ppx(pipefd[1]);
 	waitpid(pid[0], &status[0], 0);
 	waitpid(pid[1], &status[1], 0);
-	check_child_status(status[0]);
+	check_child_status(status[0], argv);
 	check_child_status(status[1]);
 	return (0);
 }
