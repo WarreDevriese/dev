@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 15:47:48 by warredevrie       #+#    #+#             */
-/*   Updated: 2023/07/04 15:57:17 by warredevriese    ###   ########.fr       */
+/*   Created: 2023/04/08 11:33:53 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/08 14:45:10 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_free_array(char **array)
+t_list	*ft_lstnew(void *content)
 {
-	int i;
+	t_list	*new_node;
 
-	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return (0);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
 }

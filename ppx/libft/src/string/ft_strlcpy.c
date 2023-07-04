@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 15:47:48 by warredevrie       #+#    #+#             */
-/*   Updated: 2023/07/04 15:57:17 by warredevriese    ###   ########.fr       */
+/*   Created: 2023/04/03 14:41:39 by wdevries          #+#    #+#             */
+/*   Updated: 2023/05/13 15:33:04 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_free_array(char **array)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int i;
+	size_t	src_len;
+	size_t	i;
 
+	if (!dst || !src)
+		return (0);
+	src_len = ft_strlen(src);
+	if (size == 0)
+		return (src_len);
 	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	while (src[i] && i < size - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (src_len);
 }

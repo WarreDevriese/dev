@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 15:47:48 by warredevrie       #+#    #+#             */
-/*   Updated: 2023/07/04 15:57:17 by warredevriese    ###   ########.fr       */
+/*   Created: 2023/04/08 12:05:23 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/26 12:13:07 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_free_array(char **array)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	int i;
-
-	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
 }

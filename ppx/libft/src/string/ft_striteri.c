@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 15:47:48 by warredevrie       #+#    #+#             */
-/*   Updated: 2023/07/04 15:57:17 by warredevriese    ###   ########.fr       */
+/*   Created: 2023/04/06 09:49:06 by wdevries          #+#    #+#             */
+/*   Updated: 2023/05/13 15:46:56 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void ft_free_array(char **array)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int i;
+	unsigned int	i;
 
+	if (!s)
+		return ;
 	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

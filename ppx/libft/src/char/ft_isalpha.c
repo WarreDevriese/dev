@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 15:47:48 by warredevrie       #+#    #+#             */
-/*   Updated: 2023/07/04 15:57:17 by warredevriese    ###   ########.fr       */
+/*   Created: 2023/04/03 12:51:02 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/14 14:53:13 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void ft_free_array(char **array)
+int	ft_isalpha(int c)
 {
-	int i;
-
-	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	return ((c >= 65 && c <= 90) || (c >= 97 && c <= 122));
 }

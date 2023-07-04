@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 15:47:48 by warredevrie       #+#    #+#             */
-/*   Updated: 2023/07/04 15:57:17 by warredevriese    ###   ########.fr       */
+/*   Created: 2023/04/03 13:11:38 by wdevries          #+#    #+#             */
+/*   Updated: 2023/05/13 15:33:42 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
-void ft_free_array(char **array)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	while (s[i])
+		i++;
+	return (i);
 }

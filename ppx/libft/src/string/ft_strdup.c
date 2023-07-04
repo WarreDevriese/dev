@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 15:47:48 by warredevrie       #+#    #+#             */
-/*   Updated: 2023/07/04 15:57:17 by warredevriese    ###   ########.fr       */
+/*   Created: 2023/04/04 12:38:20 by wdevries          #+#    #+#             */
+/*   Updated: 2023/05/13 15:26:28 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_free_array(char **array)
+char	*ft_strdup(const char *s)
 {
-	int i;
+	int		len;
+	char	*p;
 
-	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	p = (char *)malloc((len + 1) * sizeof(char));
+	if (!p)
+		return (0);
+	ft_strlcpy(p, s, len + 1);
+	return (p);
 }

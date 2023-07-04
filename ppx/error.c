@@ -6,18 +6,18 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:36:25 by wdevries          #+#    #+#             */
-/*   Updated: 2023/07/04 15:41:11 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:14:44 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	init_error_messages(char **em)
+void	init_error_messages(char **em, char **argv)
 {
 
 	em[ERR_NONE] = "Unknown error";
 	em[ERR_CLOSE_FD] = "Close failed";
-	em[ERR_FILE2_WRITE] = argv[4]
+	em[ERR_FILE2_WRITE] = argv[4];
 	em[ERR_FILE1_ACCESS] = argv[1];
 	em[ERR_PIPE_CREATION] = "Error creating pipe";
 	em[ERR_CMD1_EXECUTION] = argv[2];
@@ -36,12 +36,12 @@ void	init_error_messages(char **em)
 	em[ERR_PATH_NOT_FOUND] = "PATH environment variable not found";
 }
 
-void	handle_error(t_error_code err, argv)
+void	handle_error(t_error_code err, char **argv)
 {
 	static char	*em[ERR_TOTAL];
 
 	if (!em[0])
-		init_error_messages(em);
+		init_error_messages(em, argv);
 	if (errno)
 		perror(em[err]);
 	else

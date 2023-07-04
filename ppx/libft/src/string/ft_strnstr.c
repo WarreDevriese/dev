@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 15:47:48 by warredevrie       #+#    #+#             */
-/*   Updated: 2023/07/04 15:57:17 by warredevriese    ###   ########.fr       */
+/*   Created: 2023/04/03 16:40:38 by wdevries          #+#    #+#             */
+/*   Updated: 2023/04/06 14:55:06 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_free_array(char **array)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int i;
+	size_t	i;
+	size_t	j;
+	size_t	little_len;
 
+	little_len = ft_strlen(little);
+	if (little_len == 0)
+		return ((char *)big);
 	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	while (big[i] && (i + little_len <= len))
+	{
+		j = 0;
+		while (big[i + j] == little[j] && little[j])
+			j++;
+		if (little[j] == '\0')
+			return ((char *)(big + i));
+		i++;
+	}
+	return (0);
 }
