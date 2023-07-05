@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 08:23:47 by wdevries          #+#    #+#             */
-/*   Updated: 2023/06/29 09:33:37 by warredevriese    ###   ########.fr       */
+/*   Updated: 2023/07/05 11:27:51 by warredevriese    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static int	ft_threshold(t_stacks stacks)
 {
 	int		threshold;
-	int		median;
+	int		average;
 	int		sum;
 	int		i;
 
-	median = 0;
+	average = 0;
 	sum = 0;
 	i = -1;
 	while (++i < stacks.a->size)
 		sum += stacks.a->array[i];
-	median = sum / stacks.a->size;
-	threshold = median - stacks.a->size / 5;
+	average = sum / stacks.a->size;
+	threshold = average - stacks.a->size / 5;
 	return (threshold);
 }
 
