@@ -18,13 +18,13 @@
 # include <stdint.h>
 # include <unistd.h>
 
-int		ft_printf(const char *s, ...);
-int		ft_strlen(const char *s);
-int		ft_putstr(const char *s);
-int		ft_putchar(const char c);
-int		ft_handle_signed(int n);
-int		ft_handle_unsigned(unsigned int n);
-int		ft_handle_hex(unsigned int n, const char format);
-int		ft_handle_pointer(va_list *args);
+int	ft_printf(const char *s, ...);
+int	ft_strlen(const char *s);
+int	ft_putstr(const char *s);
+int	ft_putchar(const char c);
+int	ft_handle_signed(int n);
+int	ft_handle_unsigned(unsigned int n);
+int	ft_handle_hex(unsigned int n, const char format);
+int	ft_handle_pointer(va_list *args);
 
 #endif

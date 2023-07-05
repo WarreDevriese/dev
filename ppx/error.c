@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:36:25 by wdevries          #+#    #+#             */
-/*   Updated: 2023/07/04 16:14:44 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:56:21 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_error_messages(char **em, char **argv)
 {
-
 	em[ERR_NONE] = "Unknown error";
+	//Close failed: no such file or directory;
 	em[ERR_CLOSE_FD] = "Close failed";
 	em[ERR_FILE2_WRITE] = argv[4];
 	em[ERR_FILE1_ACCESS] = argv[1];
@@ -30,7 +30,7 @@ void	init_error_messages(char **em, char **argv)
 	em[ERR_DUP_PIPE_STDIN_CMD2] = "Error redirect pipe to stdin for cmd2";
 	em[ERR_DUP_STDOUT_CMD2_FILE2] = "Error redirect stdout for cmd2 to file2";
 	em[ERR_FORK2_FAILED] = "Fork 2";
-	em[ERR_MALLOC_FAILED] = "M(*em)ory allocation failed";
+	em[ERR_MALLOC_FAILED] = "Memory allocation failed";
 	em[ERR_EXEC1_NOT_FOUND] = argv[2];
 	em[ERR_EXEC2_NOT_FOUND] = argv[3];
 	em[ERR_PATH_NOT_FOUND] = "PATH environment variable not found";
@@ -38,10 +38,9 @@ void	init_error_messages(char **em, char **argv)
 
 void	handle_error(t_error_code err, char **argv)
 {
-	static char	*em[ERR_TOTAL];
+	char	*em[ERR_TOTAL];
 
-	if (!em[0])
-		init_error_messages(em, argv);
+	init_error_messages(em, argv);
 	if (errno)
 		perror(em[err]);
 	else

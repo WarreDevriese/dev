@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-long long ft_max(long long a, long long b)
+long long	ft_max(long long a, long long b)
 {
-    if (a >= b)
-        return a;
-    else
-        return b;
+	if (a >= b)
+		return (a);
+	else
+		return (b);
 }

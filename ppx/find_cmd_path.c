@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 12:45:54 by wdevries          #+#    #+#             */
-/*   Updated: 2023/07/05 09:23:22 by wdevries         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:59:38 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static char	*ft_strjoin_path(const char *dirs, const char *cmd)
 	full_path[dirs_len + cmd_len + 1] = '\0';
 	return (full_path);
 }
+
 static void	exit_exec_not_found(void)
 {
 	static bool	first;
@@ -88,11 +89,11 @@ static char	*find_path_env(char **envp)
 char	*find_cmd_path(char **envp, char *cmd)
 {
 	static char	*path_env;
-	char	*full_path;
+	char		*full_path;
 
-    if (access(cmd, F_OK) == 0)
+	if (access(cmd, F_OK) == 0)
 		return (cmd);
-    if (!path_env)
+	if (!path_env)
 		path_env = find_path_env(envp);
 	full_path = search_cmd_in_dirs(path_env, cmd);
 	return (full_path);

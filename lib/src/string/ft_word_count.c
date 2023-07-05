@@ -14,7 +14,7 @@
 
 size_t	ft_word_count(char const *s, char c)
 {
-	size_t	count;
+	size_t		count;
 	char const	*start;
 
 	if (!s)
